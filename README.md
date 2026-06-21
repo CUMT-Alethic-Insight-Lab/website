@@ -1,7 +1,23 @@
 # CUMT Aletheion AI Lab Website
 
-Public website repository for CUMT Aletheion AI Lab.
+Public website source for CUMT Aletheion AI Lab.
 
-This repository should contain public-facing website source code, content, and deployment configuration. Do not commit credentials, deployment tokens, private analytics keys, or unreleased internal materials.
+## Development
+
+```bash
+npm install
+npm run dev
+```
+
+## Build
+
+```bash
+npm run build
+npm run preview
+```
+
+The site is built with Vite and deploys as static files from `dist/`.
+
+Do not commit credentials, deployment tokens, private analytics keys, unreleased internal materials, recruitment questions, interview records, scoring rubrics, or candidate data.
 
 Contact: contact@aletheion.cn
