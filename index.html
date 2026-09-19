@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN" data-theme="dark" data-lang="zh">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,25 +7,35 @@
       name="description"
       content="CUMT Alethic Insight AI Lab is a student-led AI research, engineering, and open-source community at China University of Mining and Technology."
     />
-    <meta name="theme-color" content="#f3f5f6" />
+    <meta name="theme-color" content="#0b0e12" />
     <meta property="og:title" content="CUMT Alethic Insight AI Lab" />
     <meta
       property="og:description"
       content="中国矿业大学学生主导的 AI 研究工程共同体。"
     />
     <meta property="og:type" content="website" />
-    <title>CUMT Alethic Insight AI Lab</title>
+    <title data-title-zh="CUMT Alethic Insight AI Lab" data-title-en="CUMT Alethic Insight AI Lab">CUMT Alethic Insight AI Lab</title>
     <link rel="icon" href="/mark.svg" type="image/svg+xml" />
     <script>
       (() => {
-        let theme = "light";
+        let theme = "dark";
         try {
-          theme = localStorage.getItem("theme") || "light";
+          theme = localStorage.getItem("theme") || "dark";
         } catch {
-          theme = "light";
+          theme = "dark";
         }
         document.documentElement.dataset.theme =
           theme === "dark" ? "dark" : "light";
+        let lang = "";
+        try {
+          lang = localStorage.getItem("lang") || "";
+        } catch {
+          lang = "";
+        }
+        if (lang !== "zh" && lang !== "en") {
+          lang = (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+        }
+        document.documentElement.dataset.lang = lang;
       })();
     </script>
     <link rel="stylesheet" href="/src/styles.css" />
@@ -38,26 +48,80 @@
           <span>Alethic Insight</span>
         </a>
         <nav class="nav-links" aria-label="Primary navigation">
-          <a href="#position">定位</a>
-          <a href="#work">方向</a>
-          <a href="#projects">项目</a>
-          <a href="/flued-demo.html">FLUED 演示</a>
-          <a href="#documents">文档</a>
-          <a href="#join">加入</a>
+          <a href="#position"><span lang-zh>定位</span><span lang-en>Position</span></a>
+          <div class="nav-item">
+            <a class="nav-top" href="#work" aria-haspopup="true"><span lang-zh>研究</span><span lang-en>Research</span><span class="caret" aria-hidden="true">▾</span></a>
+            <div class="nav-menu"><div class="nav-menu-inner"><div class="mega-grid">
+              <div class="mega-side">
+                <p class="mega-eyebrow"><span lang-zh>探索研究</span><span lang-en>Explore Research</span></p>
+                <p class="mega-blurb mega-desc" data-for="default"><span lang-zh>方向 · 项目 · 成果，公开可复现。</span><span lang-en>Directions, projects and awards — open and reproducible.</span></p><p class="mega-blurb mega-desc" data-for="work"><span lang-zh>七个研究方向：NLP/LLM、CV、VLM/MLLM、RL、Agent、Memory、AI Infra。</span><span lang-en>Seven directions: LLM, CV, VLM, RL, Agent, Memory, Infra.</span></p><p class="mega-blurb mega-desc" data-for="projects"><span lang-zh>FLUED、招新平台与官网：把想法交付成真实可用的系统。</span><span lang-en>FLUED, recruitment platform, website: ideas shipped.</span></p><p class="mega-blurb mega-desc" data-for="awards"><span lang-zh>服创大赛 AI 专项一/三等奖，以赛促学并沉淀复盘。</span><span lang-en>AI track 1st/3rd prizes, learning by competing.</span></p>
+              </div>
+              <div class="mega-links">
+                <a style="--i:0" href="#work" data-desc="work"><span lang-zh>方向</span><span lang-en>Directions</span></a>
+                <a style="--i:1" href="#projects" data-desc="projects"><span lang-zh>项目</span><span lang-en>Projects</span></a>
+                <a style="--i:2" href="#awards" data-desc="awards"><span lang-zh>成果</span><span lang-en>Awards</span></a>
+              </div>
+            </div></div></div>
+          </div>
+          <div class="nav-item">
+            <a class="nav-top" href="/flued.html" aria-haspopup="true"><span>FLUED</span><span class="caret" aria-hidden="true">▾</span></a>
+            <div class="nav-menu"><div class="nav-menu-inner"><div class="mega-grid">
+              <div class="mega-side">
+                <p class="mega-eyebrow"><span lang-zh>字节级语言接口</span><span lang-en>Byte-level Interface</span></p>
+                <p class="mega-blurb mega-desc" data-for="default"><span lang-zh>从问题到图谱，共五章。</span><span lang-en>Five chapters, from problem to atlas.</span></p><p class="mega-blurb mega-desc" data-for="flued-problem"><span lang-zh>为什么要做字节级语言接口：问题与动机。</span><span lang-en>Why byte-level: problem and motivation.</span></p><p class="mega-blurb mega-desc" data-for="flued-arch"><span lang-zh>v3.6 编码 · 切分 · 读出：架构总览。</span><span lang-en>v3.6 encode, segment, readout.</span></p><p class="mega-blurb mega-desc" data-for="flued-demo"><span lang-zh>五个模型同一段文本，秒级出结果。</span><span lang-en>Five models, one text, live results.</span></p><p class="mega-blurb mega-desc" data-for="flued-evidence"><span lang-zh>训练曲线与严格掩码口径：数据说话。</span><span lang-en>Curves and strict-mask evidence.</span></p><p class="mega-blurb mega-desc" data-for="flued-atlas"><span lang-zh>实验台账全览：可追溯的产物索引。</span><span lang-en>Full experiment ledger and artifacts.</span></p>
+              </div>
+              <div class="mega-links cols-2">
+                <a style="--i:0" href="/flued.html" data-desc="flued-problem"><b>01</b><span lang-zh>问题</span><span lang-en>Problem</span></a>
+                <a style="--i:1" href="/flued-architecture.html" data-desc="flued-arch"><b>02</b><span lang-zh>架构</span><span lang-en>Architecture</span></a>
+                <a style="--i:2" href="/flued-demo.html" data-desc="flued-demo"><b>03</b><span lang-zh>演示</span><span lang-en>Demo</span></a>
+                <a style="--i:3" href="/flued-evidence.html" data-desc="flued-evidence"><b>04</b><span lang-zh>证据</span><span lang-en>Evidence</span></a>
+                <a style="--i:4" href="/flued-experiments.html" data-desc="flued-atlas"><b>05</b><span lang-zh>图谱</span><span lang-en>Atlas</span></a>
+              </div>
+            </div></div></div>
+          </div>
+          <div class="nav-item">
+            <a class="nav-top" href="#documents" aria-haspopup="true"><span lang-zh>文档</span><span lang-en>Docs</span><span class="caret" aria-hidden="true">▾</span></a>
+            <div class="nav-menu"><div class="nav-menu-inner"><div class="mega-grid">
+              <div class="mega-side">
+                <p class="mega-eyebrow"><span lang-zh>文档与治理</span><span lang-en>Docs &amp; Governance</span></p>
+                <p class="mega-blurb mega-desc" data-for="default"><span lang-zh>博客 · 招新 · 章程。</span><span lang-en>Insights, recruitment and charter.</span></p><p class="mega-blurb mega-desc" data-for="doc-insights"><span lang-zh>当模型开始吞掉记忆：分层记忆架构前瞻。</span><span lang-en>Memory hierarchy outlook.</span></p><p class="mega-blurb mega-desc" data-for="doc-recruit"><span lang-zh>每年一届招新：学号即账号，报名即建档。</span><span lang-en>Yearly recruitment, one application flow.</span></p><p class="mega-blurb mega-desc" data-for="doc-charter"><span lang-zh>组织章程：定位、成员与决策。</span><span lang-en>Charter: mission, members, decisions.</span></p><p class="mega-blurb mega-desc" data-for="doc-member"><span lang-zh>成员规则：如何加入与留存。</span><span lang-en>Membership: joining and staying.</span></p><p class="mega-blurb mega-desc" data-for="doc-gov"><span lang-zh>项目治理：开源、评审与 AI 辅助规则。</span><span lang-en>Governance: open-source and review.</span></p>
+              </div>
+              <div class="mega-links cols-2">
+                <a style="--i:0" href="/insights-memory-hierarchy.html" data-desc="doc-insights"><span lang-zh>技术博客</span><span lang-en>Insights</span></a>
+                <a style="--i:1" href="/recruitment/" data-desc="doc-recruit"><span lang-zh>招新流程</span><span lang-en>Recruitment</span></a>
+                <a style="--i:2" href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/charter.md" data-desc="doc-charter"><span lang-zh>章程</span><span lang-en>Charter</span></a>
+                <a style="--i:3" href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/membership.md" data-desc="doc-member"><span lang-zh>成员规则</span><span lang-en>Membership</span></a>
+                <a style="--i:4" href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/project-governance.md" data-desc="doc-gov"><span lang-zh>项目治理</span><span lang-en>Governance</span></a>
+              </div>
+            </div></div></div>
+          </div>
+          <a href="/people.html"><span lang-zh>成员</span><span lang-en>People</span></a>
+          <a href="/recruitment/"><span lang-zh>加入我们</span><span lang-en>Join Us</span></a>
         </nav>
         <div class="header-controls">
+          <button
+            class="lang-toggle"
+            type="button"
+            data-lang-toggle
+            aria-label="Switch to English"
+          >
+            <span data-lang-toggle-label>EN</span>
+          </button>
           <button
             class="theme-toggle"
             type="button"
             data-theme-toggle
             aria-label="切换到深色主题"
-            aria-pressed="true"
+            aria-pressed="false"
           >
             <span class="theme-toggle-track" aria-hidden="true">
               <span class="theme-toggle-thumb"></span>
             </span>
-            <span data-theme-toggle-label>Light</span>
+            <span data-theme-toggle-label>Dark</span>
           </button>
+          <a class="header-action" href="/recruitment/login">
+            <span lang-zh>登录</span><span lang-en>Sign in</span>
+          </a>
           <a class="header-action" href="https://github.com/CUMT-Alethic-Insight-Lab">
             GitHub
           </a>
@@ -65,22 +129,25 @@
       </header>
 
       <nav class="section-rail" aria-label="Section navigation">
-        <a href="#top" data-rail-link="top" aria-label="首页">
+        <a href="#top" data-rail-link="top" aria-label="首页" data-aria-zh="首页" data-aria-en="Home">
           <span>Top</span>
         </a>
-        <a href="#position" data-rail-link="position" aria-label="定位">
+        <a href="#position" data-rail-link="position" aria-label="定位" data-aria-zh="定位" data-aria-en="Position">
           <span>Position</span>
         </a>
-        <a href="#work" data-rail-link="work" aria-label="方向">
+        <a href="#work" data-rail-link="work" aria-label="方向" data-aria-zh="方向" data-aria-en="Directions">
           <span>Work</span>
         </a>
-        <a href="#projects" data-rail-link="projects" aria-label="项目">
+        <a href="#projects" data-rail-link="projects" aria-label="项目" data-aria-zh="项目" data-aria-en="Projects">
           <span>Projects</span>
         </a>
-        <a href="#documents" data-rail-link="documents" aria-label="文档">
+        <a href="#awards" data-rail-link="awards" aria-label="竞赛成果" data-aria-zh="竞赛成果" data-aria-en="Awards">
+          <span>Awards</span>
+        </a>
+        <a href="#documents" data-rail-link="documents" aria-label="文档" data-aria-zh="文档" data-aria-en="Documents">
           <span>Docs</span>
         </a>
-        <a href="#join" data-rail-link="join" aria-label="加入">
+        <a href="#join" data-rail-link="join" aria-label="加入" data-aria-zh="加入" data-aria-en="Join">
           <span>Join</span>
         </a>
       </nav>
@@ -99,11 +166,15 @@
                 From noise, structure.<br />
                 From structure, aletheia.
               </p>
-              <p class="hero-subcopy">
+              <p class="hero-subcopy" lang-zh>
                 由繁得构，由构显真。中国矿业大学学生主导的 AI 研究工程共同体。
               </p>
+              <p class="hero-subcopy" lang-en>
+                From noise, structure; from structure, truth. A student-led AI research,
+                engineering, and open-source community at China University of Mining and Technology.
+              </p>
               <div class="hero-actions" aria-label="Primary links">
-                <a class="button button-primary" href="https://github.com/CUMT-Alethic-Insight-Lab/join-us">
+                <a class="button button-primary" href="/recruitment/">
                   Join Us
                 </a>
                 <a class="button button-secondary" href="https://huggingface.co/Alethic-Insight">
@@ -135,42 +206,90 @@
 
         <section class="intro page-grid section-observe" id="position" aria-label="Positioning">
           <p class="section-kicker">Position</p>
-          <h2>组织定位</h2>
-          <p>
+          <h2 lang-zh>组织定位</h2>
+          <h2 lang-en>Positioning</h2>
+          <p lang-zh>
             Alethic Insight，中文名“真知灼见”。AI 研究训练、工程实践、开源协作。
+          </p>
+          <p lang-en>
+            Alethic Insight — “真知灼见” in Chinese. AI research training, engineering practice,
+            and open-source collaboration.
           </p>
         </section>
 
         <section class="section page-grid section-observe" id="work" aria-labelledby="work-title">
           <div class="section-heading">
             <p class="section-kicker">Directions</p>
-            <h2 id="work-title">研究方向</h2>
+            <h2 id="work-title" lang-zh>研究方向</h2>
+            <h2 lang-en>Research Directions</h2>
           </div>
           <div class="direction-list">
             <article>
               <span>01</span>
-              <h3>Language & NLP</h3>
-              <p>大模型应用与检索增强，面向中文场景的评测与数据构建。</p>
+              <h3>NLP / LLM</h3>
+              <p lang-zh>大模型与检索增强，面向中文场景的评测与数据构建。</p>
+              <p lang-en>LLM applications and retrieval augmentation, with evaluation and dataset construction for Chinese scenarios.</p>
             </article>
             <article>
               <span>02</span>
-              <h3>Vision & Multimodal</h3>
-              <p>视觉语言模型与视觉推理，遥感场景与多模态系统落地。</p>
+              <h3>CV</h3>
+              <p lang-zh>图像与视频理解，从视觉表征到几何与三维重建。</p>
+              <p lang-en>Image and video understanding, from visual representation to geometry and 3D reconstruction.</p>
             </article>
             <article>
               <span>03</span>
-              <h3>Agents & RL</h3>
-              <p>工具调用、规划与反馈循环，面向真实环境的智能体训练。</p>
+              <h3>VLM / MLLM</h3>
+              <p lang-zh>视觉语言与多模态大模型，跨模态推理的对齐与落地。</p>
+              <p lang-en>Vision-language and multimodal LLMs — alignment and deployment of cross-modal reasoning.</p>
             </article>
             <article>
               <span>04</span>
-              <h3>Trustworthy AI</h3>
-              <p>结果可验证、实验可复现，安全边界与治理规范先行。</p>
+              <h3>RL</h3>
+              <p lang-zh>强化学习与对齐训练，在交互环境中打磨策略与反馈回路。</p>
+              <p lang-en>Reinforcement learning and alignment — policies and feedback loops trained in interactive environments.</p>
             </article>
             <article>
               <span>05</span>
-              <h3>AI Infrastructure</h3>
-              <p>部署、实验追踪与模型服务，GPU 与存储的工程化工作流。</p>
+              <h3>Agent</h3>
+              <p lang-zh>工具调用、规划与多智能体编排，面向真实任务的可靠执行。</p>
+              <p lang-en>Tool use, planning, and multi-agent orchestration — reliable execution for real-world tasks.</p>
+            </article>
+            <article>
+              <span>06</span>
+              <h3>Memory</h3>
+              <p lang-zh>长期记忆与检索系统，让智能体沉淀经验、越用越强。</p>
+              <p lang-en>Long-term memory and retrieval systems — agents that accumulate experience and improve with use.</p>
+            </article>
+            <article>
+              <span>07</span>
+              <h3>AI Infra</h3>
+              <p lang-zh>部署、实验追踪与模型服务，GPU 与存储的工程化工作流。</p>
+              <p lang-en>Deployment, experiment tracking, and model serving — engineered workflows for GPUs and storage.</p>
+            </article>
+          </div>
+        </section>
+
+        <section class="section page-grid section-observe" id="focus" aria-labelledby="focus-title">
+          <div class="section-heading">
+            <p class="section-kicker">Lab Focus</p>
+            <h2 id="focus-title" lang-zh>实验室三大面向</h2>
+            <h2 lang-en>Three Tracks</h2>
+          </div>
+          <div class="principle-grid focus-grid">
+            <article>
+              <h3><span lang-zh>科研</span><span lang-en>Research</span></h3>
+              <p lang-zh>围绕方向议题做公开研究，实验可复现、产物可追溯。</p>
+              <p lang-en>Open research on our directions — reproducible experiments and traceable artifacts.</p>
+            </article>
+            <article>
+              <h3><span lang-zh>交付项目</span><span lang-en>Delivered Projects</span></h3>
+              <p lang-zh>从招新平台到内部工具，把想法交付成真实可用的系统。</p>
+              <p lang-en>From the recruitment platform to internal tooling — ideas delivered as working systems.</p>
+            </article>
+            <article>
+              <h3><span lang-zh>比赛</span><span lang-en>Competitions</span></h3>
+              <p lang-zh>以赛促学，组队打榜并沉淀方法与复盘。</p>
+              <p lang-en>Learning by competing — team runs, methods, and post-mortems worth sharing.</p>
             </article>
           </div>
         </section>
@@ -179,33 +298,88 @@
           <div class="page-grid">
             <div class="section-heading">
               <p class="section-kicker">Open Work</p>
-              <h2 id="projects-title">公开项目</h2>
+              <h2 id="projects-title" lang-zh>公开项目</h2>
+              <h2 lang-en>Open Projects</h2>
             </div>
             <div class="project-table">
               <a href="/flued.html">
                 <span>FLUED</span>
-                <strong>Byte-to-latent 语言编码接口研究</strong>
+                <strong lang-zh>Byte-to-latent 语言编码接口研究</strong>
+                <strong lang-en>Research on a byte-to-latent language encoding interface</strong>
               </a>
               <a href="https://github.com/CUMT-Alethic-Insight-Lab/website">
                 <span>website</span>
-                <strong>组织官网源码与部署</strong>
+                <strong lang-zh>组织官网源码与部署</strong>
+                <strong lang-en>Source code and deployment of this site</strong>
               </a>
-              <a href="https://github.com/CUMT-Alethic-Insight-Lab/join-us">
-                <span>join-us</span>
-                <strong>招新流程、准备建议与申请入口</strong>
+              <a href="/recruitment/">
+                <span>recruitment</span>
+                <strong lang-zh>招新平台：报名与机试入口</strong>
+                <strong lang-en>Recruitment platform: application and coding-test entry</strong>
               </a>
               <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public">
                 <span>governance-public</span>
-                <strong>公开章程、成员规则和项目治理</strong>
+                <strong lang-zh>公开章程、成员规则和项目治理</strong>
+                <strong lang-en>Public charter, membership rules, and project governance</strong>
               </a>
               <a href="https://github.com/CUMT-Alethic-Insight-Lab/awesome-ai">
                 <span>awesome-ai</span>
-                <strong>AI 学习与研究工程资源索引</strong>
+                <strong lang-zh>AI 学习与研究工程资源索引</strong>
+                <strong lang-en>An index of AI learning and research-engineering resources</strong>
               </a>
               <a href="https://huggingface.co/Alethic-Insight">
                 <span>Hugging Face</span>
-                <strong>模型、数据集、Spaces 和公开实验产物</strong>
+                <strong lang-zh>模型、数据集、Spaces 和公开实验产物</strong>
+                <strong lang-en>Models, datasets, Spaces, and public experiment artifacts</strong>
               </a>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-dark section-observe" id="awards" aria-labelledby="awards-title">
+          <div class="page-grid">
+            <div class="section-heading">
+              <p class="section-kicker">Awards</p>
+              <h2 id="awards-title" lang-zh>竞赛成果</h2>
+              <h2 lang-en>Competition Results</h2>
+            </div>
+            <div class="award-table">
+              <div class="award-row">
+                <span class="lv">一等奖</span>
+                <div>
+                  <strong>孤独的根号五</strong>
+                  <p lang-zh>第17届中国大学生服务外包创新创业大赛 · 人工智能专项赛道【D01】智能体决策算法（腾讯开悟）<br>谢圣民（队长）、利楚、程致远、季成洋、罗若涵 · 指导老师：祝汉城</p>
+                  <p lang-en>17th China College Student Service Outsourcing Innovation &amp; Entrepreneurship Competition, AI Track D01 "Agent Decision Algorithms" (Tencent Kaiwu)<br>Xie Shengmin (captain), Li Chu, Cheng Zhiyuan, Ji Chengyang, Luo Ruohan · Advisor: Zhu Hancheng</p>
+                </div>
+                <a class="cert" href="/awards/cert-FT2614983D1004.pdf" target="_blank" rel="noopener">
+                  <img src="/awards/cert-FT2614983D1004.png" alt="获奖证书 FT2614983D1004">
+                  <span>FT2614983D1004</span>
+                </a>
+              </div>
+              <div class="award-row">
+                <span class="lv">三等奖</span>
+                <div>
+                  <strong>孤独的根号三</strong>
+                  <p lang-zh>第17届中国大学生服务外包创新创业大赛 · 人工智能专项赛道【D01】智能体决策算法（腾讯开悟）<br>张岩（队长）、韩文艳、李豪、王张嘉、文艺学 · 指导老师：祝汉城</p>
+                  <p lang-en>17th China College Student Service Outsourcing Innovation &amp; Entrepreneurship Competition, AI Track D01 "Agent Decision Algorithms" (Tencent Kaiwu)<br>Zhang Yan (captain), Han Wenyan, Li Hao, Wang Zhangjia, Wen Yixue · Advisor: Zhu Hancheng</p>
+                </div>
+                <a class="cert" href="/awards/cert-FT2608179D3065.pdf" target="_blank" rel="noopener">
+                  <img src="/awards/cert-FT2608179D3065.png" alt="获奖证书 FT2608179D3065">
+                  <span>FT2608179D3065</span>
+                </a>
+              </div>
+              <div class="award-row">
+                <span class="lv">三等奖</span>
+                <div>
+                  <strong>孤独的根号七</strong>
+                  <p lang-zh>第17届中国大学生服务外包创新创业大赛 · 人工智能专项赛道【D01】智能体决策算法（腾讯开悟）<br>王天宇（队长）、肖逸涵、刘彬、张雅晗、王紫菲 · 指导老师：姚睿、杜文亮</p>
+                  <p lang-en>17th China College Student Service Outsourcing Innovation &amp; Entrepreneurship Competition, AI Track D01 "Agent Decision Algorithms" (Tencent Kaiwu)<br>Wang Tianyu (captain), Xiao Yihan, Liu Bin, Zhang Yahan, Wang Zifei · Advisors: Yao Rui, Du Wenliang</p>
+                </div>
+                <a class="cert" href="/awards/cert-FT2617974D3101.pdf" target="_blank" rel="noopener">
+                  <img src="/awards/cert-FT2617974D3101.png" alt="获奖证书 FT2617974D3101">
+                  <span>FT2617974D3101</span>
+                </a>
+              </div>
             </div>
           </div>
         </section>
@@ -213,24 +387,29 @@
         <section class="section page-grid two-column section-observe" aria-labelledby="work-mode-title">
           <div class="section-heading">
             <p class="section-kicker">Operating System</p>
-            <h2 id="work-mode-title">协作公约</h2>
+            <h2 id="work-mode-title" lang-zh>协作公约</h2>
+            <h2 lang-en>Working Agreement</h2>
           </div>
           <div class="principle-grid">
             <article>
               <h3>Disclose</h3>
-              <p>公开 AI 辅助的模型、使用范围与验证方式。</p>
+              <p lang-zh>公开 AI 辅助的模型、使用范围与验证方式。</p>
+              <p lang-en>We disclose the AI models involved, their scope of use, and how outputs are verified.</p>
             </article>
             <article>
               <h3>Review</h3>
-              <p>一切改动走 Pull Request，讨论全程可追踪。</p>
+              <p lang-zh>一切改动走 Pull Request，讨论全程可追踪。</p>
+              <p lang-en>Every change goes through a pull request, with the full discussion traceable.</p>
             </article>
             <article>
               <h3>Reproduce</h3>
-              <p>实验记录、数据来源与部署过程全部留档。</p>
+              <p lang-zh>实验记录、数据来源与部署过程全部留档。</p>
+              <p lang-en>Experiment logs, data sources, and deployment procedures are all archived.</p>
             </article>
             <article>
               <h3>Handoff</h3>
-              <p>交接文档、权限清单与维护边界预先写明。</p>
+              <p lang-zh>交接文档、权限清单与维护边界预先写明。</p>
+              <p lang-en>Handover docs, permission lists, and maintenance boundaries are written down in advance.</p>
             </article>
           </div>
         </section>
@@ -238,34 +417,40 @@
         <section class="section page-grid section-observe" id="documents" aria-labelledby="documents-title">
           <div class="section-heading">
             <p class="section-kicker">Documents</p>
-            <h2 id="documents-title">关键文档跳转</h2>
+            <h2 id="documents-title" lang-zh>关键文档跳转</h2>
+            <h2 lang-en>Key Documents</h2>
           </div>
           <div class="document-grid">
-            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/charter.md">章程</a>
-            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/membership.md">成员规则</a>
-            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/project-governance.md">项目治理</a>
-            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/open-source-policy.md">开源政策</a>
-            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/ai-assistance-policy.md">AI 辅助规则</a>
-            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/review-policy.md">Review 规则</a>
-            <a href="https://github.com/CUMT-Alethic-Insight-Lab/join-us/blob/main/docs/zh-CN/process.md">招新流程</a>
-            <a href="https://github.com/CUMT-Alethic-Insight-Lab/join-us/blob/main/docs/zh-CN/preparation.md">准备建议</a>
-            <a href="/flued.html">FLUED 研究展示</a>
+            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/charter.md"><span lang-zh>章程</span><span lang-en>Charter</span></a>
+            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/membership.md"><span lang-zh>成员规则</span><span lang-en>Membership</span></a>
+            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/project-governance.md"><span lang-zh>项目治理</span><span lang-en>Project Governance</span></a>
+            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/open-source-policy.md"><span lang-zh>开源政策</span><span lang-en>Open-Source Policy</span></a>
+            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/ai-assistance-policy.md"><span lang-zh>AI 辅助规则</span><span lang-en>AI Assistance Policy</span></a>
+            <a href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/review-policy.md"><span lang-zh>Review 规则</span><span lang-en>Review Policy</span></a>
+            <a href="/recruitment/"><span lang-zh>招新流程</span><span lang-en>Recruitment Process</span></a>
+            <a href="/recruitment/"><span lang-zh>准备建议</span><span lang-en>Preparation Advice</span></a>
+            <a href="/flued.html"><span lang-zh>FLUED 研究展示</span><span lang-en>FLUED Research Showcase</span></a>
+            <a href="/insights-memory-hierarchy.html"><span lang-zh>技术博客：当模型开始吞掉记忆</span><span lang-en>Insight: When Models Swallow Memory</span></a>
           </div>
         </section>
 
         <section class="join section-observe" id="join" aria-labelledby="join-title">
           <div class="page-grid">
             <p class="section-kicker">Join</p>
-            <h2 id="join-title">加入方式</h2>
+            <h2 id="join-title" lang-zh>加入方式</h2>
+            <h2 lang-en>How to Join</h2>
             <div class="join-flow" aria-label="Recruitment flow">
-              <span>申请表</span>
-              <span>机试</span>
-              <span>面试</span>
+              <span lang-zh>申请表</span>
+              <span lang-en>Application</span>
+              <span lang-zh>机试</span>
+              <span lang-en>Coding Test</span>
+              <span lang-zh>面试</span>
+              <span lang-en>Interview</span>
               <span>Onboarding</span>
             </div>
             <div class="hero-actions">
-              <a class="button button-primary" href="https://github.com/CUMT-Alethic-Insight-Lab/join-us">
-                查看招新说明
+              <a class="button button-primary" href="/recruitment/">
+                <span lang-zh>进入招新平台</span><span lang-en>Enter the Recruitment Platform</span>
               </a>
               <a class="button button-secondary" href="mailto:contact@alethicinsight.org">
                 contact@alethicinsight.org

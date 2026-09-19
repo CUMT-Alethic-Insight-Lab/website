@@ -806,6 +806,64 @@ h3 {
   line-height: 1.35;
 }
 
+.award-table {
+  border-top: 1px solid var(--line-strong);
+}
+
+.award-row {
+  display: grid;
+  grid-template-columns: 220px 1fr 200px;
+  gap: 24px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.award-row .lv {
+  font-family: var(--font-mono);
+  font-size: 0.84rem;
+  padding-top: 4px;
+}
+
+.award-row strong {
+  font-size: 1.18rem;
+  line-height: 1.35;
+}
+
+.award-row p {
+  margin: 8px 0 0;
+  max-width: 62ch;
+  color: var(--muted);
+}
+
+.award-row .cert {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.award-row .cert img {
+  display: block;
+  width: 200px;
+  height: auto;
+  border: 1px solid var(--line);
+}
+
+.award-row .cert:hover img {
+  border-color: var(--line-strong);
+}
+
+.award-row .cert span {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--muted);
+}
+
+@media (max-width: 900px) {
+  .award-row {
+    grid-template-columns: 1fr;
+  }
+}
+
 .two-column {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
@@ -822,6 +880,10 @@ h3 {
   min-height: 180px;
   padding-top: 22px;
   border-top: 1px solid var(--line-strong);
+}
+
+.principle-grid.focus-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
 .document-grid {
@@ -2831,6 +2893,10 @@ h3 {
     min-height: 0;
   }
 
+  .principle-grid.focus-grid {
+    grid-template-columns: 1fr;
+  }
+
   .join-flow span {
     min-height: 84px;
   }
@@ -3695,4 +3761,493 @@ h3 {
     grid-template-columns: 1fr;
     gap: 12px;
   }
+}
+
+/* People roster: spec-sheet rows, same hairline language as direction-list. */
+.people-list {
+  display: grid;
+  border-top: 1px solid var(--line-strong);
+}
+
+.person {
+  display: grid;
+  grid-template-columns: 56px minmax(0, 1fr) auto auto;
+  gap: 8px 24px;
+  align-items: center;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--line);
+  transition: border-color 160ms ease;
+}
+
+.person:hover {
+  border-color: var(--line-strong);
+}
+
+.person-mono {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.person-main {
+  min-width: 0;
+}
+
+.person-main h3 {
+  margin: 0 0 4px;
+  font-size: 1.18rem;
+  font-weight: 600;
+  letter-spacing: -0.008em;
+}
+
+.person-en {
+  margin-left: 8px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 400;
+  letter-spacing: 0.04em;
+}
+
+.person-main p {
+  max-width: 62ch;
+  margin-bottom: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.person-role {
+  padding: 4px 10px;
+  border: 1px solid var(--line-strong);
+  border-radius: 2px;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.person-links {
+  display: grid;
+  gap: 4px;
+  justify-items: end;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  white-space: nowrap;
+}
+
+.person-links a {
+  color: var(--muted);
+  border-bottom: 1px solid transparent;
+  transition:
+    color 160ms ease,
+    border-color 160ms ease;
+}
+
+.person-links a:hover {
+  color: var(--ink);
+  border-color: currentColor;
+}
+
+.person-open {
+  border-bottom-style: dashed;
+}
+
+.person-open .person-mono {
+  border-style: dashed;
+}
+
+.person-open .person-main h3,
+.person-open .person-links {
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.person-open:hover .person-main h3,
+.person-open:hover .person-links {
+  color: var(--accent);
+}
+
+@media (max-width: 980px) {
+  .person {
+    grid-template-columns: 56px minmax(0, 1fr) auto;
+  }
+
+  .person-links {
+    grid-column: 2 / -1;
+    justify-items: start;
+    grid-auto-flow: column;
+    gap: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .person {
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
+  .person-role {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .person-links {
+    grid-column: 2;
+  }
+}
+
+/* Dedicated people page: compact header instead of a full-height hero. */
+.page-head {
+  padding: 168px 0 48px;
+  border-bottom: 1px solid var(--section-divider);
+}
+
+/* People roster: role tags share one fixed-measure column so their left
+   edges align across rows regardless of label length. No px: rem tracks
+   root font size (zoom / mobile / user prefs). */
+.person-role {
+  min-width: 6.5rem;
+  padding: 0.25rem 0.625rem;
+  text-align: center;
+}
+
+/* Desktop: pin role + links columns to fixed measures so the tag band
+   sits at the same horizontal position on every row, immune to email
+   length. (min-width 61.3125rem = 981px, mirrors the max-width:980px
+   breakpoint below which rows stack.) */
+@media (min-width: 61.3125rem) {
+  .person {
+    grid-template-columns: 3.5rem minmax(0, 1fr) 8rem 15rem;
+  }
+
+  .person-role {
+    justify-self: center;
+  }
+}
+
+/* Reserved role: 技术审查委员会委员 / TRC Member.
+   9 CJK chars wrap to two lines inside the same tag column.
+   Usage:
+     <span class="person-role person-role--committee"><span lang-zh>技术审查委员会委员</span><span lang-en>TRC Member</span></span> */
+.person-role--committee {
+  white-space: normal;
+  line-height: 1.6;
+}
+
+.page-head h1 {
+  margin-bottom: 18px;
+  font-size: clamp(3.2rem, 6.5vw, 5rem);
+}
+
+.people-section {
+  padding: 72px 0 112px;
+}
+
+/* ── Language switch (zh/en dual-DOM) ────────────────────── */
+[lang-zh],
+[lang-en] {
+  transition: opacity 160ms ease;
+}
+
+html:not([data-lang="en"]) [lang-en] {
+  display: none !important;
+}
+
+html[data-lang="en"] [lang-zh] {
+  display: none !important;
+}
+
+.lang-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  min-width: 42px;
+  padding: 7px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: var(--panel);
+  color: var(--ink);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.82rem;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  transition:
+    background 160ms ease,
+    border-color 160ms ease,
+    color 160ms ease;
+}
+
+.lang-toggle:hover {
+  background: var(--surface);
+  border-color: var(--ink);
+}
+
+/* Insights article page (insights-memory-hierarchy.html) — long-form reading.
+   Global h1 is nowrap display type; article pages must opt out.
+   Head and body share one fluid column so left edges align.
+   No px here: rem/em scale with root font size (zoom, mobile, user prefs). */
+.insights-head {
+  width: min(47.5rem, calc(100% - 2.5rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.insights-head h1 {
+  max-width: 100%;
+  font-size: clamp(1.9rem, 1.2rem + 3.4vw, 3.1rem);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.35;
+  white-space: normal;
+  text-wrap: balance;
+}
+
+.insights-head .hero-cont {
+  max-width: 100%;
+  line-height: 1.8;
+}
+
+.insights-article {
+  width: min(47.5rem, calc(100% - 2.5rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.insights-article h2 {
+  margin: 3.25em 0 1em;
+  font-size: clamp(1.35rem, 1.1rem + 1.4vw, 1.8rem);
+  font-weight: 600;
+  line-height: 1.45;
+}
+
+.insights-article h2:first-child {
+  margin-top: 0.5em;
+}
+
+.insights-article p,
+.insights-article li {
+  font-size: 1.04rem;
+  line-height: 1.95;
+}
+
+.insights-article p {
+  margin-bottom: 1.05em;
+  text-align: justify;
+}
+
+.insights-article ul,
+.insights-article ol {
+  display: grid;
+  gap: 0.625em;
+  margin: 0 0 1.4em;
+  padding-left: 1.5em;
+}
+
+.insights-article a {
+  overflow-wrap: anywhere;
+}
+
+.insights-refs {
+  width: min(47.5rem, calc(100% - 2.5rem));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.insights-refs h2 {
+  font-size: clamp(1.35rem, 1.1rem + 1.4vw, 1.8rem);
+  font-weight: 600;
+}
+
+.insights-refs ul {
+  display: grid;
+  gap: 0.625em;
+  padding-left: 1.2em;
+  line-height: 1.8;
+}
+
+.insights-refs a {
+  overflow-wrap: anywhere;
+}
+
+/* ---------- Header mega menu (OpenAI-style) ----------
+   Full-width panel expands from the header with a non-linear wipe;
+   links rise in a top-to-bottom ripple via staggered delays.
+   Desktop hover + keyboard focus; mobile keeps the existing rule
+   (nav-links hidden below 980px), so no touch fallback needed.
+   Anti-flicker: nav items stretch the full header height, so moving
+   the mouse from trigger down into the panel never leaves :hover. */
+.nav-links {
+  align-self: stretch;
+}
+
+.nav-item {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  align-self: stretch;
+}
+
+.nav-top {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+}
+
+.nav-top .caret {
+  font-size: 0.7em;
+  line-height: 1;
+}
+
+.nav-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  padding-top: 0.5rem;
+  background: var(--paper);
+  opacity: 0;
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0);
+  transition:
+    opacity 200ms ease,
+    clip-path 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 420ms;
+}
+
+.nav-item:hover .nav-menu,
+.nav-item:focus-within .nav-menu {
+  opacity: 1;
+  visibility: visible;
+  clip-path: inset(0 0 0% 0);
+}
+
+/* 同页锚点点击后强制收菜单（JS 在 header 上打标，鼠标离场解标） */
+.site-header[data-menu-closed] .nav-menu {
+  opacity: 0;
+  visibility: hidden;
+  clip-path: inset(0 0 100% 0);
+}
+
+.site-header[data-menu-closed] .mega-links a {
+  opacity: 0;
+  translate: 0 0.75rem;
+}
+
+.nav-menu-inner {
+  background: var(--paper);
+  border-bottom: 1px solid var(--line-strong);
+  box-shadow: var(--shadow);
+}
+
+.mega-grid {
+  width: min(73.75rem, calc(100% - 2.5rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 18rem minmax(0, 1fr);
+  gap: 2.5rem;
+  padding: 2.5rem 0 3rem;
+}
+
+.mega-eyebrow {
+  margin: 0 0 1rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.mega-blurb {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+/* 右侧说明：默认 blurb；悬停某条链接时换成对应说明 */
+.mega-desc { display: none; }
+.mega-desc[data-for="default"] { display: block; }
+.mega-grid:has(a[data-desc]:hover) .mega-desc[data-for="default"] { display: none; }
+.mega-grid:has(a[data-desc="work"]:hover) .mega-desc[data-for="work"] { display: block; }
+.mega-grid:has(a[data-desc="projects"]:hover) .mega-desc[data-for="projects"] { display: block; }
+.mega-grid:has(a[data-desc="awards"]:hover) .mega-desc[data-for="awards"] { display: block; }
+.mega-grid:has(a[data-desc="flued-problem"]:hover) .mega-desc[data-for="flued-problem"] { display: block; }
+.mega-grid:has(a[data-desc="flued-arch"]:hover) .mega-desc[data-for="flued-arch"] { display: block; }
+.mega-grid:has(a[data-desc="flued-demo"]:hover) .mega-desc[data-for="flued-demo"] { display: block; }
+.mega-grid:has(a[data-desc="flued-evidence"]:hover) .mega-desc[data-for="flued-evidence"] { display: block; }
+.mega-grid:has(a[data-desc="flued-atlas"]:hover) .mega-desc[data-for="flued-atlas"] { display: block; }
+.mega-grid:has(a[data-desc="doc-insights"]:hover) .mega-desc[data-for="doc-insights"] { display: block; }
+.mega-grid:has(a[data-desc="doc-recruit"]:hover) .mega-desc[data-for="doc-recruit"] { display: block; }
+.mega-grid:has(a[data-desc="doc-charter"]:hover) .mega-desc[data-for="doc-charter"] { display: block; }
+.mega-grid:has(a[data-desc="doc-member"]:hover) .mega-desc[data-for="doc-member"] { display: block; }
+.mega-grid:has(a[data-desc="doc-gov"]:hover) .mega-desc[data-for="doc-gov"] { display: block; }
+
+.mega-links {
+  display: grid;
+  gap: 0.25rem;
+  align-content: start;
+}
+
+/* 5 条目的菜单双列排布，吃掉右侧死区 */
+.mega-links.cols-2 {
+  grid-template-columns: 1fr 1fr;
+  column-gap: 3rem;
+}
+
+.mega-links a {
+  display: flex;
+  align-items: baseline;
+  gap: 0.8rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid transparent;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 1.1rem + 1.4vw, 2rem);
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  opacity: 0;
+  translate: 0 0.75rem;
+  transition:
+    opacity 300ms ease,
+    translate 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 160ms ease;
+  transition-delay: 0ms, calc(80ms + var(--i, 0) * 60ms), 0ms;
+}
+
+.nav-item:hover .mega-links a,
+.nav-item:focus-within .mega-links a {
+  opacity: 1;
+  translate: 0 0;
+}
+
+.mega-links a:hover {
+  color: var(--accent);
+  border-bottom-color: transparent;
+}
+
+.mega-links a b {
+  color: var(--accent);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.mega-links a span[lang-en] {
+  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
 }

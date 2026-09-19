@@ -1,10 +1,10 @@
 <!doctype html>
-<html lang="zh-CN" data-theme="light">
+<html lang="zh-CN" data-theme="dark" data-lang="zh">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="FLUED v0.4-v3.6 experiment atlas with auditable training curves, baselines and ablations." />
-    <meta name="theme-color" content="#f3f5f6" />
+    <meta name="theme-color" content="#0b0e12" />
     <meta property="og:title" content="FLUED Experiment Atlas · Alethic Insight" />
     <meta property="og:description" content="按版本、阶段、基线与可信度浏览 FLUED 的关键实验和完整训练趋势。" />
     <meta property="og:type" content="website" />
@@ -12,8 +12,14 @@
     <link rel="icon" href="/mark.svg" type="image/svg+xml" />
     <script>
       (() => {
-        try { document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"; }
-        catch { document.documentElement.dataset.theme = "light"; }
+        try { document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark"; }
+        catch { document.documentElement.dataset.theme = "dark"; }
+        let lang = "";
+        try { lang = localStorage.getItem("lang") || ""; } catch { lang = ""; }
+        if (lang !== "zh" && lang !== "en") {
+          lang = (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+        }
+        document.documentElement.dataset.lang = lang;
       })();
     </script>
     <link rel="stylesheet" href="/src/styles.css" />
@@ -23,37 +29,40 @@
       <header class="site-header" data-site-header>
         <a class="brand" href="/index.html#top" aria-label="Alethic Insight home"><img src="/mark.svg" alt="" width="32" height="32" /><span>Alethic Insight</span></a>
         <nav class="nav-links" aria-label="FLUED navigation">
-          <a href="/flued.html"><b>01</b>问题</a>
-          <a href="/flued-architecture.html"><b>02</b>架构</a>
-          <a href="/flued-demo.html"><b>03</b>演示</a>
-          <a href="/flued-evidence.html"><b>04</b>证据</a>
-          <a href="/flued-experiments.html" aria-current="page"><b>05</b>图谱</a>
+          <a href="/flued.html"><b>01</b><span lang-zh>问题</span><span lang-en>Problem</span></a>
+          <a href="/flued-architecture.html"><b>02</b><span lang-zh>架构</span><span lang-en>Architecture</span></a>
+          <a href="/flued-demo.html"><b>03</b><span lang-zh>演示</span><span lang-en>Demo</span></a>
+          <a href="/flued-evidence.html"><b>04</b><span lang-zh>证据</span><span lang-en>Evidence</span></a>
+          <a href="/flued-experiments.html" aria-current="page"><b>05</b><span lang-zh>图谱</span><span lang-en>Atlas</span></a>
         </nav>
         <div class="header-controls">
-          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换到深色主题" aria-pressed="true"><span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span><span data-theme-toggle-label>Light</span></button>
+          <button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch to English"><span data-lang-toggle-label>EN</span></button>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换到深色主题" aria-pressed="false"><span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span><span data-theme-toggle-label>Dark</span></button>
           <a class="header-action" href="https://github.com/wdd9700/FLUED/tree/copilot/implement-stage-a-experiments">GitHub</a>
         </div>
       </header>
 
       <nav class="section-rail" aria-label="Section navigation">
-        <a href="#top" data-rail-link="top" aria-label="顶部"><span>Top</span></a>
-        <a href="#ledger" data-rail-link="ledger" aria-label="实验台账"><span>Ledger</span></a>
-        <a href="#curves" data-rail-link="curves" aria-label="训练曲线"><span>Curves</span></a>
-        <a href="#frontier" data-rail-link="frontier" aria-label="率失真前沿"><span>Frontier</span></a>
-        <a href="#reading" data-rail-link="reading" aria-label="读法"><span>Reading</span></a>
+        <a href="#top" data-rail-link="top" aria-label="顶部" data-aria-zh="顶部" data-aria-en="Top"><span>Top</span></a>
+        <a href="#ledger" data-rail-link="ledger" aria-label="实验台账" data-aria-zh="实验台账" data-aria-en="Experiment ledger"><span>Ledger</span></a>
+        <a href="#curves" data-rail-link="curves" aria-label="训练曲线" data-aria-zh="训练曲线" data-aria-en="Training curves"><span>Curves</span></a>
+        <a href="#frontier" data-rail-link="frontier" aria-label="率失真前沿" data-aria-zh="率失真前沿" data-aria-en="Rate-distortion frontier"><span>Frontier</span></a>
+        <a href="#reading" data-rail-link="reading" aria-label="读法" data-aria-zh="读法" data-aria-en="How to read"><span>Reading</span></a>
       </nav>
 
       <main>
         <section class="project-hero atlas-hero section-observe" id="top">
           <div class="page-grid project-hero-grid">
             <div class="project-hero-copy">
-              <a class="back-link" href="/flued.html#evidence">返回 FLUED 主页面</a>
-              <p class="chapter-tag">Chapter 05 · 总账</p>
+              <a class="back-link" href="/flued.html#evidence"><span lang-zh>返回 FLUED 主页面</span><span lang-en>Back to FLUED overview</span></a>
+              <p class="chapter-tag"><span lang-zh>Chapter 05 · 总账</span><span lang-en>Chapter 05 · The Ledger</span></p>
               <p class="eyebrow">FLUED Experiment Atlas</p>
-              <h1><span>完整研究过程，</span><span>不只保留最终点</span></h1>
+              <h1><span lang-zh>完整研究过程，</span><span lang-en>The full research process,</span><span lang-zh>不只保留最终点</span><span lang-en>not just the final points</span></h1>
               <p class="hero-lede is-latin">v0.4 -> v3.6 · baselines · ablations · failure cases</p>
-              <p class="project-lede">这里汇总可公开的关键实验条目和派生训练曲线。每项都标注口径与可信度：历史现象、受控机制实验和可作为主结论的公平比较被明确分开。</p>
-              <p class="hero-cont"><b>上一章 · 证据边界：</b>关键曲线与严格对照——本章是全部可公开实验记录的总账，以及当前前沿在整个坐标系里的位置。</p>
+              <p class="project-lede" lang-zh>这里汇总可公开的关键实验条目和派生训练曲线。每项都标注口径与可信度：历史现象、受控机制实验和可作为主结论的公平比较被明确分开。</p>
+              <p class="project-lede" lang-en>This page collects the key public experiment records and their derived training curves. Each entry is labeled with its protocol and confidence level: historical phenomena, controlled mechanism experiments, and fair comparisons that can serve as headline conclusions are clearly separated.</p>
+              <p class="hero-cont" lang-zh><b>上一章 · 证据边界：</b>关键曲线与严格对照——本章是全部可公开实验记录的总账，以及当前前沿在整个坐标系里的位置。</p>
+              <p class="hero-cont" lang-en><b>Previous · Evidence boundaries:</b> key curves and strict controls — this chapter is the full ledger of every public experiment record, and where the current frontier sits in the whole coordinate system.</p>
               <div class="hero-actions"><a class="button button-primary" href="#ledger">Browse ledger</a><a class="button button-secondary" href="#curves">Inspect curves</a></div>
             </div>
             <aside class="project-signal atlas-signal" aria-label="Atlas facts">
@@ -70,25 +79,37 @@
         </section>
 
         <section class="section page-grid section-observe" id="ledger" aria-labelledby="ledger-title">
-          <div class="section-heading"><p class="section-kicker">Experiment Ledger</p><h2 id="ledger-title">按版本、阶段和<span class="atlas-mobile-break"><br /></span>证据等级筛选</h2><p>表格只展示关键指标和结论。原始日志保留在内部归档，用于生成曲线和复核；代码、配置与公开结果摘要可在仓库获得。</p></div>
+          <div class="section-heading">
+            <p class="section-kicker">Experiment Ledger</p>
+            <h2 id="ledger-title" lang-zh>按版本、阶段和<span class="atlas-mobile-break"><br /></span>证据等级筛选</h2>
+            <h2 lang-en>Filter by version, stage,<span class="atlas-mobile-break"><br /></span>and evidence level</h2>
+            <p lang-zh>表格只展示关键指标和结论。原始日志保留在内部归档，用于生成曲线和复核；代码、配置与公开结果摘要可在仓库获得。</p>
+            <p lang-en>The table shows only key metrics and conclusions. Raw logs stay in the internal archive for curve generation and audit; code, configs, and public result summaries are available in the repository.</p>
+          </div>
           <div class="atlas-filterbar" data-ledger-controls>
-            <label>版本<select data-version-filter><option value="all">全部版本</option></select></label>
-            <label>证据<select data-evidence-filter><option value="all">全部可信度</option><option value="high">高</option><option value="controlled">受控单种子</option><option value="historical">历史/纠偏前</option><option value="history">历史设计</option><option value="history-only">仅历史</option></select></label>
-            <label class="atlas-search">检索<input type="search" data-ledger-search placeholder="版本、实验、指标、结论" /></label>
+            <label><span lang-zh>版本</span><span lang-en>Version</span><select data-version-filter><option value="all" data-label-zh="全部版本" data-label-en="All versions">全部版本</option></select></label>
+            <label><span lang-zh>证据</span><span lang-en>Evidence</span><select data-evidence-filter><option value="all" data-label-zh="全部可信度" data-label-en="All confidence levels">全部可信度</option><option value="high" data-label-zh="高" data-label-en="High">高</option><option value="controlled" data-label-zh="受控单种子" data-label-en="Controlled single-seed">受控单种子</option><option value="historical" data-label-zh="历史/纠偏前" data-label-en="Historical / pre-correction">历史/纠偏前</option><option value="history" data-label-zh="历史设计" data-label-en="Design history">历史设计</option><option value="history-only" data-label-zh="仅历史" data-label-en="History only">仅历史</option></select></label>
+            <label class="atlas-search"><span lang-zh>检索</span><span lang-en>Search</span><input type="search" data-ledger-search placeholder="版本、实验、指标、结论" data-placeholder-zh="版本、实验、指标、结论" data-placeholder-en="version, experiment, metric, conclusion" /></label>
           </div>
           <div class="atlas-table-wrap"><div class="atlas-table" role="table" aria-label="FLUED experiment ledger" data-ledger-table></div></div>
           <p class="atlas-result-note" data-ledger-note></p>
         </section>
 
         <section class="section page-grid section-observe" id="curves" aria-labelledby="curves-title">
-          <div class="section-heading"><p class="section-kicker">Training Curves</p><h2 id="curves-title">全量日志点绘制，前端仅做平滑连线</h2><p>每条曲线保留其派生日志中的全部记录点。不会为了“好看”补点或跳过 NaN；没有同一口径的结果不会被画在同一比较组。</p></div>
+          <div class="section-heading">
+            <p class="section-kicker">Training Curves</p>
+            <h2 id="curves-title" lang-zh>全量日志点绘制，前端仅做平滑连线</h2>
+            <h2 lang-en>All log points plotted; the frontend only smooths the lines</h2>
+            <p lang-zh>每条曲线保留其派生日志中的全部记录点。不会为了“好看”补点或跳过 NaN；没有同一口径的结果不会被画在同一比较组。</p>
+            <p lang-en>Every curve keeps all recorded points from its derived log. No points are added and no NaN is skipped for looks; results without a shared protocol are never plotted in the same comparison group.</p>
+          </div>
           <div class="atlas-workbench">
             <aside class="atlas-controls">
-              <div><span class="control-label">曲线组</span><div class="segmented-row atlas-version-buttons" data-curve-family-controls></div></div>
-              <div><span class="control-label">指标</span><div class="metric-button-grid" data-curve-metric-controls>
+              <div><span class="control-label"><span lang-zh>曲线组</span><span lang-en>Curve family</span></span><div class="segmented-row atlas-version-buttons" data-curve-family-controls></div></div>
+              <div><span class="control-label"><span lang-zh>指标</span><span lang-en>Metric</span></span><div class="metric-button-grid" data-curve-metric-controls>
                 <button class="is-active" type="button" data-metric="reconstruction">reconstruction</button><button type="button" data-metric="completion">completion</button><button type="button" data-metric="backbone_acc">backbone acc</button><button type="button" data-metric="latent_per_byte">actual latent / byte</button><button type="button" data-metric="loss">loss</button><button type="button" data-metric="chunks">chunks / sample</button><button type="button" data-metric="boundary_std">boundary std</button><button type="button" data-metric="grad_norm">grad norm</button>
               </div></div>
-              <div class="evidence-note" data-curve-note>正在加载实验档案。</div>
+              <div class="evidence-note" data-curve-note><span lang-zh>正在加载实验档案。</span><span lang-en>Loading the experiment archive.</span></div>
             </aside>
             <div class="chart-panel">
               <div class="chart-panel-head"><div><span class="section-kicker">selected family</span><h3 data-curve-title>loading</h3></div><div class="chart-meta" data-curve-meta></div></div>
@@ -100,29 +121,66 @@
         </section>
 
         <section class="section page-grid section-observe" id="frontier" aria-labelledby="frontier-title">
-          <div class="section-heading"><p class="section-kicker">Rate–Distortion Frontier</p><h2 id="frontier-title">v3.6 的信息效率：同指标下 ~60×</h2><p>横轴为每条 512-byte prompt 传输的标量总数（对数刻度），纵轴为 strict masked-source 补全准确率（越高越好）。八个点全部来自 20K 步、corpus_v3、单 seed=42 的受控 run；S0.7 逐段条件化臂为非默认口径，单独标注。天花板锚 AR H-Net next-byte BPB 0.653 是不同指标，不进 acc 坐标系。</p></div>
+          <div class="section-heading">
+            <p class="section-kicker">Rate–Distortion Frontier</p>
+            <h2 id="frontier-title" lang-zh>v3.6 的信息效率：同指标下 ~60×</h2>
+            <h2 lang-en>v3.6's information efficiency: ~60× at the same metric</h2>
+            <p lang-zh>横轴为每条 512-byte prompt 传输的标量总数（对数刻度），纵轴为 strict masked-source 补全准确率（越高越好）。八个点全部来自 20K 步、corpus_v3、单 seed=42 的受控 run；S0.7 逐段条件化臂为非默认口径，单独标注。天花板锚 AR H-Net next-byte BPB 0.653 是不同指标，不进 acc 坐标系。</p>
+            <p lang-en>The x-axis is the total number of scalars transmitted per 512-byte prompt (log scale); the y-axis is strict masked-source completion accuracy (higher is better). All eight points come from controlled runs of 20K steps on corpus_v3 with a single seed=42; the S0.7 per-chunk conditioning arm is a non-default protocol, marked separately. The ceiling anchor, AR H-Net next-byte BPB 0.653, is a different metric and does not enter the acc coordinate system.</p>
+          </div>
           <div class="frontier-panel">
             <svg class="chart-svg" data-rd-chart viewBox="0 0 980 460" role="img" aria-label="FLUED v3.6 rate-distortion frontier"></svg>
             <div class="chart-legend" data-rd-legend></div>
           </div>
           <div class="frontier-panel">
-            <h3 class="frontier-subtitle">masked acc 对比（柱上数字 = 信息传输标量数 / 512B prompt）</h3>
+            <h3 class="frontier-subtitle"><span lang-zh>masked acc 对比（柱上数字 = 信息传输标量数 / 512B prompt）</span><span lang-en>masked acc compared (numbers on bars = transmitted scalars / 512B prompt)</span></h3>
             <div class="rd-bars" data-rd-bars></div>
           </div>
         </section>
 
         <section class="section page-grid section-observe" id="reading" aria-labelledby="reading-title">
-          <div class="section-heading"><p class="section-kicker">Reading Rules</p><h2 id="reading-title">把结果放回它们真正回答的问题里</h2></div>
+          <div class="section-heading">
+            <p class="section-kicker">Reading Rules</p>
+            <h2 id="reading-title" lang-zh>把结果放回它们真正回答的问题里</h2>
+            <h2 lang-en>Put results back into the questions they actually answer</h2>
+          </div>
           <div class="claim-columns">
-            <div><h3>可作为当前主结论</h3><ul><li>v3.6 公平对比：masked acc 0.149 对 HNet-DiT 瓶颈臂 0.142（同规模同步数同语料单 seed），信息传输 1,536 vs ~97,540 标量。</li><li>v2 A-class 多种子：稳定可微边界和近无损重建。</li><li>v2 D1：统一 2048 原始 byte / 100K 下，FLUED 稳定但尚未超过 BPE。</li><li>v3.2.1 strict masked-source：latent no-memory 使小主干 mask accuracy 从 0.1440 提升至 0.1898。</li></ul></div>
-            <div><h3>只用于定位或历史叙事</h3><ul><li>v3.6 S0.7 逐段条件化（unmasked 0.351 / PPL 12.1）是非默认口径诊断臂，不进入主结论。</li><li>v1 的 E3 20K BPB 阳性不是 D1 公平比较的替代品。</li><li>v3.4 迁移前 5K 筛选用于发现候选组件，不能绕过后续代码纠偏。</li><li>v3.4 40K/20K 单种子矩阵可定位失稳机制，不能据此声称多种子或尺度规律。</li></ul></div>
+            <div>
+              <h3 lang-zh>可作为当前主结论</h3>
+              <h3 lang-en>Usable as current headline conclusions</h3>
+              <ul>
+                <li lang-zh>v3.6 公平对比：masked acc 0.149 对 HNet-DiT 瓶颈臂 0.142（同规模同步数同语料单 seed），信息传输 1,536 vs ~97,540 标量。</li>
+                <li lang-en>The v3.6 fair comparison: masked acc 0.149 vs the HNet-DiT bottleneck arm's 0.142 (matched scale, steps, and corpus, single seed), transmitting 1,536 vs ~97,540 scalars.</li>
+                <li lang-zh>v2 A-class 多种子：稳定可微边界和近无损重建。</li>
+                <li lang-en>v2 A-class multi-seed: stable differentiable boundaries and near-lossless reconstruction.</li>
+                <li lang-zh>v2 D1：统一 2048 原始 byte / 100K 下，FLUED 稳定但尚未超过 BPE。</li>
+                <li lang-en>v2 D1: under the unified 2048 raw-byte / 100K setting, FLUED is stable but has not yet beaten BPE.</li>
+                <li lang-zh>v3.2.1 strict masked-source：latent no-memory 使小主干 mask accuracy 从 0.1440 提升至 0.1898。</li>
+                <li lang-en>v3.2.1 strict masked-source: latent no-memory lifts a small backbone's mask accuracy from 0.1440 to 0.1898.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 lang-zh>只用于定位或历史叙事</h3>
+              <h3 lang-en>For localization or historical narrative only</h3>
+              <ul>
+                <li lang-zh>v3.6 S0.7 逐段条件化（unmasked 0.351 / PPL 12.1）是非默认口径诊断臂，不进入主结论。</li>
+                <li lang-en>v3.6 S0.7 per-chunk conditioning (unmasked 0.351 / PPL 12.1) is a non-default diagnostic arm and does not enter the headline conclusions.</li>
+                <li lang-zh>v1 的 E3 20K BPB 阳性不是 D1 公平比较的替代品。</li>
+                <li lang-en>v1's E3 20K BPB positive is not a substitute for the D1 fair comparison.</li>
+                <li lang-zh>v3.4 迁移前 5K 筛选用于发现候选组件，不能绕过后续代码纠偏。</li>
+                <li lang-en>v3.4's pre-migration 5K screening was for discovering candidate components and cannot bypass the later code corrections.</li>
+                <li lang-zh>v3.4 40K/20K 单种子矩阵可定位失稳机制，不能据此声称多种子或尺度规律。</li>
+                <li lang-en>v3.4's 40K/20K single-seed matrices can localize instability mechanisms but cannot support claims of multi-seed or scaling laws.</li>
+              </ul>
+            </div>
           </div>
         </section>
-        <section class="section page-grid section-observe" aria-label="下一章">
+        <section class="section page-grid section-observe" aria-label="回到第一章" data-aria-zh="回到第一章" data-aria-en="Back to chapter one">
           <a class="next-card" href="/flued.html#boundary">
             <span class="next-kicker">Loop · CH.01</span>
-            <span class="next-title">回到起点——我们主张什么，也不主张什么</span>
-            <span class="next-go">回到研究问题 →</span>
+            <span class="next-title" lang-zh>回到起点——我们主张什么，也不主张什么</span>
+            <span class="next-title" lang-en>Back to the start — what we claim, and what we don't</span>
+            <span class="next-go"><span lang-zh>回到研究问题 →</span><span lang-en>Back to the research question →</span></span>
           </a>
         </section>
       </main>
@@ -131,32 +189,138 @@
     <script type="module" src="/src/main.js"></script>
     <script type="module">
       const COLORS = ["#c65a38", "#5e7e9b", "#b98a2f", "#a85d68", "#8a7ca8", "#6f8b5a", "#b0789b", "#4f7a72"];
-      const METRIC = { reconstruction: { label: "reconstruction accuracy", digits: 3 }, completion: { label: "masked completion accuracy", digits: 3 }, backbone_acc: { label: "backbone acc（unmasked 全位置）", digits: 3 }, latent_per_byte: { label: "actual backbone latent / byte", digits: 3 }, loss: { label: "loss", digits: 3 }, chunks: { label: "chunks / sample（切分段数）", digits: 1 }, boundary_std: { label: "boundary probability std", digits: 3 }, grad_norm: { label: "gradient norm", digits: 2 } };
+      const currentLang = () => (document.documentElement.dataset.lang === "en" ? "en" : "zh");
+      const tt = (pair) => pair[currentLang()];
+
+      // Render-layer zh→en dictionary for Chinese strings inside flued-experiment-atlas.json.
+      // Exact-match lookup with graceful fallback to the original string; the JSON itself is untouched.
+      const ATLAS_EN = {
+        "设计": "Design",
+        "2K（自 3K 基线续训）": "2K (continued from the 3K baseline)",
+        "初始实验计划": "Initial experiment plan",
+        "byte-to-latent 自编码问题定义": "byte-to-latent autoencoding problem definition",
+        "建立软切分、近似逆译码与边界可学习性的最小假设。": "Established the minimal hypotheses of soft segmentation, approximate inverse decoding, and boundary learnability.",
+        "可微 byte boundary 和高保真逆译码可稳定出现。": "Differentiable byte boundaries and high-fidelity inverse decoding can emerge stably.",
+        "重建指标的 label space 不同，BPE token-level CE 不能与 byte-level 直接比较。": "The reconstruction metrics have different label spaces; BPE token-level CE is not directly comparable to byte-level.",
+        "历史 downstream": "historical downstream",
+        "最早强阳性信号，但 fixed-token / 20K 口径已被 v2 D1 替代。": "The earliest strong positive signal, but the fixed-token / 20K protocol has been superseded by v2 D1.",
+        "三种子稳定重建与类型相关边界分化。": "Stable three-seed reconstruction with type-dependent boundary divergence.",
+        "去噪越高，压缩更弱；重建仍接近饱和。": "Heavier denoising weakens compression; reconstruction stays near saturation.",
+        "固定压缩压力存在稳定区和 boundary-head 发散区。": "Fixed compression pressure has both a stable region and a boundary-head divergence region.",
+        "统一 2048 原始 byte 口径。FLUED 稳定但落后 BPE；BLT 为弱复现，不代表原论文。": "Unified 2048-raw-byte protocol. FLUED is stable but trails BPE; BLT is a weak reproduction and does not represent the original paper.",
+        "5K 候选筛选": "5K candidate screening",
+        "历史候选，不作为迁移后最终默认。": "Historical candidate; not the final default after migration.",
+        "课程和边际编码率候选的同预算比较。": "Same-budget comparison of curriculum and marginal coding-rate candidates.",
+        "严格输入侧 mask 的 byte 基线。": "Byte baseline with strict input-side masking.",
+        "当前最干净的主干友好度正证据。": "Currently the cleanest positive evidence of backbone friendliness.",
+        "memory 不稳定超过 no-memory。": "Memory does not stably beat no-memory.",
+        "40K 边界归因": "40K boundary attribution",
+        "延长训练未恢复动态阶段，排除简单欠训练。": "Longer training did not restore the dynamic phase, ruling out simple undertraining.",
+        "缩短过渡略好，但不解决 hard emit 先行容量塌缩。": "A shorter transition helps slightly but does not fix the hard-emit-first capacity collapse.",
+        "w=.05 是单种子候选 Pareto 点，不等于 memory 已形成有序语义序列。": "w=.05 is a single-seed candidate Pareto point; it does not mean memory has formed an ordered semantic sequence.",
+        "arm_a_s0 组件预训主基线": "arm_a_s0 component-pretrained main baseline",
+        "当前主基线：整条 prompt = 1 个 readout 包（1,536 标量）。": "Current main baseline: whole prompt = 1 readout package (1,536 scalars).",
+        "arm_b_e2e 端到端对照": "arm_b_e2e end-to-end control",
+        "masked 0.1243；direct 0.1305；过 12K 退化": "masked 0.1243; direct 0.1305; degenerates past 12K",
+        "组件预训 +5.8pp，端到端路线判死。": "Component pretraining wins by +5.8pp; the end-to-end line is ruled out.",
+        "归因矩阵": "Attribution matrix",
+        "masked 0.1272 @ 384 标量": "masked 0.1272 @ 384 scalars",
+        "uniform 边界容量下限参照。": "Lower-bound capacity reference for uniform boundaries.",
+        "masked 0.1293 @ 1,536 标量": "masked 0.1293 @ 1,536 scalars",
+        "与 arm_a_s0 同率同容量：+4.4pp 增益全部来自 S0 动态边界。": "Same rate and capacity as arm_a_s0: the +4.4pp gain comes entirely from S0 dynamic boundaries.",
+        "masked 0.1463 @ 6,144；0.1509 @ 24,576 标量": "masked 0.1463 @ 6,144; 0.1509 @ 24,576 scalars",
+        "readout 数量 k 无显著差异；容量零效应复核。": "No significant difference across readout count k; capacity null effect reconfirmed.",
+        "masked 0.1477；chunks 24.3（hard 停点）": "masked 0.1477; chunks 24.3 (hard stop)",
+        "边界裁决成功：24.3 段 ≈ 用户手标 21B；GRPO 当前价值=选粒度非提质量。": "Boundary ruling succeeded: 24.3 segments ≈ 21B human-marked; GRPO's current value = choosing granularity, not improving quality.",
+        "control_arm 控制臂": "control_arm control arm",
+        "质量口径与 R4 打平，差异只在切分粒度。": "Ties R4 on quality; the difference lies only in segmentation granularity.",
+        "S0.7 逐段条件化": "S0.7 per-chunk conditioning",
+        "per_chunk_readout（非默认）": "per_chunk_readout (non-default)",
+        "检索瓶颈可解、路线活；masked 未过预注册线，canonical 维持 v36.1。": "The retrieval bottleneck is solvable and the line stays alive; masked missed the pre-registered bar, canonical stays v36.1.",
+        "历史 200-step 重采样；最后 14.8K 使用 v5e 配置": "Historical 200-step resampling; the final 14.8K uses the v5e configuration",
+        "显示最小可逆软分段假设可收敛；中途含超参数搜索，不与 v2/v3 横比。": "Shows the minimal invertible soft-segmentation hypothesis can converge; includes mid-run hyperparameter search, not cross-comparable with v2/v3.",
+        "迁移前候选筛选；全局路径纠偏后不可作为最终组件结论。": "Pre-migration candidate screening; not a final component conclusion after the global path correction.",
+        "同配置 20K 课程和编码率比较；结果随后受全局路径纠偏限制。": "Same-configuration 20K curriculum and coding-rate comparison; results were later qualified by the global path correction.",
+        "同种子 progressive memory；512 bytes": "Same-seed progressive memory; 512 bytes",
+        "早期 memory 正负结论已受位置和执行路径纠偏影响，保留为研究过程。": "Early memory conclusions, positive and negative, were affected by position and execution-path corrections; kept as research process.",
+        "最新长程边界矩阵。说明容量塌缩和动态边界梯度冲击是两个相继的故障。": "Latest long-run boundary matrix. Shows capacity collapse and dynamic-boundary gradient shock are two successive failures.",
+        "arm_a_s0 · 组件预训主基线": "arm_a_s0 · component-pretrained main baseline",
+        "组件预训（S0 segmentor 冻结）主基线：masked 0.149 @ readout 包 k=1（1,536 标量）。": "Component-pretrained (S0 segmentor frozen) main baseline: masked 0.149 @ readout package k=1 (1,536 scalars).",
+        "arm_b_e2e · 端到端对照": "arm_b_e2e · end-to-end control",
+        "端到端对照：masked 0.124，过 12K 后退化；组件预训 +5.8pp 判死端到端路线。": "End-to-end control: masked 0.124, degenerating past 12K; component pretraining +5.8pp rules out the end-to-end line.",
+        "v3.6 归因矩阵": "v3.6 attribution matrix",
+        "B0 · uniform 1x k=1 (384 标量)": "B0 · uniform 1x k=1 (384 scalars)",
+        "uniform 边界 + 1x KDA：容量下限参照。": "uniform boundaries + 1x KDA: lower-bound capacity reference.",
+        "B1 · uniform 4x k=1 (1,536 标量)": "B1 · uniform 4x k=1 (1,536 scalars)",
+        "uniform 边界 + 4x KDA：与 arm_a_s0 同容量同率，差 +4.4pp 全部来自 S0 动态边界。": "uniform boundaries + 4x KDA: same capacity and rate as arm_a_s0; the +4.4pp gap comes entirely from S0 dynamic boundaries.",
+        "k4 · S0 4x (6,144 标量)": "k4 · S0 4x (6,144 scalars)",
+        "S0 边界 + k=4 readout：与 k=1 无显著差异。": "S0 boundaries + k=4 readout: no significant difference from k=1.",
+        "k16 · S0 4x (24,576 标量)": "k16 · S0 4x (24,576 scalars)",
+        "S0 边界 + k=16 readout：k 继续加大仍无增益——容量与 k 均为零效应。": "S0 boundaries + k=16 readout: still no gain from larger k — both capacity and k are null effects.",
+        "grpo_arm · R4 边界优化": "grpo_arm · R4 boundary optimization",
+        "GRPO R4：约束走可微直接损失 E[count]=Σcut_prob，hard 停点 24.3 段 ≈ 用户手标 21B；质量与控制臂打平——GRPO 当前价值是选粒度。": "GRPO R4: constraint as a differentiable direct loss E[count]=Σcut_prob; hard stop at 24.3 segments ≈ 21B human-marked; quality ties the control arm — GRPO's current value is choosing granularity.",
+        "control_arm · 控制臂": "control_arm · control arm",
+        "同预算控制臂：chunks 17.6（S0 教师粒度），masked 0.149。": "Same-budget control arm: chunks 17.6 (S0 teacher granularity), masked 0.149.",
+        "v3.6 S0.7 逐段条件化": "v3.6 S0.7 per-chunk conditioning",
+        "per_chunk_readout · 非默认口径": "per_chunk_readout · non-default protocol",
+        "逐段条件化：unmasked 0.351 / PPL 12.1 证明检索瓶颈可解；masked 0.141 未过预注册线。canonical 维持 v36.1，此臂非默认。": "Per-chunk conditioning: unmasked 0.351 / PPL 12.1 shows the retrieval bottleneck is solvable; masked 0.141 missed the pre-registered bar. Canonical stays v36.1; this arm is non-default.",
+      };
+      const translate = (value) => (currentLang() === "en" ? (ATLAS_EN[value] || value) : value);
+
+      const METRIC = {
+        reconstruction: { label: { zh: "reconstruction accuracy", en: "reconstruction accuracy" }, digits: 3 },
+        completion: { label: { zh: "masked completion accuracy", en: "masked completion accuracy" }, digits: 3 },
+        backbone_acc: { label: { zh: "backbone acc（unmasked 全位置）", en: "backbone acc (unmasked, all positions)" }, digits: 3 },
+        latent_per_byte: { label: { zh: "actual backbone latent / byte", en: "actual backbone latent / byte" }, digits: 3 },
+        loss: { label: { zh: "loss", en: "loss" }, digits: 3 },
+        chunks: { label: { zh: "chunks / sample（切分段数）", en: "chunks / sample (segment count)" }, digits: 1 },
+        boundary_std: { label: { zh: "boundary probability std", en: "boundary probability std" }, digits: 3 },
+        grad_norm: { label: { zh: "gradient norm", en: "gradient norm" }, digits: 2 },
+      };
+      const LEDGER_HEADERS = [
+        { zh: "版本 / 阶段", en: "Version / Stage" },
+        { zh: "实验", en: "Experiment" },
+        { zh: "步数", en: "Steps" },
+        { zh: "关键指标", en: "Key metrics" },
+        { zh: "定位", en: "Role" },
+        { zh: "证据", en: "Evidence" },
+      ];
+      const EVIDENCE_LABELS = {
+        high: { zh: "高", en: "high" },
+        controlled: { zh: "受控单种子", en: "controlled single-seed" },
+        historical: { zh: "历史/纠偏前", en: "historical / pre-correction" },
+        history: { zh: "设计历史", en: "design history" },
+        "history-only": { zh: "仅历史", en: "history only" },
+      };
+      const LEDGER_NOTE = (shown, total) => (currentLang() === "en" ? `Showing ${shown} of ${total} key experiment records.` : `显示 ${shown} / ${total} 条关键实验记录。`);
+      const NO_CURVE_NOTE = { zh: "此实验组没有该指标的连续日志。", en: "This experiment group has no continuous log for that metric." };
+      const LOAD_FAILED = { zh: "数据加载失败", en: "Data load failed" };
+
       const state = { payload: null, family: null, metric: "reconstruction", version: "all", evidence: "all", query: "" };
       const $ = (selector) => document.querySelector(selector);
       const esc = (value) => String(value ?? "").replace(/[&<>\"]/g, (ch) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"})[ch]);
       const fmt = (value, digits = 3) => Number.isFinite(Number(value)) ? Number(value).toFixed(digits) : "-";
-      const labelEvidence = (value) => ({high:"高", controlled:"受控单种子", historical:"历史/纠偏前", history:"设计历史", "history-only":"仅历史"}[value] || value);
+      const labelEvidence = (value) => EVIDENCE_LABELS[value] ? tt(EVIDENCE_LABELS[value]) : value;
       const smooth = (points, key) => points.map((point, index) => { const window = points.slice(Math.max(0, index - 2), Math.min(points.length, index + 3)).map((item) => item[key]).filter(Number.isFinite); return {...point, value: window.length ? window.reduce((a,b)=>a+b,0)/window.length : undefined}; });
 
       function renderLedger() {
         const rows = state.payload.rows.filter((row) => (state.version === "all" || row.version === state.version) && (state.evidence === "all" || row.evidence === state.evidence) && (!state.query || Object.values(row).join(" ").toLowerCase().includes(state.query)));
-        $("[data-ledger-table]").innerHTML = `<div role="row"><span role="columnheader">版本 / 阶段</span><span role="columnheader">实验</span><span role="columnheader">步数</span><span role="columnheader">关键指标</span><span role="columnheader">定位</span><span role="columnheader">证据</span></div>${rows.map((row) => `<div role="row"><span role="cell"><b>${esc(row.version)}</b><small>${esc(row.stage)}</small></span><span role="cell">${esc(row.experiment)}</span><span role="cell">${esc(row.steps)}</span><span role="cell">${esc(row.metric)}</span><span role="cell">${esc(row.finding)}</span><span role="cell"><i class="atlas-badge atlas-${esc(row.evidence)}">${labelEvidence(row.evidence)}</i></span></div>`).join("")}`;
-        $("[data-ledger-note]").textContent = `显示 ${rows.length} / ${state.payload.rows.length} 条关键实验记录。`;
+        $("[data-ledger-table]").innerHTML = `<div role="row">${LEDGER_HEADERS.map((h) => `<span role="columnheader">${esc(tt(h))}</span>`).join("")}</div>${rows.map((row) => `<div role="row"><span role="cell"><b>${esc(row.version)}</b><small>${esc(translate(row.stage))}</small></span><span role="cell">${esc(translate(row.experiment))}</span><span role="cell">${esc(translate(row.steps))}</span><span role="cell">${esc(translate(row.metric))}</span><span role="cell">${esc(translate(row.finding))}</span><span role="cell"><i class="atlas-badge atlas-${esc(row.evidence)}">${labelEvidence(row.evidence)}</i></span></div>`).join("")}`;
+        $("[data-ledger-note]").textContent = LEDGER_NOTE(rows.length, state.payload.rows.length);
       }
 
       function renderFamilyButtons() {
         const families = [...new Set(state.payload.curves.map((item) => item.family))];
         if (!state.family || !families.includes(state.family)) state.family = families[0];
-        $("[data-curve-family-controls]").innerHTML = families.map((family) => `<button class="${family === state.family ? "is-active" : ""}" type="button" data-family="${esc(family)}">${esc(family)}</button>`).join("");
+        $("[data-curve-family-controls]").innerHTML = families.map((family) => `<button class="${family === state.family ? "is-active" : ""}" type="button" data-family="${esc(family)}">${esc(translate(family))}</button>`).join("");
       }
 
       function renderCurves() {
         const curves = state.payload.curves.filter((item) => item.family === state.family).map((item) => ({...item, smooth: smooth(item.points.filter((point) => Number.isFinite(point[state.metric])), state.metric)})).filter((item) => item.smooth.length > 1);
-        const title = METRIC[state.metric].label;
-        $("[data-curve-title]").textContent = `${state.family} · ${title}`;
+        const title = tt(METRIC[state.metric].label);
+        $("[data-curve-title]").textContent = `${translate(state.family)} · ${title}`;
         $("[data-curve-meta]").textContent = `${curves.length} curves · all available points`;
-        $("[data-curve-note]").textContent = curves[0]?.note || "此实验组没有该指标的连续日志。";
+        $("[data-curve-note]").textContent = curves[0] ? translate(curves[0].note) : tt(NO_CURVE_NOTE);
         const svg = $("[data-atlas-chart]");
         if (!curves.length) { svg.innerHTML = "<text x='490' y='210' text-anchor='middle' class='chart-axis-label'>no curve for this metric</text>"; $("[data-atlas-legend]").innerHTML = ""; $("[data-atlas-run-table]").innerHTML = ""; return; }
         const W=980,H=420,p={l:62,r:22,t:24,b:46}, pw=W-p.l-p.r, ph=H-p.t-p.b;
@@ -166,8 +330,8 @@
         const grid=Array.from({length:6},(_,i)=>{const y=p.t+ph*i/5,v=ymax-(ymax-ymin)*i/5; const x=p.l+pw*i/5,step=xmin+(xmax-xmin)*i/5; return `<path class="chart-grid" d="M${p.l} ${y}H${W-p.r} M${x} ${p.t}V${H-p.b}"/><text class="chart-axis-label" x="${p.l-8}" y="${y+4}" text-anchor="end">${fmt(v,METRIC[state.metric].digits)}</text><text class="chart-axis-label" x="${x}" y="${H-18}" text-anchor="middle">${step>=1000?(step/1000).toFixed(step%1000?1:0)+"K":Math.round(step)}</text>`}).join("");
         const paths=curves.map((item,index)=>{const d=item.smooth.map((point,i)=>`${i?"L":"M"}${sx(point.step).toFixed(2)} ${sy(point.value).toFixed(2)}`).join(" "); return `<path class="atlas-path ${item.historical?"is-historical":""}" d="${d}" stroke="${COLORS[index%COLORS.length]}"/>`;}).join("");
         svg.innerHTML=`${grid}<rect class="chart-frame" x="${p.l}" y="${p.t}" width="${pw}" height="${ph}" rx="6"/>${paths}<text class="chart-axis-label" x="${W/2}" y="${H-4}" text-anchor="middle">training step</text>`;
-        $("[data-atlas-legend]").innerHTML=curves.map((item,index)=>`<span><i style="background:${COLORS[index%COLORS.length]}"></i>${esc(item.label)}${item.historical?" · historical":""}</span>`).join("");
-        $("[data-atlas-run-table]").innerHTML=curves.map((item)=>`<article><span>${esc(item.label)}</span><strong>${fmt(item.final[state.metric], METRIC[state.metric].digits)}</strong><p>${esc(item.protocol)} · ${item.pointCount} points · ${labelEvidence(item.evidence)}</p><code>${esc(item.note)}</code></article>`).join("");
+        $("[data-atlas-legend]").innerHTML=curves.map((item,index)=>`<span><i style="background:${COLORS[index%COLORS.length]}"></i>${esc(translate(item.label))}${item.historical?" · historical":""}</span>`).join("");
+        $("[data-atlas-run-table]").innerHTML=curves.map((item)=>`<article><span>${esc(translate(item.label))}</span><strong>${fmt(item.final[state.metric], METRIC[state.metric].digits)}</strong><p>${esc(translate(item.protocol))} · ${item.pointCount} points · ${labelEvidence(item.evidence)}</p><code>${esc(translate(item.note))}</code></article>`).join("");
       }
 
       fetch("/flued-experiment-atlas.json").then((res)=>{if(!res.ok)throw new Error(`HTTP ${res.status}`);return res.json();}).then((payload)=>{
@@ -176,41 +340,51 @@
         $("[data-count='curves']").textContent=payload.curves.length;
         const versions=[...new Set(payload.rows.map((row)=>row.version))]; $("[data-version-filter]").innerHTML += versions.map((version)=>`<option value="${esc(version)}">${esc(version)}</option>`).join("");
         renderLedger();renderFamilyButtons();renderCurves();
-      }).catch((error)=>{ $("[data-curve-note]").textContent=`数据加载失败：${error.message}`; });
+      }).catch((error)=>{ $("[data-curve-note]").textContent=`${tt(LOAD_FAILED)}：${error.message}`; });
       $("[data-ledger-controls]").addEventListener("input",(event)=>{if(event.target.matches("[data-version-filter]"))state.version=event.target.value;if(event.target.matches("[data-evidence-filter]"))state.evidence=event.target.value;if(event.target.matches("[data-ledger-search]"))state.query=event.target.value.trim().toLowerCase();renderLedger();});
       $("[data-curve-family-controls]").addEventListener("click",(event)=>{const button=event.target.closest("button[data-family]");if(!button)return;state.family=button.dataset.family;renderFamilyButtons();renderCurves();});
       $("[data-curve-metric-controls]").addEventListener("click",(event)=>{const button=event.target.closest("button[data-metric]");if(!button)return;state.metric=button.dataset.metric;document.querySelectorAll("[data-curve-metric-controls] button").forEach((item)=>item.classList.toggle("is-active",item===button));renderCurves();});
+      window.addEventListener("langchange",()=>{if(!state.payload)return;renderLedger();renderFamilyButtons();renderCurves();});
     </script>
     <script type="module">
       // Rate–distortion frontier + masked-acc bars (data: results/v3.6/rd_frontier_20260802/points.csv, 单 seed=42, 20K steps, corpus_v3).
+      const currentLang = () => (document.documentElement.dataset.lang === "en" ? "en" : "zh");
+      const tt = (pair) => pair[currentLang()];
       const RD_GROUPS = {
-        v36: { color: "#b34a24", label: "v3.6 frontier（S0 + 4x KDA）" },
-        ctx: { color: "#8a8578", label: "uniform-boundary context" },
-        hnet: { color: "#b98a2f", label: "HNet-DiT reference" },
-        s07: { color: "#8a7ca8", label: "S0.7 逐段条件化臂 · 非默认" },
+        v36: { color: "#b34a24", label: { zh: "v3.6 frontier（S0 + 4x KDA）", en: "v3.6 frontier (S0 + 4x KDA)" } },
+        ctx: { color: "#8a8578", label: { zh: "uniform-boundary context", en: "uniform-boundary context" } },
+        hnet: { color: "#b98a2f", label: { zh: "HNet-DiT reference", en: "HNet-DiT reference" } },
+        s07: { color: "#8a7ca8", label: { zh: "S0.7 逐段条件化臂 · 非默认", en: "S0.7 per-chunk conditioning arm · non-default" } },
       };
       const RD_POINTS = [
-        { label: "v3.6 k=1 (S0+4x)", rate: 1536, acc: 0.1485, group: "v36", pos: "a" },
-        { label: "v3.6 k=4", rate: 6144, acc: 0.1463, group: "v36", pos: "a" },
-        { label: "v3.6 k=16", rate: 24576, acc: 0.1509, group: "v36", pos: "a" },
-        { label: "B1 uniform 4x k=1", rate: 1536, acc: 0.1293, group: "ctx", pos: "b" },
-        { label: "B0 uniform 1x k=1", rate: 384, acc: 0.1272, group: "ctx", pos: "a" },
-        { label: "legacy uniform probe", rate: 384, acc: 0.1135, group: "ctx", pos: "b" },
-        { label: "HNet-DiT std（无压缩天花板）", rate: 262144, acc: 0.3236, group: "hnet", pos: "a", anchor: "end" },
-        { label: "HNet-DiT bottleneck", rate: 97540, acc: 0.1418, group: "hnet", pos: "a" },
-        { label: "S0.7 逐段条件化臂（非默认）", rate: 27000, acc: 0.1413, group: "s07", pos: "b" },
+        { label: { zh: "v3.6 k=1 (S0+4x)", en: "v3.6 k=1 (S0+4x)" }, rate: 1536, acc: 0.1485, group: "v36", pos: "a" },
+        { label: { zh: "v3.6 k=4", en: "v3.6 k=4" }, rate: 6144, acc: 0.1463, group: "v36", pos: "a" },
+        { label: { zh: "v3.6 k=16", en: "v3.6 k=16" }, rate: 24576, acc: 0.1509, group: "v36", pos: "a" },
+        { label: { zh: "B1 uniform 4x k=1", en: "B1 uniform 4x k=1" }, rate: 1536, acc: 0.1293, group: "ctx", pos: "b" },
+        { label: { zh: "B0 uniform 1x k=1", en: "B0 uniform 1x k=1" }, rate: 384, acc: 0.1272, group: "ctx", pos: "a" },
+        { label: { zh: "legacy uniform probe", en: "legacy uniform probe" }, rate: 384, acc: 0.1135, group: "ctx", pos: "b" },
+        { label: { zh: "HNet-DiT std（无压缩天花板）", en: "HNet-DiT std (no-compression ceiling)" }, rate: 262144, acc: 0.3236, group: "hnet", pos: "a", anchor: "end" },
+        { label: { zh: "HNet-DiT bottleneck", en: "HNet-DiT bottleneck" }, rate: 97540, acc: 0.1418, group: "hnet", pos: "a" },
+        { label: { zh: "S0.7 逐段条件化臂（非默认）", en: "S0.7 per-chunk conditioning arm (non-default)" }, rate: 27000, acc: 0.1413, group: "s07", pos: "b" },
       ];
       const RD_BARS = [
-        { label: "HNet-DiT std（无压缩天花板）", acc: 0.3236, rate: 262144, group: "hnet" },
-        { label: "FLUED v3.6 k=1（主基线）", acc: 0.1485, rate: 1536, group: "v36" },
-        { label: "HNet-DiT bottleneck（公平对比臂）", acc: 0.1418, rate: 97540, group: "hnet" },
-        { label: "B1 uniform 4x k=1", acc: 0.1293, rate: 1536, group: "ctx" },
-        { label: "B0 uniform 1x k=1", acc: 0.1272, rate: 384, group: "ctx" },
-        { label: "legacy uniform probe", acc: 0.1135, rate: 384, group: "ctx" },
+        { label: { zh: "HNet-DiT std（无压缩天花板）", en: "HNet-DiT std (no-compression ceiling)" }, acc: 0.3236, rate: 262144, group: "hnet" },
+        { label: { zh: "FLUED v3.6 k=1（主基线）", en: "FLUED v3.6 k=1 (main baseline)" }, acc: 0.1485, rate: 1536, group: "v36" },
+        { label: { zh: "HNet-DiT bottleneck（公平对比臂）", en: "HNet-DiT bottleneck (fair-comparison arm)" }, acc: 0.1418, rate: 97540, group: "hnet" },
+        { label: { zh: "B1 uniform 4x k=1", en: "B1 uniform 4x k=1" }, acc: 0.1293, rate: 1536, group: "ctx" },
+        { label: { zh: "B0 uniform 1x k=1", en: "B0 uniform 1x k=1" }, acc: 0.1272, rate: 384, group: "ctx" },
+        { label: { zh: "legacy uniform probe", en: "legacy uniform probe" }, acc: 0.1135, rate: 384, group: "ctx" },
       ];
+      const RD_T = {
+        scalars: { zh: "标量", en: "scalars" },
+        efficiency: { zh: "同指标下 ~60× 信息效率", en: "~60× information efficiency at the same metric" },
+        ceiling: { zh: "天花板锚（不同口径，不入坐标系）：AR H-Net next-byte BPB 0.653", en: "Ceiling anchor (different protocol, outside this coordinate system): AR H-Net next-byte BPB 0.653" },
+        xAxis: { zh: "rate: transmitted scalars per 512-byte prompt（log scale）", en: "rate: transmitted scalars per 512-byte prompt (log scale)" },
+        yAxis: { zh: "masked acc（越高越好）", en: "masked acc (higher is better)" },
+      };
       const fmtRate = (r) => r.toLocaleString("en-US");
 
-      (function renderFrontier() {
+      function renderFrontier() {
         const svg = document.querySelector("[data-rd-chart]");
         if (!svg) return;
         const W = 980, H = 460, p = { l: 64, r: 26, t: 30, b: 52 }, pw = W - p.l - p.r, ph = H - p.t - p.b;
@@ -231,10 +405,10 @@
         const ax = sx(a.rate) + (sx(b.rate) - sx(a.rate)) * 0.27;
         const ay = sy(a.acc) + (sy(b.acc) - sy(a.acc)) * 0.27;
         out += `<line x1="${sx(a.rate)}" y1="${sy(a.acc)}" x2="${sx(b.rate)}" y2="${sy(b.acc)}" stroke="#b34a24" stroke-width="1" stroke-dasharray="4 4" opacity="0.55"/>`;
-        out += `<text class="rd-annotation" x="${ax}" y="${ay + 20}" text-anchor="middle">同指标下 ~60× 信息效率</text>`;
+        out += `<text class="rd-annotation" x="${ax}" y="${ay + 20}" text-anchor="middle">${tt(RD_T.efficiency)}</text>`;
         out += `<text class="rd-annotation" x="${ax}" y="${ay + 36}" text-anchor="middle">0.149 @ 1,536 vs 0.142 @ 97,540</text>`;
         // ceiling note
-        out += `<text class="rd-annotation is-warm" x="${p.l + 8}" y="${p.t + 18}">天花板锚（不同口径，不入坐标系）：AR H-Net next-byte BPB 0.653</text>`;
+        out += `<text class="rd-annotation is-warm" x="${p.l + 8}" y="${p.t + 18}">${tt(RD_T.ceiling)}</text>`;
         for (const d of RD_POINTS) {
           const x = sx(d.rate), y = sy(d.acc), c = RD_GROUPS[d.group].color;
           if (d.group === "ctx") {
@@ -246,28 +420,35 @@
           } else {
             out += `<circle cx="${x}" cy="${y}" r="6" fill="${c}"/>`;
           }
-          out += `<title>${d.label} · ${d.acc.toFixed(3)} @ ${fmtRate(d.rate)} 标量</title>`;
+          out += `<title>${tt(d.label)} · ${d.acc.toFixed(3)} @ ${fmtRate(d.rate)} ${tt(RD_T.scalars)}</title>`;
           const anchor = d.anchor || "middle";
           const labelY = d.pos === "a" ? y - 26 : y + 20;
           const valueY = d.pos === "a" ? y - 12 : y + 34;
-          out += `<text class="rd-point-label" x="${x}" y="${labelY}" text-anchor="${anchor}">${d.label}</text>`;
+          out += `<text class="rd-point-label" x="${x}" y="${labelY}" text-anchor="${anchor}">${tt(d.label)}</text>`;
           out += `<text class="rd-point-value" x="${x}" y="${valueY}" text-anchor="${anchor}">${d.acc.toFixed(3)} @ ${fmtRate(d.rate)}</text>`;
         }
-        out += `<text class="chart-axis-label" x="${W / 2}" y="${H - 6}" text-anchor="middle">rate: transmitted scalars per 512-byte prompt（log scale）</text>`;
-        out += `<text class="chart-axis-label" x="16" y="${p.t + ph / 2}" text-anchor="middle" transform="rotate(-90 16 ${p.t + ph / 2})">masked acc（越高越好）</text>`;
+        out += `<text class="chart-axis-label" x="${W / 2}" y="${H - 6}" text-anchor="middle">${tt(RD_T.xAxis)}</text>`;
+        out += `<text class="chart-axis-label" x="16" y="${p.t + ph / 2}" text-anchor="middle" transform="rotate(-90 16 ${p.t + ph / 2})">${tt(RD_T.yAxis)}</text>`;
         svg.innerHTML = out;
-        document.querySelector("[data-rd-legend]").innerHTML = Object.values(RD_GROUPS).map((g) => `<span><i style="background:${g.color}"></i>${g.label}</span>`).join("");
-      })();
+        document.querySelector("[data-rd-legend]").innerHTML = Object.values(RD_GROUPS).map((g) => `<span><i style="background:${g.color}"></i>${tt(g.label)}</span>`).join("");
+      }
 
-      (function renderBars() {
+      function renderBars() {
         const el = document.querySelector("[data-rd-bars]");
         if (!el) return;
         const max = Math.max(...RD_BARS.map((d) => d.acc));
         el.innerHTML = RD_BARS.map((d) => {
           const w = (d.acc / max * 100).toFixed(1);
-          return `<div class="rd-bar-row"><span class="rd-bar-name">${d.label}</span><span class="rd-bar-track"><span class="rd-bar-fill" style="width:${w}%;background:${RD_GROUPS[d.group].color}"></span></span><span class="rd-bar-value">${d.acc.toFixed(3)} · ${fmtRate(d.rate)} 标量</span></div>`;
+          return `<div class="rd-bar-row"><span class="rd-bar-name">${tt(d.label)}</span><span class="rd-bar-track"><span class="rd-bar-fill" style="width:${w}%;background:${RD_GROUPS[d.group].color}"></span></span><span class="rd-bar-value">${d.acc.toFixed(3)} · ${fmtRate(d.rate)} ${tt(RD_T.scalars)}</span></div>`;
         }).join("");
-      })();
+      }
+
+      renderFrontier();
+      renderBars();
+      window.addEventListener("langchange", () => {
+        renderFrontier();
+        renderBars();
+      });
     </script>
   </body>
 </html>

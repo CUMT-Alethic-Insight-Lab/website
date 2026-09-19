@@ -1,0 +1,324 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark" data-lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="当模型开始吞掉记忆：从 Engram 到一种分层记忆架构的前瞻。王张嘉 2026-09-03，个人观点，预测均写成可证伪形式。"
+    />
+    <meta name="theme-color" content="#0b0e12" />
+    <meta property="og:title" content="当模型开始吞掉记忆 · Alethic Insight" />
+    <meta
+      property="og:description"
+      content="一篇关于持续学习、存储层次与“知识到底该住在哪”的讨论与预测。"
+    />
+    <meta property="og:type" content="article" />
+    <title>当模型开始吞掉记忆 · Alethic Insight</title>
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <script>
+      (() => {
+        let theme = "dark";
+        try {
+          theme = localStorage.getItem("theme") || "dark";
+        } catch {
+          theme = "dark";
+        }
+        document.documentElement.dataset.theme =
+          theme === "dark" ? "dark" : "light";
+        let lang = "";
+        try {
+          lang = localStorage.getItem("lang") || "";
+        } catch {
+          lang = "";
+        }
+        if (lang !== "zh" && lang !== "en") {
+          lang = (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+        }
+        document.documentElement.dataset.lang = lang;
+      })();
+    </script>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body class="project-page">
+    <div class="site-shell">
+      <header class="site-header" data-site-header>
+        <a class="brand" href="/" aria-label="Alethic Insight home">
+          <img src="/mark.svg" alt="" width="32" height="32" />
+          <span>Alethic Insight</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="/index.html#position"><span lang-zh>定位</span><span lang-en>Position</span></a>
+          <div class="nav-item">
+            <a class="nav-top" href="/index.html#work" aria-haspopup="true"><span lang-zh>研究</span><span lang-en>Research</span><span class="caret" aria-hidden="true">▾</span></a>
+            <div class="nav-menu"><div class="nav-menu-inner"><div class="mega-grid">
+              <div class="mega-side">
+                <p class="mega-eyebrow"><span lang-zh>探索研究</span><span lang-en>Explore Research</span></p>
+                <p class="mega-blurb mega-desc" data-for="default"><span lang-zh>方向 · 项目 · 成果，公开可复现。</span><span lang-en>Directions, projects and awards — open and reproducible.</span></p><p class="mega-blurb mega-desc" data-for="work"><span lang-zh>七个研究方向：NLP/LLM、CV、VLM/MLLM、RL、Agent、Memory、AI Infra。</span><span lang-en>Seven directions: LLM, CV, VLM, RL, Agent, Memory, Infra.</span></p><p class="mega-blurb mega-desc" data-for="projects"><span lang-zh>FLUED、招新平台与官网：把想法交付成真实可用的系统。</span><span lang-en>FLUED, recruitment platform, website: ideas shipped.</span></p><p class="mega-blurb mega-desc" data-for="awards"><span lang-zh>服创大赛 AI 专项一/三等奖，以赛促学并沉淀复盘。</span><span lang-en>AI track 1st/3rd prizes, learning by competing.</span></p>
+              </div>
+              <div class="mega-links">
+                <a style="--i:0" href="/index.html#work" data-desc="work"><span lang-zh>方向</span><span lang-en>Directions</span></a>
+                <a style="--i:1" href="/index.html#projects" data-desc="projects"><span lang-zh>项目</span><span lang-en>Projects</span></a>
+                <a style="--i:2" href="/index.html#awards" data-desc="awards"><span lang-zh>成果</span><span lang-en>Awards</span></a>
+              </div>
+            </div></div></div>
+          </div>
+          <div class="nav-item">
+            <a class="nav-top" href="/flued.html" aria-haspopup="true"><span>FLUED</span><span class="caret" aria-hidden="true">▾</span></a>
+            <div class="nav-menu"><div class="nav-menu-inner"><div class="mega-grid">
+              <div class="mega-side">
+                <p class="mega-eyebrow"><span lang-zh>字节级语言接口</span><span lang-en>Byte-level Interface</span></p>
+                <p class="mega-blurb mega-desc" data-for="default"><span lang-zh>从问题到图谱，共五章。</span><span lang-en>Five chapters, from problem to atlas.</span></p><p class="mega-blurb mega-desc" data-for="flued-problem"><span lang-zh>为什么要做字节级语言接口：问题与动机。</span><span lang-en>Why byte-level: problem and motivation.</span></p><p class="mega-blurb mega-desc" data-for="flued-arch"><span lang-zh>v3.6 编码 · 切分 · 读出：架构总览。</span><span lang-en>v3.6 encode, segment, readout.</span></p><p class="mega-blurb mega-desc" data-for="flued-demo"><span lang-zh>五个模型同一段文本，秒级出结果。</span><span lang-en>Five models, one text, live results.</span></p><p class="mega-blurb mega-desc" data-for="flued-evidence"><span lang-zh>训练曲线与严格掩码口径：数据说话。</span><span lang-en>Curves and strict-mask evidence.</span></p><p class="mega-blurb mega-desc" data-for="flued-atlas"><span lang-zh>实验台账全览：可追溯的产物索引。</span><span lang-en>Full experiment ledger and artifacts.</span></p>
+              </div>
+              <div class="mega-links cols-2">
+                <a style="--i:0" href="/flued.html" data-desc="flued-problem"><b>01</b><span lang-zh>问题</span><span lang-en>Problem</span></a>
+                <a style="--i:1" href="/flued-architecture.html" data-desc="flued-arch"><b>02</b><span lang-zh>架构</span><span lang-en>Architecture</span></a>
+                <a style="--i:2" href="/flued-demo.html" data-desc="flued-demo"><b>03</b><span lang-zh>演示</span><span lang-en>Demo</span></a>
+                <a style="--i:3" href="/flued-evidence.html" data-desc="flued-evidence"><b>04</b><span lang-zh>证据</span><span lang-en>Evidence</span></a>
+                <a style="--i:4" href="/flued-experiments.html" data-desc="flued-atlas"><b>05</b><span lang-zh>图谱</span><span lang-en>Atlas</span></a>
+              </div>
+            </div></div></div>
+          </div>
+          <div class="nav-item">
+            <a class="nav-top" href="/index.html#documents" aria-haspopup="true"><span lang-zh>文档</span><span lang-en>Docs</span><span class="caret" aria-hidden="true">▾</span></a>
+            <div class="nav-menu"><div class="nav-menu-inner"><div class="mega-grid">
+              <div class="mega-side">
+                <p class="mega-eyebrow"><span lang-zh>文档与治理</span><span lang-en>Docs &amp; Governance</span></p>
+                <p class="mega-blurb mega-desc" data-for="default"><span lang-zh>博客 · 招新 · 章程。</span><span lang-en>Insights, recruitment and charter.</span></p><p class="mega-blurb mega-desc" data-for="doc-insights"><span lang-zh>当模型开始吞掉记忆：分层记忆架构前瞻。</span><span lang-en>Memory hierarchy outlook.</span></p><p class="mega-blurb mega-desc" data-for="doc-recruit"><span lang-zh>每年一届招新：学号即账号，报名即建档。</span><span lang-en>Yearly recruitment, one application flow.</span></p><p class="mega-blurb mega-desc" data-for="doc-charter"><span lang-zh>组织章程：定位、成员与决策。</span><span lang-en>Charter: mission, members, decisions.</span></p><p class="mega-blurb mega-desc" data-for="doc-member"><span lang-zh>成员规则：如何加入与留存。</span><span lang-en>Membership: joining and staying.</span></p><p class="mega-blurb mega-desc" data-for="doc-gov"><span lang-zh>项目治理：开源、评审与 AI 辅助规则。</span><span lang-en>Governance: open-source and review.</span></p>
+              </div>
+              <div class="mega-links cols-2">
+                <a style="--i:0" href="/insights-memory-hierarchy.html" aria-current="page" data-desc="doc-insights"><span lang-zh>技术博客</span><span lang-en>Insights</span></a>
+                <a style="--i:1" href="/recruitment/" data-desc="doc-recruit"><span lang-zh>招新流程</span><span lang-en>Recruitment</span></a>
+                <a style="--i:2" href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/charter.md" data-desc="doc-charter"><span lang-zh>章程</span><span lang-en>Charter</span></a>
+                <a style="--i:3" href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/membership.md" data-desc="doc-member"><span lang-zh>成员规则</span><span lang-en>Membership</span></a>
+                <a style="--i:4" href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/project-governance.md" data-desc="doc-gov"><span lang-zh>项目治理</span><span lang-en>Governance</span></a>
+              </div>
+            </div></div></div>
+          </div>
+          <a href="/people.html"><span lang-zh>成员</span><span lang-en>People</span></a>
+          <a href="/recruitment/"><span lang-zh>加入我们</span><span lang-en>Join Us</span></a>
+        </nav>
+        <div class="header-controls">
+          <button
+            class="lang-toggle"
+            type="button"
+            data-lang-toggle
+            aria-label="Switch to English"
+          >
+            <span data-lang-toggle-label>EN</span>
+          </button>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="切换到亮色主题"
+            aria-pressed="false"
+          >
+            <span class="theme-toggle-track" aria-hidden="true">
+              <span class="theme-toggle-thumb"></span>
+            </span>
+            <span data-theme-toggle-label>Dark</span>
+          </button>
+          <a class="header-action" href="/recruitment/login">
+            <span lang-zh>登录</span><span lang-en>Sign in</span>
+          </a>
+          <a class="header-action" href="https://github.com/CUMT-Alethic-Insight-Lab">
+            GitHub
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section class="page-head page-grid section-observe insights-head" id="top" aria-labelledby="insight-title">
+          <a class="back-link" href="/"><span lang-zh>← 返回首页</span><span lang-en>← Back to home</span></a>
+          <p class="eyebrow">Insights / 技术博客</p>
+          <h1 id="insight-title">当模型开始吞掉记忆：从 Engram 到一种分层记忆架构的前瞻</h1>
+          <p class="project-lede">
+            一篇关于持续学习、存储层次与“知识到底该住在哪”的讨论与预测。
+            写作立场：开放讨论，所有预测均写成可证伪的形式，欢迎用实验打脸。
+          </p>
+          <p class="hero-cont">
+            <b>作者：</b><a href="/people.html">王张嘉</a>（个人观点，不代表实验室立场）　<b>日期：</b>2026-09-03　<b>版本：</b>v1.0
+          </p>
+          <p class="hero-cont">
+            <b>阅读说明：</b>文中 FLUED v4 相关描述为作者个人工作假设（未发表），不是实验室已证实成果；
+            文末 5 条预测附有验证期限与状态，到期回填。
+          </p>
+        </section>
+
+        <article class="section page-grid section-observe insights-article" aria-label="正文">
+          <h2 id="引子">引子：一条容易被误读的新闻</h2>
+          <p>
+            2026年8月底，Qwen3.8-Flash-Next 发布。技术细节里最刺眼的不是 6B 激活参数，
+            而是它体内那张 <b>51B 的 N-gram embedding 表</b>——两千万条 bigram/trigram 条目，
+            插在第二层，平时躺在主机内存里，前向开始前地址就已经算好，异步预取，GPU 零争抢。
+          </p>
+          <p>社区的反应很诚实：“一张巨大的作弊小抄。”</p>
+          <p>
+            但这件事的真正含义不在小抄本身，而在于它<b>被放在了哪里</b>。
+            这张表不进注意力、不占上下文窗口、不参与推理计算——它就是一张表，模型查它，用完就走。
+            这是主流大模型第一次在生产级规模上承认一件事：
+          </p>
+          <p><b>知识不一定要住在权重里。</b></p>
+          <p>
+            半年前的 DeepSeek Engram 论文（arXiv:2601.07372）把这句话说得更正式：
+            Transformer 一直缺少原生的“查表”原语，被迫用计算模拟检索；
+            他们补上了这条与 MoE“条件计算”互补的稀疏轴——“条件记忆”，
+            并且发现了一条 U 形分配律：专家参数和记忆参数之间存在最优配比，纯 MoE 是次优解。
+          </p>
+          <p>换成人话：<b>“模型该记多少东西”从此不再是一个信仰问题，而是一个有标定曲线的工程变量。</b></p>
+
+          <h2 id="坐标系">一个被混淆已久的问题</h2>
+          <p>
+            过去五年，持续学习领域的争吵——灾难性遗忘怎么办、memory layer 还是 RAG、
+            长上下文还是检索——在我看来是同一个问题被错误地放进了错误的坐标系。
+          </p>
+          <p>这个问题的正确坐标系不在机器学习里，在存储工程里。</p>
+          <p>
+            任何一台计算机都在运行同一个答案：寄存器、L1/L2 缓存、内存、磁盘、网络。
+            没有人问“为什么不让 CPU 寄存器装上 1PB 数据”，因为每个人都理解延迟-容量权衡。
+            但轮到 AI，我们却一直在认真讨论“为什么不让权重记住一切”或“为什么不让上下文窗口装下一切”——
+            这两个问题在存储工程师眼里，和给寄存器装硬盘是同一种荒谬。
+          </p>
+          <p>一旦换到存储层次的坐标系，持续学习的整个问题图景会重新排列：</p>
+          <ul>
+            <li><b>权重</b>是寄存器：零延迟，容量最小，改动最难，只该放“热到每次都用”的东西——能力、常识、取用策略；</li>
+            <li><b>KV cache</b> 是内存：会话内精确，易失，有界；</li>
+            <li><b>外置记忆</b>是磁盘：容量近乎无限（一个硬盘柜就是 PB 级，纯文本绰绰有余），但访问要付出延迟；</li>
+            <li><b>互联网</b>是网络存储：无界，不可控，信任度未知。</li>
+          </ul>
+          <p>
+            灾难性遗忘在这个坐标系里甚至不需要“被解决”——它自动降级为缓存替换策略问题。
+            真正的问题变成了另外三个：索引怎么建、什么该被提升进更快的楼层、信任边界画在哪。
+          </p>
+
+          <h2 id="架构">一个具体的形状：运行时三层，离线一层</h2>
+          <p>
+            沿着这个思路，我在 FLUED（Fluid Language Unified Encoder-Decoder，
+            一个字节级语言接口的架构项目）的 v4 设计中推出了一个相当具体的形状。
+            FLUED 这个名字本身就是主张：Fluid 指记忆像流体，倒进什么容器就是什么形状——
+            会话内是 KV，跨会话是日志，压缩了是状态矩阵，层级化了是树；
+            Unified 指一切与主干共享字节底物的部件以无感方式参与前向，
+            不共享底物的资源（搜索、命令行、MCP）才以显式工具方式被调用。
+            <b>以下是工作假设，不是共识。</b>
+          </p>
+          <p><b>第一层，权重。</b>只保留推理能力和“什么存、怎么存、取什么、怎么取、怎么用”的元策略。知识从 scaling 方程里被拿掉，从容量维度变成检索维度。</p>
+          <p>
+            <b>第二层，树状模糊层。</b>这是整个架构唯一真正的新部件。一棵 gist 树：
+            叶子是近无损的记忆条目，内部节点是其子树的概要。
+            每次前向，模型默认沿着树做 O(log n) 次 gist 比对——不是每条记忆都被检查，
+            而是每条记忆都在某个被检查过的 gist 的覆盖范围内。
+            超过阈值的，指针定位、物化进上下文；没超的，以“背景可知”的方式无感参与。
+          </p>
+          <p>
+            写入用 delta rule：先查旧记忆的预测，只写回实际值与预测值的差。
+            已知的东西差值近零、不写；意外的东西强写。
+            残差沿树上溯，写入强度逐层衰减——粗层慢变，细层快变，
+            多时间尺度不是调出来的超参，是树深度的自然函数。
+          </p>
+          <p><b>第三层，KV cache。</b>现有框架一行不用改。</p>
+          <p>
+            <b>第零层（离线），append-only 日志。</b>全量、只增不改、唯一事实源。
+            它不出现在任何一次前向里，但三件事离不开它：树塌了从它重建、
+            权重周期性蒸馏时从它回放、审计时对它查询。
+            灾难性遗忘由此从“每次推理的在线结构必然”被搬迁成“每年一次的离线采样率超参问题”——
+            后者是这个领域里被研究得最透、工具最多、可以反复重试的那种问题。
+          </p>
+          <p>
+            连接这一切的是一条接口规范：<b>主干对树节点、KV 条目、自身输出使用同一套 query-key 几何，
+            任何一层返回的记忆在表示空间里不可区分。</b>
+            满足这条，“模型对记忆无感”就不是设计目标而是定义性事实——
+            层间差异只剩延迟和保真度，而这两者恰好是路由策略可以动态权衡的量。
+          </p>
+
+          <h2 id="证据">证据正在向这个方向收敛</h2>
+          <p>这个架构里的大部分零件，过去一年里被不同团队从完全不同的动机独立做出来了：</p>
+          <ul>
+            <li>Google 的 Titans 证明了“意外驱动写入”（surprise）在 200 万 token 尺度上有效；</li>
+            <li>NVIDIA 的 GDN2 把记忆的“擦除”和“写入”解耦，消融显示擦除侧贡献更大——<b>维护已有关联比写入新内容更关键</b>；</li>
+            <li>LiveMem 已经实现了“冻结主干 + 并行记忆分支 + KV 逐出后信息留存”的完整骨架；</li>
+            <li>DeepSeek 的 Engram 和 Qwen 的 N-gram 表证明了查表记忆可以生产化——并且诚实地报告了天花板：词表扩大单调降 loss，但下游收益饱和；</li>
+            <li>更微妙的两篇：Tokenizer-Agnostic Engram 把 N-gram 建立在字节序列上以摆脱分词器锁死；Cross-Model Memory Transfer 证明冻结的记忆表可以迁移到别的模型——<b>只要寻址、存储、读取三者分离</b>。</li>
+          </ul>
+          <p>
+            最后这一点值得停顿一下。记忆可移植的前提是接口标准化——
+            这和一个世纪前螺丝螺纹标准化是同一个逻辑。谁先定下接口，谁定义生态。
+          </p>
+          <p>
+            而天花板之上——可写的、分层的、随经验在线增长的那部分记忆——目前没人占位。
+            Qwen 的表是字典，出厂封版、只读、平坦；真正难也真正值钱的是日记：可写、有层级、随生命周期生长。
+          </p>
+
+          <h2 id="硬件">硬件经济学：另一个被忽略的论据</h2>
+          <p>
+            三条稀疏化路线对应三种资源禀赋。MoE 吃计算；Engram 吃 DRAM 的容量和带宽
+            （靠数据无关寻址做异步预取，把带宽问题转化为调度问题）；
+            树状记忆吃 SSD 的容量——每 TB 成本和 HBM 差着两个数量级，每次查询只付 O(log n) 次小读取。
+          </p>
+          <p>
+            软肋也诚实交代：树搜索是数据依赖的指针追逐，下一跳地址由本跳结果决定，
+            无法像 Engram 那样整体预取。
+            缓解方案是分层放置（热点 gist 钉在内存，深叶落盘）加批量投机预取（比较当前节点时把子节点一次顺序读入）。
+          </p>
+          <p>把三条路线放一起看，结论比任何单独一条都大：<b>记忆外置不存在单一的硬件形态，而是一条从 HBM 到硬盘的连续放置谱系——数据温度决定物理楼层。</b>智能的成本结构由架构决定，不由模型决定。</p>
+
+          <h2 id="预测">预测（可证伪，欢迎打脸）</h2>
+          <ol>
+            <li><b>6 个月内</b>，头部开源基座模型会原生集成“可在线写入的分层记忆”部件（区别于 Engram 的只读静态表），大概率以 GDN 类状态矩阵为基底加分层索引；　<span><b>状态：</b>[待验证，期限 2027-03-03]</span></li>
+            <li><b>12 个月内</b>，会出现记忆接口标准化的认真尝试——“记忆的 CUDA 时刻”，即寻址/存储/读取分离成为设计共识；　<span><b>状态：</b>[待验证，期限 2027-09-03]</span></li>
+            <li>“可审计性 vs 端到端可微”的张力会成为显学：凡是能被查账的系统必有离散边界，离散边界必然收训练税——围绕“税率”而非“免税”的工程会增多；　<span><b>状态：</b>[待验证，期限 2028-09-03]</span></li>
+            <li>周期性离线蒸馏 + 全量日志回放会成为持续学习的主流工程范式，在线权重更新在多数场景被证伪为不值得；　<span><b>状态：</b>[待验证，期限 2028-09-03]</span></li>
+            <li>工作记忆容量的认知科学结论（4±1 槽位）会反向约束物化带宽设计——Anthropic 的 J-space 工作及其开源复现已经在给出数量级证据。　<span><b>状态：</b>[待验证，期限 2028-09-03]</span></li>
+          </ol>
+          <p>如果以上有一条在期限内被证伪，这篇博客的相应部分就应该被修订——这正是把它写成预测而非观点的原因。</p>
+
+          <h2 id="结尾">结尾：智能住在哪一层</h2>
+          <p>
+            有一个观察我越想越觉得不是巧合：这套四层结构——慢而稳的内核、快而变的记忆、
+            易失的工作区、不可变的事实源——和一个运行良好的心智几乎同构。
+            人的内核（性格、能力）更新极慢且需要睡眠般的离线回放；
+            日常经验先以概要形式存在，细节按需还原；
+            而日记和档案之所以被发明，正是因为我们早就知道内核装不下一切。
+          </p>
+          <p>
+            也许这暗示着，“智能”从来不住在某一层里。
+            它住在层与层之间的接口上——住在“什么该被记住、什么该被忘掉、什么该被信任、什么时候该去查”的调度里。
+            模型只是租户，架构才是建筑。
+          </p>
+          <p>而我们现在正处在建筑图纸刚刚可以被画出来的时刻。</p>
+        </article>
+
+        <section class="section page-grid section-observe insights-refs" aria-labelledby="refs-title">
+          <div class="section-heading">
+            <p class="section-kicker">References</p>
+            <h2 id="refs-title">参考文献</h2>
+          </div>
+          <ul>
+            <li>DeepSeek Engram — Conditional Memory via Scalable Lookup: <a href="https://arxiv.org/abs/2601.07372">arXiv:2601.07372</a> · <a href="https://github.com/deepseek-ai/Engram">GitHub</a></li>
+            <li>Qwen3.8-Flash-Next — <a href="https://github.com/QwenLM/Qwen3.8-Flash-Next">GitHub</a> · <a href="https://huggingface.co/Qwen/Qwen3.8-Flash-Next">Hugging Face</a> · 架构分析 <a href="https://arxiv.org/abs/2608.30320">arXiv:2608.30320</a></li>
+            <li>Google Titans — <a href="https://arxiv.org/abs/2501.00663">arXiv:2501.00663</a> · MIRAS <a href="https://arxiv.org/abs/2504.13173">arXiv:2504.13173</a> · Nested Learning <a href="https://arxiv.org/abs/2512.24695">arXiv:2512.24695</a></li>
+            <li>NVIDIA Gated DeltaNet-2 — <a href="https://arxiv.org/abs/2605.22791">arXiv:2605.22791</a></li>
+            <li>LiveMem — <a href="https://arxiv.org/abs/2608.02515">arXiv:2608.02515</a></li>
+            <li>DeepSeek-V3.2 DSA — <a href="https://arxiv.org/abs/2512.02556">arXiv:2512.02556</a></li>
+            <li>RAPTOR — <a href="https://arxiv.org/abs/2401.18059">arXiv:2401.18059</a></li>
+            <li>Tokenizer-Agnostic Engram — <a href="https://arxiv.org/abs/2607.29065">arXiv:2607.29065</a> · Cross-Model Memory Transfer <a href="https://arxiv.org/abs/2608.17050">arXiv:2608.17050</a></li>
+            <li>Anthropic J-space / Global Workspace — <a href="https://www.anthropic.com/research/global-workspace">研究主页</a></li>
+          </ul>
+          <p class="hero-cont">文中 FLUED v4 为思想层描述，不含具体实现细节；证据等级与完整溯源以内部备忘录为准。</p>
+        </section>
+      </main>
+
+      <footer class="site-footer page-grid">
+        <span>CUMT Alethic Insight AI Lab</span>
+        <div>
+          <a href="/">Home</a>
+          <a href="https://github.com/CUMT-Alethic-Insight-Lab">GitHub</a>
+          <a href="https://huggingface.co/Alethic-Insight">Hugging Face</a>
+          <a href="mailto:contact@alethicinsight.org">Contact</a>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

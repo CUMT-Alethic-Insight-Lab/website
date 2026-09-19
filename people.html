@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark" data-lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CUMT Alethic Insight AI Lab 成员名单：实名展示、链接可核验，随研究与工程进展更新。"
+    />
+    <meta name="theme-color" content="#0b0e12" />
+    <meta property="og:title" content="成员 · CUMT Alethic Insight AI Lab" />
+    <meta
+      property="og:description"
+      content="中国矿业大学学生主导的 AI 研究工程共同体成员名单。"
+    />
+    <meta property="og:type" content="website" />
+    <title data-title-zh="成员 · CUMT Alethic Insight AI Lab" data-title-en="People · CUMT Alethic Insight AI Lab">成员 · CUMT Alethic Insight AI Lab</title>
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <script>
+      (() => {
+        let theme = "dark";
+        try {
+          theme = localStorage.getItem("theme") || "dark";
+        } catch {
+          theme = "dark";
+        }
+        document.documentElement.dataset.theme =
+          theme === "dark" ? "dark" : "light";
+        let lang = "";
+        try {
+          lang = localStorage.getItem("lang") || "";
+        } catch {
+          lang = "";
+        }
+        if (lang !== "zh" && lang !== "en") {
+          lang = (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+        }
+        document.documentElement.dataset.lang = lang;
+      })();
+    </script>
+    <link rel="stylesheet" href="/src/styles.css" />
+  </head>
+  <body class="project-page">
+    <div class="site-shell">
+      <header class="site-header" data-site-header>
+        <a class="brand" href="/" aria-label="Alethic Insight home">
+          <img src="/mark.svg" alt="" width="32" height="32" />
+          <span>Alethic Insight</span>
+        </a>
+        <nav class="nav-links" aria-label="Primary navigation">
+          <a href="/index.html#position"><span lang-zh>定位</span><span lang-en>Position</span></a>
+          <div class="nav-item">
+            <a class="nav-top" href="/index.html#work" aria-haspopup="true"><span lang-zh>研究</span><span lang-en>Research</span><span class="caret" aria-hidden="true">▾</span></a>
+            <div class="nav-menu"><div class="nav-menu-inner"><div class="mega-grid">
+              <div class="mega-side">
+                <p class="mega-eyebrow"><span lang-zh>探索研究</span><span lang-en>Explore Research</span></p>
+                <p class="mega-blurb mega-desc" data-for="default"><span lang-zh>方向 · 项目 · 成果，公开可复现。</span><span lang-en>Directions, projects and awards — open and reproducible.</span></p><p class="mega-blurb mega-desc" data-for="work"><span lang-zh>七个研究方向：NLP/LLM、CV、VLM/MLLM、RL、Agent、Memory、AI Infra。</span><span lang-en>Seven directions: LLM, CV, VLM, RL, Agent, Memory, Infra.</span></p><p class="mega-blurb mega-desc" data-for="projects"><span lang-zh>FLUED、招新平台与官网：把想法交付成真实可用的系统。</span><span lang-en>FLUED, recruitment platform, website: ideas shipped.</span></p><p class="mega-blurb mega-desc" data-for="awards"><span lang-zh>服创大赛 AI 专项一/三等奖，以赛促学并沉淀复盘。</span><span lang-en>AI track 1st/3rd prizes, learning by competing.</span></p>
+              </div>
+              <div class="mega-links">
+                <a style="--i:0" href="/index.html#work" data-desc="work"><span lang-zh>方向</span><span lang-en>Directions</span></a>
+                <a style="--i:1" href="/index.html#projects" data-desc="projects"><span lang-zh>项目</span><span lang-en>Projects</span></a>
+                <a style="--i:2" href="/index.html#awards" data-desc="awards"><span lang-zh>成果</span><span lang-en>Awards</span></a>
+              </div>
+            </div></div></div>
+          </div>
+          <div class="nav-item">
+            <a class="nav-top" href="/flued.html" aria-haspopup="true"><span>FLUED</span><span class="caret" aria-hidden="true">▾</span></a>
+            <div class="nav-menu"><div class="nav-menu-inner"><div class="mega-grid">
+              <div class="mega-side">
+                <p class="mega-eyebrow"><span lang-zh>字节级语言接口</span><span lang-en>Byte-level Interface</span></p>
+                <p class="mega-blurb mega-desc" data-for="default"><span lang-zh>从问题到图谱，共五章。</span><span lang-en>Five chapters, from problem to atlas.</span></p><p class="mega-blurb mega-desc" data-for="flued-problem"><span lang-zh>为什么要做字节级语言接口：问题与动机。</span><span lang-en>Why byte-level: problem and motivation.</span></p><p class="mega-blurb mega-desc" data-for="flued-arch"><span lang-zh>v3.6 编码 · 切分 · 读出：架构总览。</span><span lang-en>v3.6 encode, segment, readout.</span></p><p class="mega-blurb mega-desc" data-for="flued-demo"><span lang-zh>五个模型同一段文本，秒级出结果。</span><span lang-en>Five models, one text, live results.</span></p><p class="mega-blurb mega-desc" data-for="flued-evidence"><span lang-zh>训练曲线与严格掩码口径：数据说话。</span><span lang-en>Curves and strict-mask evidence.</span></p><p class="mega-blurb mega-desc" data-for="flued-atlas"><span lang-zh>实验台账全览：可追溯的产物索引。</span><span lang-en>Full experiment ledger and artifacts.</span></p>
+              </div>
+              <div class="mega-links cols-2">
+                <a style="--i:0" href="/flued.html" data-desc="flued-problem"><b>01</b><span lang-zh>问题</span><span lang-en>Problem</span></a>
+                <a style="--i:1" href="/flued-architecture.html" data-desc="flued-arch"><b>02</b><span lang-zh>架构</span><span lang-en>Architecture</span></a>
+                <a style="--i:2" href="/flued-demo.html" data-desc="flued-demo"><b>03</b><span lang-zh>演示</span><span lang-en>Demo</span></a>
+                <a style="--i:3" href="/flued-evidence.html" data-desc="flued-evidence"><b>04</b><span lang-zh>证据</span><span lang-en>Evidence</span></a>
+                <a style="--i:4" href="/flued-experiments.html" data-desc="flued-atlas"><b>05</b><span lang-zh>图谱</span><span lang-en>Atlas</span></a>
+              </div>
+            </div></div></div>
+          </div>
+          <div class="nav-item">
+            <a class="nav-top" href="/index.html#documents" aria-haspopup="true"><span lang-zh>文档</span><span lang-en>Docs</span><span class="caret" aria-hidden="true">▾</span></a>
+            <div class="nav-menu"><div class="nav-menu-inner"><div class="mega-grid">
+              <div class="mega-side">
+                <p class="mega-eyebrow"><span lang-zh>文档与治理</span><span lang-en>Docs &amp; Governance</span></p>
+                <p class="mega-blurb mega-desc" data-for="default"><span lang-zh>博客 · 招新 · 章程。</span><span lang-en>Insights, recruitment and charter.</span></p><p class="mega-blurb mega-desc" data-for="doc-insights"><span lang-zh>当模型开始吞掉记忆：分层记忆架构前瞻。</span><span lang-en>Memory hierarchy outlook.</span></p><p class="mega-blurb mega-desc" data-for="doc-recruit"><span lang-zh>每年一届招新：学号即账号，报名即建档。</span><span lang-en>Yearly recruitment, one application flow.</span></p><p class="mega-blurb mega-desc" data-for="doc-charter"><span lang-zh>组织章程：定位、成员与决策。</span><span lang-en>Charter: mission, members, decisions.</span></p><p class="mega-blurb mega-desc" data-for="doc-member"><span lang-zh>成员规则：如何加入与留存。</span><span lang-en>Membership: joining and staying.</span></p><p class="mega-blurb mega-desc" data-for="doc-gov"><span lang-zh>项目治理：开源、评审与 AI 辅助规则。</span><span lang-en>Governance: open-source and review.</span></p>
+              </div>
+              <div class="mega-links cols-2">
+                <a style="--i:0" href="/insights-memory-hierarchy.html" data-desc="doc-insights"><span lang-zh>技术博客</span><span lang-en>Insights</span></a>
+                <a style="--i:1" href="/recruitment/" data-desc="doc-recruit"><span lang-zh>招新流程</span><span lang-en>Recruitment</span></a>
+                <a style="--i:2" href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/charter.md" data-desc="doc-charter"><span lang-zh>章程</span><span lang-en>Charter</span></a>
+                <a style="--i:3" href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/membership.md" data-desc="doc-member"><span lang-zh>成员规则</span><span lang-en>Membership</span></a>
+                <a style="--i:4" href="https://github.com/CUMT-Alethic-Insight-Lab/governance-public/blob/main/docs/zh-CN/project-governance.md" data-desc="doc-gov"><span lang-zh>项目治理</span><span lang-en>Governance</span></a>
+              </div>
+            </div></div></div>
+          </div>
+          <a href="/people.html" aria-current="page"><span lang-zh>成员</span><span lang-en>People</span></a>
+          <a href="/recruitment/"><span lang-zh>加入我们</span><span lang-en>Join Us</span></a>
+        </nav>
+        <div class="header-controls">
+          <button
+            class="lang-toggle"
+            type="button"
+            data-lang-toggle
+            aria-label="Switch to English"
+          >
+            <span data-lang-toggle-label>EN</span>
+          </button>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="切换到亮色主题"
+            aria-pressed="false"
+          >
+            <span class="theme-toggle-track" aria-hidden="true">
+              <span class="theme-toggle-thumb"></span>
+            </span>
+            <span data-theme-toggle-label>Dark</span>
+          </button>
+          <a class="header-action" href="/recruitment/login">
+            <span lang-zh>登录</span><span lang-en>Sign in</span>
+          </a>
+          <a class="header-action" href="https://github.com/CUMT-Alethic-Insight-Lab">
+            GitHub
+          </a>
+        </div>
+      </header>
+
+      <main>
+        <section class="page-head page-grid section-observe" id="top" aria-labelledby="people-title">
+          <a class="back-link" href="/"><span lang-zh>← 返回首页</span><span lang-en>← Back to home</span></a>
+          <p class="eyebrow">People / 成员</p>
+          <h1 id="people-title" lang-zh>成员</h1>
+          <h1 lang-en>People</h1>
+          <p class="project-lede" lang-zh>
+            名单随研究与工程进展更新，实名展示、链接可核验。
+            每个人都有自己负责的方向与可追踪的公开产出；想出现在这里，见文末加入方式。
+          </p>
+          <p class="project-lede" lang-en>
+            The roster is updated as research and engineering progress — real names, verifiable links.
+            Everyone owns a direction with trackable public output; to appear here, see how to join at the bottom.
+          </p>
+        </section>
+
+        <section class="people-section page-grid section-observe" aria-label="Member roster">
+          <div class="people-list">
+            <article class="person">
+              <span class="person-mono" aria-hidden="true">ZW</span>
+              <div class="person-main">
+                <h3>王张嘉 <span class="person-en">Zhangjia Wang</span></h3>
+                <p lang-zh>社团社长，负责组织整体方向与运营；NLP 方向负责人；FLUED 项目主持人：byte-level 语言编码接口、动态边界与压缩读出。</p>
+                <p lang-en>President of the society, owning overall direction and operations; NLP direction lead; initiates and leads the FLUED project on byte-level language encoding interfaces, dynamic boundaries, and compressed readout.</p>
+              </div>
+              <span class="person-role"><span lang-zh>社长</span><span lang-en>President</span></span>
+              <span class="person-links">
+                <a href="https://github.com/wdd9700">GitHub</a>
+                <a href="https://wdd9700.github.io">Homepage</a>
+                <a href="mailto:08252689@cumt.edu.cn">08252689@cumt.edu.cn</a>
+              </span>
+            </article>
+            <article class="person">
+              <span class="person-mono" aria-hidden="true">ZY</span>
+              <div class="person-main">
+                <h3>张岩 <span class="person-en">Yan Zhang</span></h3>
+                <p lang-zh>社团前任社长，曾负责组织整体方向与运营。</p>
+                <p lang-en>Former president of the society; previously owned overall direction and operations.</p>
+              </div>
+              <span class="person-role"><span lang-zh>前任社长</span><span lang-en>Former President</span></span>
+              <span class="person-links">
+                <a href="https://github.com/zhangyan289">GitHub</a>
+                <a href="mailto:08232670@cumt.edu.cn">08232670@cumt.edu.cn</a>
+              </span>
+            </article>
+            <article class="person">
+              <span class="person-mono" aria-hidden="true">XM</span>
+              <div class="person-main">
+                <h3>谢圣民 <span class="person-en">Shengmin Xie</span></h3>
+                <p lang-zh>「孤独的根号五」队长（第十七届服创大赛 AI 专项赛道一等奖）。</p>
+                <p lang-en>Core member; captain of "Lonely Sqrt-5" (First Prize, 17th Service Outsourcing AI track).</p>
+              </div>
+              <span class="person-role"><span lang-zh>核心成员</span><span lang-en>Core Member</span></span>
+              <span class="person-links">
+                <a href="mailto:542664908@qq.com">542664908@qq.com</a>
+              </span>
+            </article>
+            <article class="person">
+              <span class="person-mono" aria-hidden="true">WY</span>
+              <div class="person-main">
+                <h3>王天宇 <span class="person-en">Tianyu Wang</span></h3>
+                <p lang-zh>「孤独的根号七」队长（第十七届服创大赛 AI 专项赛道三等奖）。</p>
+                <p lang-en>Core member; captain of "Lonely Sqrt-7" (Third Prize, 17th Service Outsourcing AI track).</p>
+              </div>
+              <span class="person-role"><span lang-zh>核心成员</span><span lang-en>Core Member</span></span>
+              <span class="person-links">
+                <a href="https://github.com/tianyuwang122">GitHub</a>
+                <a href="mailto:benberrygamboa711@gmail.com">benberrygamboa711@gmail.com</a>
+              </span>
+            </article>
+            <article class="person">
+              <span class="person-mono" aria-hidden="true">CD</span>
+              <div class="person-main">
+                <h3>陈德涛 <span class="person-en">Detao Chen</span></h3>
+                <p lang-zh>学术合作伙伴，为研究与工程提供指导。</p>
+                <p lang-en>Academic partner advising on research and engineering.</p>
+              </div>
+              <span class="person-role"><span lang-zh>学术合作伙伴</span><span lang-en>Academic Partner</span></span>
+              <span class="person-links">
+                <a href="https://github.com/noahc1510">GitHub</a>
+                <a href="mailto:noahc1510@gmail.com">noahc1510@gmail.com</a>
+              </span>
+            </article>
+            <!-- 预留角色：技术审查委员会委员，用法：
+              <span class="person-role person-role--committee"><span lang-zh>技术审查委员会委员</span><span lang-en>TRC Member</span></span> -->
+            <a class="person person-open" href="#join">
+              <span class="person-mono" aria-hidden="true">?</span>
+              <div class="person-main">
+                <h3 lang-zh>下一行是你</h3>
+                <h3 lang-en>The next row is you</h3>
+                <p lang-zh>招新流程、准备建议与申请入口，见文末加入方式。</p>
+                <p lang-en>Recruitment process, preparation advice, and the application entry — see how to join below.</p>
+              </div>
+              <span class="person-role"><span lang-zh>开放</span><span lang-en>Open</span></span>
+              <span class="person-links"><span lang-zh>加入 →</span><span lang-en>Join →</span></span>
+            </a>
+          </div>
+        </section>
+
+        <section class="join section-observe" id="join" aria-labelledby="join-title">
+          <div class="page-grid">
+            <p class="section-kicker">Join</p>
+            <h2 id="join-title" lang-zh>加入方式</h2>
+            <h2 lang-en>How to Join</h2>
+            <div class="join-flow" aria-label="Recruitment flow">
+              <span lang-zh>申请表</span>
+              <span lang-en>Application</span>
+              <span lang-zh>机试</span>
+              <span lang-en>Coding Test</span>
+              <span lang-zh>面试</span>
+              <span lang-en>Interview</span>
+              <span>Onboarding</span>
+            </div>
+            <div class="hero-actions">
+              <a class="button button-primary" href="/recruitment/">
+                <span lang-zh>进入招新平台</span><span lang-en>Enter the Recruitment Platform</span>
+              </a>
+              <a class="button button-secondary" href="mailto:contact@alethicinsight.org">
+                contact@alethicinsight.org
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer page-grid">
+        <span>CUMT Alethic Insight AI Lab</span>
+        <div>
+          <a href="/">Home</a>
+          <a href="https://github.com/CUMT-Alethic-Insight-Lab">GitHub</a>
+          <a href="https://huggingface.co/Alethic-Insight">Hugging Face</a>
+          <a href="mailto:contact@alethicinsight.org">Contact</a>
+        </div>
+      </footer>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
