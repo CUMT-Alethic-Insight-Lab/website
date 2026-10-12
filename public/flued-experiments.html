@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark" data-lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FLUED v0.4-v3.6 experiment atlas with auditable training curves, baselines and ablations." />
+    <meta name="theme-color" content="#0b0e12" />
+    <meta property="og:title" content="FLUED Experiment Atlas · Alethic Insight" />
+    <meta property="og:description" content="按版本、阶段、基线与可信度浏览 FLUED 的关键实验和完整训练趋势。" />
+    <meta property="og:type" content="website" />
+    <title>FLUED Experiment Atlas · Alethic Insight</title>
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <script>
+      (() => {
+        try { document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark"; }
+        catch { document.documentElement.dataset.theme = "dark"; }
+        let lang = "";
+        try { lang = localStorage.getItem("lang") || ""; } catch { lang = ""; }
+        if (lang !== "zh" && lang !== "en") {
+          lang = (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+        }
+        document.documentElement.dataset.lang = lang;
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/fluedExperiments-DSiC2B49.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/main-Bjk9bJOZ.js">
+    <link rel="stylesheet" crossorigin href="/assets/main-CmqJcIHZ.css">
+  </head>
+  <body>
+    <div class="site-shell project-page atlas-page">
+      <header class="site-header" data-site-header>
+        <a class="brand" href="/index.html#top" aria-label="Alethic Insight home"><img src="/mark.svg" alt="" width="32" height="32" /><span>Alethic Insight</span></a>
+        <nav class="nav-links" aria-label="FLUED navigation">
+          <a href="/flued.html"><b>01</b><span lang-zh>问题</span><span lang-en>Problem</span></a>
+          <a href="/flued-architecture.html"><b>02</b><span lang-zh>架构</span><span lang-en>Architecture</span></a>
+          <a href="/flued-demo.html"><b>03</b><span lang-zh>演示</span><span lang-en>Demo</span></a>
+          <a href="/flued-evidence.html"><b>04</b><span lang-zh>证据</span><span lang-en>Evidence</span></a>
+          <a href="/flued-experiments.html" aria-current="page"><b>05</b><span lang-zh>图谱</span><span lang-en>Atlas</span></a>
+        </nav>
+        <div class="header-controls">
+          <button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch to English"><span data-lang-toggle-label>EN</span></button>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换到深色主题" aria-pressed="false"><span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span><span data-theme-toggle-label>Dark</span></button>
+          <a class="header-action" href="https://github.com/wdd9700/FLUED/tree/copilot/implement-stage-a-experiments">GitHub</a>
+        </div>
+      </header>
+
+      <nav class="section-rail" aria-label="Section navigation">
+        <a href="#top" data-rail-link="top" aria-label="顶部" data-aria-zh="顶部" data-aria-en="Top"><span>Top</span></a>
+        <a href="#ledger" data-rail-link="ledger" aria-label="实验台账" data-aria-zh="实验台账" data-aria-en="Experiment ledger"><span>Ledger</span></a>
+        <a href="#curves" data-rail-link="curves" aria-label="训练曲线" data-aria-zh="训练曲线" data-aria-en="Training curves"><span>Curves</span></a>
+        <a href="#frontier" data-rail-link="frontier" aria-label="率失真前沿" data-aria-zh="率失真前沿" data-aria-en="Rate-distortion frontier"><span>Frontier</span></a>
+        <a href="#reading" data-rail-link="reading" aria-label="读法" data-aria-zh="读法" data-aria-en="How to read"><span>Reading</span></a>
+      </nav>
+
+      <main>
+        <section class="project-hero atlas-hero section-observe" id="top">
+          <div class="page-grid project-hero-grid">
+            <div class="project-hero-copy">
+              <a class="back-link" href="/flued.html#evidence"><span lang-zh>返回 FLUED 主页面</span><span lang-en>Back to FLUED overview</span></a>
+              <p class="chapter-tag"><span lang-zh>Chapter 05 · 总账</span><span lang-en>Chapter 05 · The Ledger</span></p>
+              <p class="eyebrow">FLUED Experiment Atlas</p>
+              <h1><span lang-zh>完整研究过程，</span><span lang-en>The full research process,</span><span lang-zh>不只保留最终点</span><span lang-en>not just the final points</span></h1>
+              <p class="hero-lede is-latin">v0.4 -> v3.6 · baselines · ablations · failure cases</p>
+              <p class="project-lede" lang-zh>这里汇总可公开的关键实验条目和派生训练曲线。每项都标注口径与可信度：历史现象、受控机制实验和可作为主结论的公平比较被明确分开。</p>
+              <p class="project-lede" lang-en>This page collects the key public experiment records and their derived training curves. Each entry is labeled with its protocol and confidence level: historical phenomena, controlled mechanism experiments, and fair comparisons that can serve as headline conclusions are clearly separated.</p>
+              <p class="hero-cont" lang-zh><b>上一章 · 证据边界：</b>关键曲线与严格对照——本章是全部可公开实验记录的总账，以及当前前沿在整个坐标系里的位置。</p>
+              <p class="hero-cont" lang-en><b>Previous · Evidence boundaries:</b> key curves and strict controls — this chapter is the full ledger of every public experiment record, and where the current frontier sits in the whole coordinate system.</p>
+              <div class="hero-actions"><a class="button button-primary" href="#ledger">Browse ledger</a><a class="button button-secondary" href="#curves">Inspect curves</a></div>
+            </div>
+            <aside class="project-signal atlas-signal" aria-label="Atlas facts">
+              <div class="signal-title">public evidence policy</div>
+              <ol>
+                <li><strong data-count="rows">0</strong><span>key experiment records</span></li>
+                <li><strong data-count="curves">0</strong><span>full derived log curves</span></li>
+                <li><strong>--</strong><span>raw checkpoint and corpus<br />stay private</span></li>
+                <li><strong>--</strong><span>historical results never<br />overwrite fair reruns</span></li>
+                <li><strong>--</strong><span>no self-citation in the report<br />bibliography</span></li>
+              </ol>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section page-grid section-observe" id="ledger" aria-labelledby="ledger-title">
+          <div class="section-heading">
+            <p class="section-kicker">Experiment Ledger</p>
+            <h2 id="ledger-title" lang-zh>按版本、阶段和<span class="atlas-mobile-break"><br /></span>证据等级筛选</h2>
+            <h2 lang-en>Filter by version, stage,<span class="atlas-mobile-break"><br /></span>and evidence level</h2>
+            <p lang-zh>表格只展示关键指标和结论。原始日志保留在内部归档，用于生成曲线和复核；代码、配置与公开结果摘要可在仓库获得。</p>
+            <p lang-en>The table shows only key metrics and conclusions. Raw logs stay in the internal archive for curve generation and audit; code, configs, and public result summaries are available in the repository.</p>
+          </div>
+          <div class="atlas-filterbar" data-ledger-controls>
+            <label><span lang-zh>版本</span><span lang-en>Version</span><select data-version-filter><option value="all" data-label-zh="全部版本" data-label-en="All versions">全部版本</option></select></label>
+            <label><span lang-zh>证据</span><span lang-en>Evidence</span><select data-evidence-filter><option value="all" data-label-zh="全部可信度" data-label-en="All confidence levels">全部可信度</option><option value="high" data-label-zh="高" data-label-en="High">高</option><option value="controlled" data-label-zh="受控单种子" data-label-en="Controlled single-seed">受控单种子</option><option value="historical" data-label-zh="历史/纠偏前" data-label-en="Historical / pre-correction">历史/纠偏前</option><option value="history" data-label-zh="历史设计" data-label-en="Design history">历史设计</option><option value="history-only" data-label-zh="仅历史" data-label-en="History only">仅历史</option></select></label>
+            <label class="atlas-search"><span lang-zh>检索</span><span lang-en>Search</span><input type="search" data-ledger-search placeholder="版本、实验、指标、结论" data-placeholder-zh="版本、实验、指标、结论" data-placeholder-en="version, experiment, metric, conclusion" /></label>
+          </div>
+          <div class="atlas-table-wrap"><div class="atlas-table" role="table" aria-label="FLUED experiment ledger" data-ledger-table></div></div>
+          <p class="atlas-result-note" data-ledger-note></p>
+        </section>
+
+        <section class="section page-grid section-observe" id="curves" aria-labelledby="curves-title">
+          <div class="section-heading">
+            <p class="section-kicker">Training Curves</p>
+            <h2 id="curves-title" lang-zh>全量日志点绘制，前端仅做平滑连线</h2>
+            <h2 lang-en>All log points plotted; the frontend only smooths the lines</h2>
+            <p lang-zh>每条曲线保留其派生日志中的全部记录点。不会为了“好看”补点或跳过 NaN；没有同一口径的结果不会被画在同一比较组。</p>
+            <p lang-en>Every curve keeps all recorded points from its derived log. No points are added and no NaN is skipped for looks; results without a shared protocol are never plotted in the same comparison group.</p>
+          </div>
+          <div class="atlas-workbench">
+            <aside class="atlas-controls">
+              <div><span class="control-label"><span lang-zh>曲线组</span><span lang-en>Curve family</span></span><div class="segmented-row atlas-version-buttons" data-curve-family-controls></div></div>
+              <div><span class="control-label"><span lang-zh>指标</span><span lang-en>Metric</span></span><div class="metric-button-grid" data-curve-metric-controls>
+                <button class="is-active" type="button" data-metric="reconstruction">reconstruction</button><button type="button" data-metric="completion">completion</button><button type="button" data-metric="backbone_acc">backbone acc</button><button type="button" data-metric="latent_per_byte">actual latent / byte</button><button type="button" data-metric="loss">loss</button><button type="button" data-metric="chunks">chunks / sample</button><button type="button" data-metric="boundary_std">boundary std</button><button type="button" data-metric="grad_norm">grad norm</button>
+              </div></div>
+              <div class="evidence-note" data-curve-note><span lang-zh>正在加载实验档案。</span><span lang-en>Loading the experiment archive.</span></div>
+            </aside>
+            <div class="chart-panel">
+              <div class="chart-panel-head"><div><span class="section-kicker">selected family</span><h3 data-curve-title>loading</h3></div><div class="chart-meta" data-curve-meta></div></div>
+              <svg class="chart-svg" data-atlas-chart viewBox="0 0 980 420" role="img" aria-label="FLUED experiment training curves"></svg>
+              <div class="chart-legend" data-atlas-legend></div>
+            </div>
+          </div>
+          <div class="run-table" data-atlas-run-table></div>
+        </section>
+
+        <section class="section page-grid section-observe" id="frontier" aria-labelledby="frontier-title">
+          <div class="section-heading">
+            <p class="section-kicker">Rate–Distortion Frontier</p>
+            <h2 id="frontier-title" lang-zh>v3.6 的信息效率：同指标下 ~60×</h2>
+            <h2 lang-en>v3.6's information efficiency: ~60× at the same metric</h2>
+            <p lang-zh>横轴为每条 512-byte prompt 传输的标量总数（对数刻度），纵轴为 strict masked-source 补全准确率（越高越好）。八个点全部来自 20K 步、corpus_v3、单 seed=42 的受控 run；S0.7 逐段条件化臂为非默认口径，单独标注。天花板锚 AR H-Net next-byte BPB 0.653 是不同指标，不进 acc 坐标系。</p>
+            <p lang-en>The x-axis is the total number of scalars transmitted per 512-byte prompt (log scale); the y-axis is strict masked-source completion accuracy (higher is better). All eight points come from controlled runs of 20K steps on corpus_v3 with a single seed=42; the S0.7 per-chunk conditioning arm is a non-default protocol, marked separately. The ceiling anchor, AR H-Net next-byte BPB 0.653, is a different metric and does not enter the acc coordinate system.</p>
+          </div>
+          <div class="frontier-panel">
+            <svg class="chart-svg" data-rd-chart viewBox="0 0 980 460" role="img" aria-label="FLUED v3.6 rate-distortion frontier"></svg>
+            <div class="chart-legend" data-rd-legend></div>
+          </div>
+          <div class="frontier-panel">
+            <h3 class="frontier-subtitle"><span lang-zh>masked acc 对比（柱上数字 = 信息传输标量数 / 512B prompt）</span><span lang-en>masked acc compared (numbers on bars = transmitted scalars / 512B prompt)</span></h3>
+            <div class="rd-bars" data-rd-bars></div>
+          </div>
+        </section>
+
+        <section class="section page-grid section-observe" id="reading" aria-labelledby="reading-title">
+          <div class="section-heading">
+            <p class="section-kicker">Reading Rules</p>
+            <h2 id="reading-title" lang-zh>把结果放回它们真正回答的问题里</h2>
+            <h2 lang-en>Put results back into the questions they actually answer</h2>
+          </div>
+          <div class="claim-columns">
+            <div>
+              <h3 lang-zh>可作为当前主结论</h3>
+              <h3 lang-en>Usable as current headline conclusions</h3>
+              <ul>
+                <li lang-zh>v3.6 公平对比：masked acc 0.149 对 HNet-DiT 瓶颈臂 0.142（同规模同步数同语料单 seed），信息传输 1,536 vs ~97,540 标量。</li>
+                <li lang-en>The v3.6 fair comparison: masked acc 0.149 vs the HNet-DiT bottleneck arm's 0.142 (matched scale, steps, and corpus, single seed), transmitting 1,536 vs ~97,540 scalars.</li>
+                <li lang-zh>v2 A-class 多种子：稳定可微边界和近无损重建。</li>
+                <li lang-en>v2 A-class multi-seed: stable differentiable boundaries and near-lossless reconstruction.</li>
+                <li lang-zh>v2 D1：统一 2048 原始 byte / 100K 下，FLUED 稳定但尚未超过 BPE。</li>
+                <li lang-en>v2 D1: under the unified 2048 raw-byte / 100K setting, FLUED is stable but has not yet beaten BPE.</li>
+                <li lang-zh>v3.2.1 strict masked-source：latent no-memory 使小主干 mask accuracy 从 0.1440 提升至 0.1898。</li>
+                <li lang-en>v3.2.1 strict masked-source: latent no-memory lifts a small backbone's mask accuracy from 0.1440 to 0.1898.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 lang-zh>只用于定位或历史叙事</h3>
+              <h3 lang-en>For localization or historical narrative only</h3>
+              <ul>
+                <li lang-zh>v3.6 S0.7 逐段条件化（unmasked 0.351 / PPL 12.1）是非默认口径诊断臂，不进入主结论。</li>
+                <li lang-en>v3.6 S0.7 per-chunk conditioning (unmasked 0.351 / PPL 12.1) is a non-default diagnostic arm and does not enter the headline conclusions.</li>
+                <li lang-zh>v1 的 E3 20K BPB 阳性不是 D1 公平比较的替代品。</li>
+                <li lang-en>v1's E3 20K BPB positive is not a substitute for the D1 fair comparison.</li>
+                <li lang-zh>v3.4 迁移前 5K 筛选用于发现候选组件，不能绕过后续代码纠偏。</li>
+                <li lang-en>v3.4's pre-migration 5K screening was for discovering candidate components and cannot bypass the later code corrections.</li>
+                <li lang-zh>v3.4 40K/20K 单种子矩阵可定位失稳机制，不能据此声称多种子或尺度规律。</li>
+                <li lang-en>v3.4's 40K/20K single-seed matrices can localize instability mechanisms but cannot support claims of multi-seed or scaling laws.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="section page-grid section-observe" aria-label="回到第一章" data-aria-zh="回到第一章" data-aria-en="Back to chapter one">
+          <a class="next-card" href="/flued.html#boundary">
+            <span class="next-kicker">Loop · CH.01</span>
+            <span class="next-title" lang-zh>回到起点——我们主张什么，也不主张什么</span>
+            <span class="next-title" lang-en>Back to the start — what we claim, and what we don't</span>
+            <span class="next-go"><span lang-zh>回到研究问题 →</span><span lang-en>Back to the research question →</span></span>
+          </a>
+        </section>
+      </main>
+      <footer class="site-footer page-grid"><span>FLUED Experiment Atlas · Alethic Insight</span><div><a href="/flued.html">FLUED</a><a href="https://github.com/wdd9700/FLUED/tree/copilot/implement-stage-a-experiments">GitHub</a><a href="/cdn-cgi/l/email-protection#076468697366647347666b62736f6e646e69746e606f7329687560">Contact</a></div></footer>
+    </div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

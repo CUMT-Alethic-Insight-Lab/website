@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark" data-lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="FLUED v3.6 live demo: dynamic boundary segmentation and masked byte completion across five models." />
+    <meta name="theme-color" content="#0b0e12" />
+    <meta property="og:title" content="FLUED v3.6 Live Demo · Alethic Insight" />
+    <meta property="og:description" content="同一段文本，五个模型的语义切分与掩码补全实时对比。" />
+    <meta property="og:type" content="website" />
+    <title>FLUED v3.6 Live Demo · Alethic Insight</title>
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <script>
+      (() => {
+        try { document.documentElement.dataset.theme = localStorage.getItem("theme") || "dark"; }
+        catch { document.documentElement.dataset.theme = "dark"; }
+        let lang = "";
+        try { lang = localStorage.getItem("lang") || ""; } catch { lang = ""; }
+        if (lang !== "zh" && lang !== "en") {
+          lang = (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+        }
+        document.documentElement.dataset.lang = lang;
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/fluedDemo-6wdvHN_h.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/main-Bjk9bJOZ.js">
+    <link rel="stylesheet" crossorigin href="/assets/main-CmqJcIHZ.css">
+  </head>
+  <body>
+    <div class="site-shell project-page demo-page">
+      <header class="site-header" data-site-header>
+        <a class="brand" href="/index.html#top" aria-label="Alethic Insight home"><img src="/mark.svg" alt="" width="32" height="32" /><span>Alethic Insight</span></a>
+        <nav class="nav-links" aria-label="FLUED navigation">
+          <a href="/flued.html"><b>01</b><span lang-zh>问题</span><span lang-en>Problem</span></a>
+          <a href="/flued-architecture.html"><b>02</b><span lang-zh>架构</span><span lang-en>Architecture</span></a>
+          <a href="/flued-demo.html" aria-current="page"><b>03</b><span lang-zh>演示</span><span lang-en>Demo</span></a>
+          <a href="/flued-evidence.html"><b>04</b><span lang-zh>证据</span><span lang-en>Evidence</span></a>
+          <a href="/flued-experiments.html"><b>05</b><span lang-zh>图谱</span><span lang-en>Atlas</span></a>
+        </nav>
+        <div class="header-controls">
+          <button class="lang-toggle" type="button" data-lang-toggle aria-label="Switch to English"><span data-lang-toggle-label>EN</span></button>
+          <button class="theme-toggle" type="button" data-theme-toggle aria-label="切换到深色主题" aria-pressed="false"><span class="theme-toggle-track" aria-hidden="true"><span class="theme-toggle-thumb"></span></span><span data-theme-toggle-label>Dark</span></button>
+          <a class="header-action" href="https://github.com/wdd9700/FLUED/tree/copilot/implement-stage-a-experiments">GitHub</a>
+        </div>
+      </header>
+
+      <nav class="section-rail" aria-label="Section navigation">
+        <a href="#top" data-rail-link="top" aria-label="顶部" data-aria-zh="顶部" data-aria-en="Top"><span>Top</span></a>
+        <a href="#input" data-rail-link="input" aria-label="输入" data-aria-zh="输入" data-aria-en="Input"><span>Input</span></a>
+        <a href="#segments" data-rail-link="segments" aria-label="语义切分" data-aria-zh="语义切分" data-aria-en="Semantic segmentation"><span>Segments</span></a>
+        <a href="#completion" data-rail-link="completion" aria-label="掩码补全" data-aria-zh="掩码补全" data-aria-en="Masked completion"><span>Completion</span></a>
+        <a href="#timing" data-rail-link="timing" aria-label="耗时" data-aria-zh="耗时" data-aria-en="Latency"><span>Timing</span></a>
+      </nav>
+
+      <main>
+        <section class="project-hero section-observe" id="top">
+          <div class="page-grid project-hero-grid">
+            <div class="project-hero-copy">
+              <a class="back-link" href="/flued.html#evidence"><span lang-zh>返回 FLUED 主页面</span><span lang-en>Back to FLUED overview</span></a>
+              <p class="chapter-tag"><span lang-zh>Chapter 03 · 眼见为实</span><span lang-en>Chapter 03 · Seeing Is Believing</span></p>
+              <p class="eyebrow">FLUED v3.6 Live Demo</p>
+              <h1><span lang-zh>五个模型，同一段文本，</span><span lang-en>Five models, the same text,</span><span lang-zh>各自决定在哪里下刀</span><span lang-en>each deciding where to cut</span></h1>
+              <p class="hero-lede"><span lang-zh>动态边界切分 · 掩码字节补全 · 本机实时推理</span><span lang-en>Dynamic boundary segmentation · masked byte completion · live on-device inference</span></p>
+              <p class="project-lede" lang-zh>本页面在本机访问时连接本机推理服务（127.0.0.1:8722，CPU 实时推理），公网访问时自动展示预录样例。演示把同一段输入同时送入 FLUED v3.6 的两个边界臂（S0 教师粒度 + GRPO R4 自选粒度）和三个 H-Net 基线：先展示每个模型把字节流切成了哪些语义段，再随机掩盖约 5% 的字节让模型补全。KDA（逐通道门控 delta 规则的线性注意力）是 v3.6 的主干状态机；readout 包指整条 prompt 被压缩成的单个逻辑读出单位（1536 个标量）。</p>
+              <p class="project-lede" lang-en>When visited locally, this page connects to a local inference service (127.0.0.1:8722, real-time CPU inference); on the public web it automatically shows recorded samples instead. The demo feeds the same input to FLUED v3.6's two boundary arms (S0 teacher granularity + GRPO R4 self-chosen granularity) and three H-Net baselines: first showing how each model segments the byte stream into semantic chunks, then randomly masking about 5% of the bytes for the models to complete. KDA (linear attention with a channel-wise gated delta rule) is v3.6's backbone state machine; the readout package is the single logical readout unit (1,536 scalars) that the whole prompt is compressed into.</p>
+              <p class="hero-cont" lang-zh><b>上一章 · 架构：</b>整条 prompt 经动态切分、逐段摘要和 KDA 状态机串行消费，压成 1×1,536 标量——本章让它在你眼前跑。</p>
+              <p class="hero-cont" lang-en><b>Previous · Architecture:</b> the whole prompt is consumed serially through dynamic segmentation, per-chunk summarization, and the KDA state machine, compressed into 1×1,536 scalars — this chapter runs it in front of you.</p>
+              <div class="hero-actions"><a class="button button-primary" href="#input"><span lang-zh>开始演示</span><span lang-en>Start the Demo</span></a><a class="button button-secondary" href="/flued-architecture.html"><span lang-zh>阅读 v3.6 架构</span><span lang-en>Read the v3.6 Architecture</span></a></div>
+            </div>
+            <aside class="project-signal" aria-label="Demo service status">
+              <div class="signal-title">inference service</div>
+              <ol>
+                <li><strong data-service-state>…</strong><span data-service-detail>connecting…</span></li>
+                <li><strong>5</strong><span>models loaded on CPU<br /><span lang-zh>串行推理同一输入</span><span lang-en>serial inference on the same input</span></span></li>
+                <li><strong>512B</strong><span><span lang-zh>单样本全上下文<br />超长截断，不足补 PAD</span><span lang-en>one sample, full context<br />truncated if long, PAD-padded if short</span></span></li>
+                <li><strong>~5%</strong><span><span lang-zh>字节被随机掩盖<br />span 1-8，seed 固定可复现</span><span lang-en>of bytes randomly masked<br />span 1-8, fixed seed, reproducible</span></span></li>
+                <li><strong>--</strong><span><span lang-zh>单 seed 演示口径<br />不构成性能结论</span><span lang-en>single-seed demo protocol<br />not a performance claim</span></span></li>
+              </ol>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section page-grid section-observe" id="input" aria-labelledby="input-title">
+          <div class="section-heading">
+            <p class="section-kicker">Input</p>
+            <h2 id="input-title" lang-zh>输入一段文本，或选一个预置样本</h2>
+            <h2 lang-en>Enter your own text, or pick a preset sample</h2>
+            <p lang-zh>掩码补全协议在过短的文本上会退化（掩盖位置太少、上下文不足），预置样本均为 300 字节以上的中英混合文本。在线模式下输入会原样发送到本机推理服务；离线模式下无论输入什么都渲染同一份静态样例。</p>
+            <p lang-en>The masked-completion protocol degenerates on very short text (too few masked positions, too little context), so the preset samples are all mixed Chinese-English text over 300 bytes. Online, your input is sent as-is to the local inference service; offline, the same static sample renders regardless of input.</p>
+          </div>
+          <p class="demo-offline-badge" data-offline-badge hidden><span lang-zh>预录样例模式——展示本机推理服务的真实输出录样；本地启动 demo-server 后可对任意输入实时推理</span><span lang-en>Recorded-sample mode — showing recorded real output from the local inference service; start demo-server locally for live inference on any input</span></p>
+          <div class="demo-input-panel">
+            <div class="demo-presets" data-presets></div>
+            <textarea class="demo-textarea" data-input-text rows="7" spellcheck="false" placeholder="输入中英混合文本（建议 300 字节以上）…" data-placeholder-zh="输入中英混合文本（建议 300 字节以上）…" data-placeholder-en="Enter mixed Chinese-English text (300+ bytes recommended)…"></textarea>
+            <div class="demo-input-row">
+              <button class="button button-primary" type="button" data-run-button disabled><span lang-zh>运行演示</span><span lang-en>Run Demo</span></button>
+              <span class="demo-run-status" data-run-status></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section section-dark section-observe" id="segments" aria-labelledby="segments-title">
+          <div class="page-grid">
+            <div class="section-heading">
+              <p class="section-kicker">Semantic Segmentation</p>
+              <h2 id="segments-title" lang-zh>语义段切分对比</h2>
+              <h2 lang-en>Semantic segmentation compared</h2>
+              <p lang-zh>每个模型各自决定边界：同一段文本按切分结果用交替底色渲染，段与段之间以分隔标记区分。每字节位置的切分置信度画成迷你条形图（与文本位置对齐），超过阈值的高亮柱即实际切点。</p>
+              <p lang-en>Each model decides its own boundaries: the same text renders in alternating shades by segmentation, with divider marks between segments. Per-byte cutting confidence is drawn as a mini bar chart (aligned with text positions); highlighted bars above the threshold are the actual cuts.</p>
+            </div>
+            <p class="evidence-note" lang-zh>HNet-DiT 两臂的行为是真实模型输出，不是渲染问题：标准臂边界退化（几乎不切，约 1 个 chunk），瓶颈臂过度切分（约 190 个 chunk）。没有显式压缩激励时，动态切分不存在中间态——这正是公平对比要说明的现象。</p>
+            <p class="evidence-note" lang-en>The behavior of both HNet-DiT arms is real model output, not a rendering issue: the standard arm's boundaries degenerate (barely cuts, ~1 chunk) and the bottleneck arm over-segments (~190 chunks). Without explicit compression pressure, dynamic segmentation has no middle ground — exactly the phenomenon the fair comparison is meant to show.</p>
+            <div class="demo-model-list" data-segments><p class="demo-placeholder" lang-zh>尚未运行演示。输入文本并点击「运行演示」，五个模型的切分结果将在此并排渲染。</p><p class="demo-placeholder" lang-en>The demo has not run yet. Enter text and click "Run Demo" — segmentation from all five models renders side by side here.</p></div>
+          </div>
+        </section>
+
+        <section class="section page-grid section-observe" id="completion" aria-labelledby="completion-title">
+          <div class="section-heading">
+            <p class="section-kicker">Masked Completion</p>
+            <h2 id="completion-title" lang-zh>掩码补全：被掩盖的字节能补回多少</h2>
+            <h2 lang-en>Masked completion: how many masked bytes come back</h2>
+            <p lang-zh>五个模型共享同一份随机字节掩码（下方高亮位置）。逐位置列出真值与预测：绿色为命中，红色为未命中；多字节字符的每个字节位置单独计分，无法单独解码的预测字节显示为占位符「·」。</p>
+            <p lang-en>All five models share one random byte mask (highlighted below). Truth and prediction are listed per position: green for hits, red for misses; every byte position of a multi-byte character is scored separately, and predicted bytes that cannot be decoded alone show as the placeholder "·".</p>
+          </div>
+          <div class="demo-masked-text" data-masked-text><p class="demo-placeholder" lang-zh>掩码后的文本将在此显示。</p><p class="demo-placeholder" lang-en>The masked text will appear here.</p></div>
+          <p class="evidence-note" lang-zh>v3.6 有两个训练任务：任务一 readout 包直接进 decoder 做精准还原（direct_acc）；任务二 readout 包先经 TinyBackbone 改写、再由 decoder 全部还原（backbone_masked_acc，即演示的主口径 masked_acc）。H-Net AR 臂是纯因果模型，其口径为「mask 位置的 next-byte argmax 命中率」，与掩码重建不严格可比。</p>
+          <p class="evidence-note" lang-en>v3.6 has two training tasks: task one sends the readout package straight to the decoder for exact restoration (direct_acc); task two routes it through TinyBackbone first, then the decoder restores everything (backbone_masked_acc — the demo's main masked_acc protocol). The H-Net AR arm is a purely causal model scored by next-byte argmax hit rate at mask positions, not strictly comparable to masked reconstruction.</p>
+          <div class="demo-model-list" data-completion><p class="demo-placeholder" lang-zh>各模型的补全结果将在此显示。</p><p class="demo-placeholder" lang-en>Each model's completions will appear here.</p></div>
+        </section>
+
+        <section class="section section-dark section-observe" id="timing" aria-labelledby="timing-title">
+          <div class="page-grid">
+            <div class="section-heading">
+              <p class="section-kicker">Latency</p>
+              <h2 id="timing-title" lang-zh>真实计算耗时</h2>
+              <h2 lang-en>Real compute latency</h2>
+              <p lang-zh>推理服务当前运行在 CPU 上：每个模型的 forward 耗时为单次完整前向的实测墙上时钟，总耗时为五个模型串行完整推理的端到端时间（含数据准备）。CPU 串行下端到端为秒级（实测约 1–5 s），这是正常预期，不做毫秒级宣传。</p>
+              <p lang-en>The inference service currently runs on CPU: each model's forward time is the measured wall clock of one complete forward pass, and the total is the end-to-end time for all five models run sequentially (including data preparation). Seconds-level e2e on serial CPU (measured ~1–5 s) is expected — we make no millisecond claims.</p>
+            </div>
+            <div data-timing><p class="demo-placeholder" lang-zh>耗时数据将在此显示。</p><p class="demo-placeholder" lang-en>Timing data will appear here.</p></div>
+            <p class="evidence-note" lang-zh>S0.7 逐段条件化（per-chunk readout）已证明检索瓶颈可解：unmasked 全位置 acc 0.190→0.351、PPL 33.9→12.1。本演示为 canonical v36.1 口径（per_chunk_readout 默认关），不构成性能结论。</p>
+            <p class="evidence-note" lang-en>S0.7 per-chunk conditioning (per-chunk readout) has shown the retrieval bottleneck is solvable: unmasked all-position acc 0.190→0.351, PPL 33.9→12.1. This demo runs the canonical v36.1 protocol (per_chunk_readout off by default) and is not a performance claim.</p>
+          </div>
+        </section>
+        <section class="section page-grid section-observe" aria-label="下一章" data-aria-zh="下一章" data-aria-en="Next chapter">
+          <a class="next-card" href="/flued-evidence.html">
+            <span class="next-kicker">Next · CH.04</span>
+            <span class="next-title" lang-zh>单样本之外——成规模的曲线与对照怎么说</span>
+            <span class="next-title" lang-en>Beyond a single sample — what do curves and controls say at scale</span>
+            <span class="next-go"><span lang-zh>打开证据 →</span><span lang-en>Open the evidence →</span></span>
+          </a>
+        </section>
+      </main>
+      <footer class="site-footer page-grid"><span>FLUED v3.6 Live Demo · Alethic Insight</span><div><a href="/flued.html">FLUED</a><a href="/flued-architecture.html"><span lang-zh>架构</span><span lang-en>Architecture</span></a><a href="https://github.com/wdd9700/FLUED/tree/copilot/implement-stage-a-experiments">GitHub</a><a href="/cdn-cgi/l/email-protection#debdb1b0aabfbdaa9ebfb2bbaab6b7bdb7b0adb7b9b6aaf0b1acb9">Contact</a></div></footer>
+    </div>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

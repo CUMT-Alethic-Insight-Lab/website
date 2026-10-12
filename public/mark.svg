@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
   <title id="title">Alethic Insight mark</title>
-  <rect width="64" height="64" rx="4" fill="#101418"/>
-  <rect x="3" y="3" width="58" height="58" rx="2" fill="none" stroke="#f3f5f6" stroke-opacity="0.3"/>
-  <circle cx="51" cy="13" r="2.5" fill="#0b5fff"/>
-  <text x="12" y="44" fill="#f3f5f6" font-family="'IBM Plex Sans', Helvetica, Arial, sans-serif" font-size="33" font-weight="600" letter-spacing="-1">A.</text>
+  <rect width="64" height="64" rx="4" fill="#151627"/>
+  <rect x="3" y="3" width="58" height="58" rx="2" fill="none" stroke="#e8eaf6" stroke-opacity="0.3"/>
+  <path d="M19 46 L29.5 18 H34.5 L45 46" fill="none" stroke="#e8eaf6" stroke-width="4.6" stroke-linejoin="round"/>
+  <rect x="28.7" y="25.5" width="6.6" height="6.6" fill="#7b93ff"/>
 </svg>

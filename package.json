@@ -1,5 +1,5 @@
 {
-  "name": "cumt-alethic-insight-website",
+  "name": "alethic-website-spa-proto",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -9,6 +9,7 @@
     "preview": "vite preview --host 127.0.0.1"
   },
   "devDependencies": {
+    "puppeteer-core": "^25.12.0",
     "vite": "^7.1.0"
   }
 }

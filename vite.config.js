@@ -1,16 +1,14 @@
 import { defineConfig } from "vite";
 import { resolve } from "node:path";
 
+// SPA prototype: only the brand pages participate. FLUED pages stay classic MPA.
 export default defineConfig({
   build: {
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
-        flued: resolve(__dirname, "flued.html"),
-        fluedEvidence: resolve(__dirname, "flued-evidence.html"),
-        fluedExperiments: resolve(__dirname, "flued-experiments.html"),
-        fluedArchitecture: resolve(__dirname, "flued-architecture.html"),
-        fluedDemo: resolve(__dirname, "flued-demo.html"),
+        people: resolve(__dirname, "people.html"),
+        insightsMemory: resolve(__dirname, "insights-memory-hierarchy.html"),
       },
     },
   },

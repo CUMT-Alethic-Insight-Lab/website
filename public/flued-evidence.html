@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="zh-CN" data-theme="dark" data-lang="zh">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="FLUED training curves and strict masked-source evidence browser."
+    />
+    <meta name="theme-color" content="#0b0e12" />
+    <meta property="og:title" content="FLUED Evidence · Alethic Insight" />
+    <meta
+      property="og:description"
+      content="可交互浏览 FLUED v2 / v3 训练曲线、消融趋势和 strict masked-source 证据。"
+    />
+    <meta property="og:type" content="website" />
+    <title>FLUED Evidence · Alethic Insight</title>
+    <link rel="icon" href="/mark.svg" type="image/svg+xml" />
+    <script>
+      (() => {
+        let theme = "dark";
+        try {
+          theme = localStorage.getItem("theme") || "dark";
+        } catch {
+          theme = "dark";
+        }
+        document.documentElement.dataset.theme =
+          theme === "dark" ? "dark" : "light";
+        let lang = "";
+        try {
+          lang = localStorage.getItem("lang") || "";
+        } catch {
+          lang = "";
+        }
+        if (lang !== "zh" && lang !== "en") {
+          lang = (navigator.language || "").toLowerCase().startsWith("zh") ? "zh" : "en";
+        }
+        document.documentElement.dataset.lang = lang;
+      })();
+    </script>
+    <script type="module" crossorigin src="/assets/fluedEvidence-Ba3c4Hiq.js"></script>
+    <link rel="modulepreload" crossorigin href="/assets/main-Bjk9bJOZ.js">
+    <link rel="stylesheet" crossorigin href="/assets/main-CmqJcIHZ.css">
+  </head>
+  <body>
+    <div class="site-shell project-page evidence-page">
+      <header class="site-header" data-site-header>
+        <a class="brand" href="/index.html#top" aria-label="Alethic Insight home">
+          <img src="/mark.svg" alt="" width="32" height="32" />
+          <span>Alethic Insight</span>
+        </a>
+        <nav class="nav-links" aria-label="FLUED navigation">
+          <a href="/flued.html"><b>01</b><span lang-zh>问题</span><span lang-en>Problem</span></a>
+          <a href="/flued-architecture.html"><b>02</b><span lang-zh>架构</span><span lang-en>Architecture</span></a>
+          <a href="/flued-demo.html"><b>03</b><span lang-zh>演示</span><span lang-en>Demo</span></a>
+          <a href="/flued-evidence.html" aria-current="page"><b>04</b><span lang-zh>证据</span><span lang-en>Evidence</span></a>
+          <a href="/flued-experiments.html"><b>05</b><span lang-zh>图谱</span><span lang-en>Atlas</span></a>
+        </nav>
+        <div class="header-controls">
+          <button
+            class="lang-toggle"
+            type="button"
+            data-lang-toggle
+            aria-label="Switch to English"
+          >
+            <span data-lang-toggle-label>EN</span>
+          </button>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="切换到深色主题"
+            aria-pressed="false"
+          >
+            <span class="theme-toggle-track" aria-hidden="true">
+              <span class="theme-toggle-thumb"></span>
+            </span>
+            <span data-theme-toggle-label>Dark</span>
+          </button>
+          <a class="header-action" href="https://github.com/wdd9700/FLUED/tree/copilot/implement-stage-a-experiments">
+            GitHub
+          </a>
+        </div>
+      </header>
+
+      <nav class="section-rail" aria-label="Section navigation">
+        <a href="#top" data-rail-link="top" aria-label="顶部" data-aria-zh="顶部" data-aria-en="Top"><span>Top</span></a>
+        <a href="#curves" data-rail-link="curves" aria-label="训练曲线" data-aria-zh="训练曲线" data-aria-en="Training curves"><span>Curves</span></a>
+        <a href="#strict" data-rail-link="strict" aria-label="严格掩码口径" data-aria-zh="严格掩码口径" data-aria-en="Strict masked-source"><span>Strict</span></a>
+        <a href="#reading" data-rail-link="reading" aria-label="读法" data-aria-zh="读法" data-aria-en="How to read"><span>Reading</span></a>
+      </nav>
+
+      <main>
+        <section class="project-hero evidence-hero section-observe" id="top">
+          <div class="page-grid project-hero-grid">
+            <div class="project-hero-copy">
+              <a class="back-link" href="/flued.html#evidence"><span lang-zh>返回 FLUED 主页面</span><span lang-en>Back to FLUED overview</span></a>
+              <p class="chapter-tag"><span lang-zh>Chapter 04 · 数据说话</span><span lang-en>Chapter 04 · Let the Data Speak</span></p>
+              <p class="eyebrow">FLUED Evidence Browser</p>
+              <h1 lang-zh>训练曲线与证据边界</h1>
+              <h1 lang-en>Training curves and evidence boundaries</h1>
+              <p class="hero-lede is-latin">100-step logs, no downsampling</p>
+              <p class="project-lede" lang-zh>
+                这里把 v2 稳定性、去噪比例、压缩控制和 v3 strict masked-source
+                对照拆开展示。v1 历史阳性只作为历史背景，不混入 v2 公平 D1 结论。
+              </p>
+              <p class="project-lede" lang-en>
+                This page breaks out v2 stability, denoise ratio, compression control,
+                and the v3 strict masked-source comparisons. The v1 historical positive
+                is kept as background only and never mixed into the v2 fair D1 conclusions.
+              </p>
+              <p class="hero-cont" lang-zh><b>上一章 · 实时演示：</b>五个模型同一段文本、秒级出结果——本章看这些数字在成规模训练里是否站得住。</p>
+              <p class="hero-cont" lang-en><b>Previous · Live demo:</b> five models on the same text, results in seconds — this chapter asks whether those numbers hold up in training at scale.</p>
+              <div class="hero-actions">
+                <a class="button button-primary" href="#curves">Open curves</a>
+                <a class="button button-secondary" href="#strict">Compare strict mask</a>
+              </div>
+            </div>
+            <aside class="project-signal evidence-signal" aria-label="Evidence rules">
+              <div class="signal-title">evidence rules</div>
+              <ol>
+                <li>draw raw 100-step log points</li>
+                <li>keep NaN as failure signal</li>
+                <li>separate historical and fair runs</li>
+                <li>mask bytes before encode</li>
+                <li>show source paths for audit</li>
+              </ol>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section page-grid section-observe" id="curves" aria-labelledby="curves-title">
+          <div class="section-heading">
+            <p class="section-kicker">Training Curves</p>
+            <h2 id="curves-title" lang-zh>同一页切换实验组和指标，直接对比训练动力学</h2>
+            <h2 lang-en>Switch experiment groups and metrics on one page to compare training dynamics directly</h2>
+            <p lang-zh>
+              曲线数据来自归档中的原始 <code>run.log</code>，按日志实际 100-step 粒度绘制。
+              前端只做平滑连线，不做抽样；NaN 会表现为曲线断裂和异常标记。
+            </p>
+            <p lang-en>
+              Curve data comes from the archived raw <code>run.log</code> files, plotted at the
+              logs' actual 100-step granularity. The frontend only smooths the connecting lines
+              and never downsamples; NaN appears as broken curves and anomaly markers.
+            </p>
+          </div>
+
+          <div class="evidence-workbench">
+            <aside class="evidence-controls" aria-label="Curve controls">
+              <div>
+                <span class="control-label"><span lang-zh>实验组</span><span lang-en>Experiment group</span></span>
+                <div class="segmented-row" data-group-controls>
+                  <button class="is-active" type="button" data-group="v2_seeds">v2 seeds</button>
+                  <button type="button" data-group="denoise_scan">denoise</button>
+                  <button type="button" data-group="compression_scan">compression</button>
+                </div>
+              </div>
+              <div>
+                <span class="control-label"><span lang-zh>指标</span><span lang-en>Metric</span></span>
+                <div class="metric-button-grid" data-metric-controls>
+                  <button class="is-active" type="button" data-metric="loss">loss</button>
+                  <button type="button" data-metric="recon_acc">recon acc</button>
+                  <button type="button" data-metric="soft_mn">m/n</button>
+                  <button type="button" data-metric="bp_std">bp std</button>
+                  <button type="button" data-metric="bhead_gnorm">grad norm</button>
+                  <button type="button" data-metric="type_cjk">CJK bp</button>
+                  <button type="button" data-metric="type_utf8">UTF-8 bp</button>
+                  <button type="button" data-metric="type_op">op bp</button>
+                </div>
+              </div>
+              <div class="evidence-note" data-group-note>
+                <span lang-zh>正在加载训练曲线。</span><span lang-en>Loading training curves.</span>
+              </div>
+            </aside>
+
+            <div class="chart-panel">
+              <div class="chart-panel-head">
+                <div>
+                  <span class="section-kicker">selected metric</span>
+                  <h3 data-chart-title>loss</h3>
+                </div>
+                <div class="chart-meta" data-chart-meta>loading</div>
+              </div>
+              <svg class="chart-svg" data-curve-chart viewBox="0 0 980 420" role="img" aria-label="FLUED training curve"></svg>
+              <div class="chart-legend" data-chart-legend></div>
+            </div>
+          </div>
+
+          <div class="run-table" data-run-table aria-label="Selected run summaries"></div>
+        </section>
+
+        <section class="section page-grid section-observe" id="strict" aria-labelledby="strict-title">
+          <div class="section-heading">
+            <p class="section-kicker">Strict Masked-Source</p>
+            <h2 id="strict-title" lang-zh>先在 byte 输入层 mask，再让 FLUED 编码</h2>
+            <h2 lang-en>Mask at the byte input layer first, then let FLUED encode</h2>
+            <p lang-zh>
+              这组对照用于排除 clean encode 后再遮 readout 的信息侧漏。当前最干净的 v3-family
+              主证据是 v3.2.1 latent readout 让小 backbone 的 mask 补全从 0.1440 提升到约 0.1898。
+            </p>
+            <p lang-en>
+              This comparison rules out the information leak of clean-encoding first and masking
+              the readout afterwards. The cleanest v3-family headline evidence so far: v3.2.1's
+              latent readout lifts a small backbone's mask completion from 0.1440 to about 0.1898.
+            </p>
+          </div>
+
+          <div class="strict-browser">
+            <div class="strict-controls">
+              <span class="control-label"><span lang-zh>对照指标</span><span lang-en>Comparison metric</span></span>
+              <div class="segmented-row" data-strict-controls>
+                <button class="is-active" type="button" data-strict-metric="mask_acc">mask acc</button>
+                <button type="button" data-strict-metric="byte_ce">byte CE</button>
+                <button type="button" data-strict-metric="delta_acc_vs_byte">delta acc</button>
+                <button type="button" data-strict-metric="delta_ce_vs_byte">delta CE</button>
+              </div>
+            </div>
+            <div class="bar-panel" data-strict-bars></div>
+          </div>
+
+          <div class="evidence-table strict-table" role="table" aria-label="Strict masked-source full table" data-strict-table></div>
+        </section>
+
+        <section class="section page-grid section-observe" id="reading" aria-labelledby="reading-title">
+          <div class="section-heading">
+            <p class="section-kicker">How To Read</p>
+            <h2 id="reading-title" lang-zh>这页回答“训练是否稳定”，不直接替代论文指标</h2>
+            <h2 lang-en>This page answers "is training stable" — it does not replace paper metrics</h2>
+          </div>
+          <div class="claim-columns">
+            <div>
+              <h3 lang-zh>应该看什么</h3>
+              <h3 lang-en>What to look at</h3>
+              <ul>
+                <li lang-zh><code>recon_acc</code> 是否稳定上升，而不是只看最终点。</li>
+                <li lang-en>Whether <code>recon_acc</code> rises steadily, not just the final point.</li>
+                <li lang-zh><code>soft_m/n</code> 是否被压缩目标牵引，还是被去噪任务推高。</li>
+                <li lang-en>Whether <code>soft_m/n</code> is pulled by the compression target or pushed up by the denoising task.</li>
+                <li lang-zh><code>bp_std</code> 是否形成边界分化，避免全体边界概率塌成常数。</li>
+                <li lang-en>Whether <code>bp_std</code> shows boundary divergence rather than all boundary probabilities collapsing to a constant.</li>
+                <li lang-zh>压缩扫描里的 NaN 不是坏点，而是训练动力学失稳的证据。</li>
+                <li lang-en>NaN in the compression scan is not a bad data point — it is evidence of training-dynamics instability.</li>
+              </ul>
+            </div>
+            <div>
+              <h3 lang-zh>不应该混用什么</h3>
+              <h3 lang-en>What not to conflate</h3>
+              <ul>
+                <li lang-zh>v1 历史 BPB 阳性不能覆盖 v2 2048-byte / 100K 公平矩阵。</li>
+                <li lang-en>The v1 historical BPB positive does not override the v2 2048-byte / 100K fair matrix.</li>
+                <li lang-zh>reconstruction accuracy 不能等价成 latent semantic quality。</li>
+                <li lang-en>Reconstruction accuracy is not equivalent to latent semantic quality.</li>
+                <li lang-zh>memory 在 clean reconstruction 中的收益不能直接宣称为严格补全收益。</li>
+                <li lang-en>Memory's gains in clean reconstruction cannot be claimed directly as strict completion gains.</li>
+                <li lang-zh>v3.3 当前是架构和消融入口，不是已完成 SOTA 结果。</li>
+                <li lang-en>v3.3 is currently an architecture with ablation entries, not a finished SOTA result.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+        <section class="section page-grid section-observe" aria-label="下一章" data-aria-zh="下一章" data-aria-en="Next chapter">
+          <a class="next-card" href="/flued-experiments.html">
+            <span class="next-kicker">Next · CH.05</span>
+            <span class="next-title" lang-zh>曲线是过程——全部实验记录的总账在这里</span>
+            <span class="next-title" lang-en>Curves are the process — the full ledger of every experiment lives here</span>
+            <span class="next-go"><span lang-zh>翻开图谱 →</span><span lang-en>Open the atlas →</span></span>
+          </a>
+        </section>
+      </main>
+
+      <footer class="site-footer page-grid">
+        <span>FLUED Evidence · Alethic Insight</span>
+        <div>
+          <a href="/flued.html">FLUED</a>
+          <a href="https://github.com/wdd9700/FLUED/tree/copilot/implement-stage-a-experiments">GitHub</a>
+          <a href="/cdn-cgi/l/email-protection#cdaea2a3b9acaeb98daca1a8b9a5a4aea4a3bea4aaa5b9e3a2bfaa">Contact</a>
+        </div>
+      </footer>
+    </div>
+
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script></body>
+</html>

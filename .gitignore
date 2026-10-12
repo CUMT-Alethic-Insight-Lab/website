@@ -1,8 +1,7 @@
 node_modules/
 dist/
+.shots/
 .vite/
-.edge-profile/
-.cloudflare-tunnel/
 .DS_Store
 *.local
 dev-server.log
@@ -12,15 +11,6 @@ yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 
-# Local demo/verification artifacts (not for publish)
-.pids/
-_s*.png
-*.err.log
-dev-flued*.log
-watchdog.log
-scripts/_demo_inline.tmp.mjs
-watchdog.ps1
+# 本地验证产物
 /_*.png
-
-# Local deploy tarball
 _dist_*.tar.gz
