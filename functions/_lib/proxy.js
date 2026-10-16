@@ -6,7 +6,7 @@
 //   STANDBY_ORIGIN        默认 https://cloud-standby.alethicinsight.com
 //   CF_ACCESS_CLIENT_ID / CF_ACCESS_CLIENT_SECRET（secret，lab 回源挂 CF Access 时必填）
 
-const FALLBACK_STATUSES = new Set([502, 503, 504, 520, 521, 522, 523, 524, 525, 526, 530]);
+const FALLBACK_STATUSES = new Set([502, 503, 504, 520, 521, 522, 523, 524, 525, 526, 527, 528, 529, 530]);
 
 export async function proxyWithFallback(request, env, upstreamPath) {
   const labOrigin = (env.LAB_ORIGIN || "https://lab-origin.alethicinsight.com").replace(/\/$/, "");

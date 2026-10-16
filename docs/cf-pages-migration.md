@@ -1,6 +1,6 @@
 # 官网迁移 Cloudflare Pages — 迁移 Runbook
 
-> 状态：方案与构建已验证（2026-10-16），**未部署、未 push**（本机到 GitHub 网络不通）。
+> 状态：方案与构建已验证（2026-10-16），已 push 至 main（commit 7754500），未部署。
 > 目标：静态站从「腾讯云 VPS nginx + CF Tunnel 回源」迁到 Cloudflare Pages，VPS 从静态站可用性路径上消失。招新平台（lab 主库 + 云端热备）保持不变，仅入口代理方式改变。
 
 ## 0. 现状摘要
