@@ -1,0 +1,5 @@
+# Cloudflare Pages 直传部署配置（wrangler pages deploy dist 用）
+# Git 集成为主、wrangler 直传为引导/应急通道，详见 docs/cf-pages-migration.md
+name = "alethicinsight-website"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-10-16"

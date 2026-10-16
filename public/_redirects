@@ -1,0 +1,9 @@
+# Cloudflare Pages 重定向（对齐 nginx 的规范化 301）
+# https://developers.cloudflare.com/pages/configuration/redirects/
+# 注意：代理转发不在此做（_redirects 只能跳转，不能反代），/recruitment/* 与
+# /admin/recruitment 的代理由 functions/ 承担。functions 里也做了防御性 301，
+# 两处任一生效即可。
+
+/recruitment /recruitment/ 301
+/recruitment/admin /admin/recruitment 301
+/admin/recruitment/ /admin/recruitment 301

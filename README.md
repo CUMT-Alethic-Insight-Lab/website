@@ -63,3 +63,4 @@ DEPLOY_HOST=ubuntu@<服务器公网IP> bash deploy/push-dist.sh
 
 - [docs/design/](docs/design/)：叙事设计与实现计划（specs / plans）。
 - [docs/maintenance.md](docs/maintenance.md)：前端美化维护指南——token 位置、舞台文案位置、叙事参数、新增阶段步骤、验证流程。
+- [docs/cf-pages-migration.md](docs/cf-pages-migration.md)：迁移 Cloudflare Pages 方案与 runbook（未切换，线上仍走 `deploy/push-dist.sh`）。

@@ -1,0 +1,21 @@
+# Cloudflare Pages 响应头（对齐 server/deploy/nginx-alethicinsight.vhost.conf 的缓存策略）
+# 语法：路径 + 缩进头；支持 * 通配。https://developers.cloudflare.com/pages/configuration/headers/
+
+# vite 指纹产物：长缓存（nginx: expires 30d + immutable）
+/assets/*
+  Cache-Control: public, max-age=2592000, immutable
+
+# HTML/JSON：短缓存（nginx: expires 5m + must-revalidate）
+/*.html
+  Cache-Control: public, max-age=300, must-revalidate
+/*.json
+  Cache-Control: public, max-age=300, must-revalidate
+
+# 不带指纹的静态资源：7 天（nginx: 图片/字体/PDF/视频 expires 7d）
+# 覆盖当前 dist 实际存在的目录与文件；新增资源目录时在此补充
+/awards/*
+  Cache-Control: public, max-age=604800
+/fonts/*
+  Cache-Control: public, max-age=604800
+/mark.svg
+  Cache-Control: public, max-age=604800
