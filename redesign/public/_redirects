@@ -1,0 +1,5 @@
+# Cloudflare Pages static routes. A matching Function must implement the same rules.
+# These are relative redirects. Same-origin forwarding is configured on the host.
+/recruitment /recruitment/ 301
+/recruitment/admin /admin/recruitment 301
+/admin/recruitment/ /admin/recruitment 301

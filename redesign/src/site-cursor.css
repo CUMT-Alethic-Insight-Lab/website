@@ -1,0 +1,31 @@
+/* Opt in only while a real fine pointer is over a supported surface. */
+.site-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  mix-blend-mode: difference;
+  visibility: hidden;
+}
+.site-cursor-ring,
+.site-cursor-dot {
+  position: absolute;
+  inset: 0 auto auto 0;
+  border-radius: 50%;
+}
+.site-cursor-ring {
+  inline-size: 36px;
+  block-size: 36px;
+  border: 1px solid #fff;
+  transition: background-color 300ms;
+}
+.site-cursor[data-pressed] .site-cursor-ring { background-color: #fff; }
+.site-cursor-dot { inline-size: 6px; block-size: 6px; background: #fff; }
+
+@media (any-pointer: fine) and (any-hover: hover) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  :root[data-site-cursor-active] .site-cursor { visibility: visible; }
+  :root[data-site-cursor-active],
+  :root[data-site-cursor-active] * { cursor: none !important; }
+  :root[data-site-cursor-active] :is(input, textarea, select, option, iframe, [contenteditable], [data-native-cursor]),
+  :root[data-site-cursor-active] :is([contenteditable], [data-native-cursor]) * { cursor: revert-layer !important; }
+}
