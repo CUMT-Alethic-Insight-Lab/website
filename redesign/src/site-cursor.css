@@ -4,7 +4,7 @@
   inset: 0;
   z-index: 9999;
   pointer-events: none;
-  mix-blend-mode: difference;
+  --cursor-ink: var(--ink);
   visibility: hidden;
 }
 .site-cursor-ring,
@@ -16,11 +16,11 @@
 .site-cursor-ring {
   inline-size: 36px;
   block-size: 36px;
-  border: 1px solid #fff;
+  border: 1px solid var(--cursor-ink);
   transition: background-color 300ms;
 }
-.site-cursor[data-pressed] .site-cursor-ring { background-color: #fff; }
-.site-cursor-dot { inline-size: 6px; block-size: 6px; background: #fff; }
+.site-cursor[data-pressed] .site-cursor-ring { background-color: var(--cursor-ink); }
+.site-cursor-dot { inline-size: 6px; block-size: 6px; background: var(--cursor-ink); }
 
 @media (any-pointer: fine) and (any-hover: hover) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
   :root[data-site-cursor-active] .site-cursor { visibility: visible; }
