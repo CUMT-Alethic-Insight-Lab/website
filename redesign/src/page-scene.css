@@ -1,0 +1,47 @@
+body:has(> .page-scene) { isolation: isolate; }
+
+.page-scene, .page-scene-transfer {
+  position: fixed;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--mono, Consolas, monospace);
+}
+
+.page-scene {
+  z-index: -1;
+  --scene-field: #6d7ba5;
+  --scene-ink: #4d618e;
+  --scene-accent: #344da5;
+  --scene-art-limit: .72;
+  --scene-signal: #6374a3;
+  --scene-margin: #4c608b;
+}
+
+:root[data-theme="dark"] .page-scene {
+  --scene-field: #7990c5;
+  --scene-ink: #7d92c8;
+  --scene-accent: #adbaff;
+  --scene-art-limit: .66;
+  --scene-signal: #8897cc;
+  --scene-margin: #91a4d1;
+}
+
+.page-scene-transfer {
+  z-index: 40;
+  --transfer-ink: var(--accent, #3d50a2);
+}
+
+.page-scene[data-scene-visible="false"] { visibility: hidden; }
+.page-scene-transfer[hidden] { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .page-scene-transfer { display: none; }
+}
+
+@media (forced-colors: active) {
+  .page-scene, .page-scene-transfer { visibility: hidden; }
+}

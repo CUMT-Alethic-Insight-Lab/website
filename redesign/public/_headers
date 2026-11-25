@@ -1,0 +1,20 @@
+# Cloudflare Pages static responses. Configure these policies separately on nginx.
+# Stable paths may change on deployment. Only an audited content-hash URL is immutable.
+/
+  Cache-Control: public, max-age=300, must-revalidate
+/en/
+  Cache-Control: public, max-age=300, must-revalidate
+/*.html
+  Cache-Control: public, max-age=300, must-revalidate
+/*.json
+  Cache-Control: public, max-age=300, must-revalidate
+/assets/*
+  Cache-Control: public, max-age=300, must-revalidate
+/awards/*
+  Cache-Control: public, max-age=604800
+/fonts/*
+  Cache-Control: public, max-age=604800
+/mark.svg
+  Cache-Control: public, max-age=300, must-revalidate
+/alethic-mark.svg
+  Cache-Control: public, max-age=300, must-revalidate

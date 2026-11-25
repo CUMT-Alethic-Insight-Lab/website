@@ -1,0 +1,58 @@
+/* Shared interaction roles across the public site. Use these tokens for a new
+   control; charts retain their own encodings for measurements and series. */
+:root {
+  --ui-accent: var(--accent);
+  --ui-text: var(--ink);
+  --ui-secondary: var(--muted);
+  --ui-selected: color-mix(in srgb, var(--accent) 8%, var(--paper));
+  --ui-focus: var(--accent);
+  --ui-press: 125ms;
+  --ui-enter: 220ms;
+  --ui-leave: 155ms;
+  --ui-ease: cubic-bezier(.22,.74,.22,1);
+  --control-press: var(--ui-press);
+  --control-hover: var(--ui-selected);
+  --quick: var(--ui-press);
+}
+.site-header .identity small {font-size:.7rem;}
+main :is(.topic-index a[aria-current],.ed-meeting-tab[aria-selected="true"],.award-index button[aria-pressed="true"],.f-chapters a[aria-current],.f-machine-steps button[aria-pressed="true"]) {
+  color:var(--ui-accent);background-color:var(--ui-selected);box-shadow:inset 2px 0 var(--ui-accent);
+}
+main :is(.lab-label small,.cut-axis,.trace-caption,.award-caption dt,.award-caption code) {color:var(--ui-secondary);}
+:where(main,header,footer,aside) :is(a,button,summary,input,textarea,select):focus-visible {outline-color:var(--ui-focus);}
+@media (prefers-reduced-motion:no-preference){
+  .site-header[data-ready] {--nav-drawer-time:var(--ui-enter);}
+  .site-preferences[data-ready] {--preferences-time:var(--ui-leave);}
+  .site-preferences[data-ready][open] {--preferences-time:var(--ui-enter);}
+  :where(.site-header,.site-preferences,main) :is(a,button,summary,select):active {transition-duration:var(--ui-press);}
+}
+/* Awards retain their archive, hover preview and certificates. The medal
+   occupies the chapter introduction so the reader can scan one record at a time. */
+#awards .story-intro [data-award-medal] {width:min(100%,24rem);margin:clamp(24px,4vh,46px) 0 0;font-size:clamp(7px,.84vw,12px);text-align:start;}
+#awards .award-register-column {display:block;}
+#awards .award-index {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;}
+#awards .award-index button {display:grid;grid-template-columns:minmax(0,1fr);align-content:center;gap:5px;border-bottom:1px solid var(--line);padding:8px 12px;min-height:60px;}
+#awards .award-index button[aria-pressed=true] {background:var(--ui-selected);box-shadow:inset 0 -2px var(--ui-accent);}
+#awards .award-index button i {display:none;}
+#awards .award-archive-layout {gap:clamp(20px,3.4vh,36px);}
+#awards .award-dossier {grid-template-columns:minmax(0,1.05fr) minmax(0,.85fr);gap:clamp(22px,3.2vw,52px);}
+#awards .award-caption dl {margin-block:14px;}
+#awards .award-caption dd {margin-bottom:12px;}
+#awards .award-caption code {color:var(--ui-secondary);}
+@media(max-width:960px){
+  #awards .story-intro {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.6fr);align-items:center;gap:6px 18px;}
+  #awards .story-intro h2,#awards .story-intro p {grid-column:1;}
+  #awards .story-intro p {margin-top:0;}
+  #awards .story-intro [data-award-medal] {grid-column:2;grid-row:1/3;margin:0;justify-self:end;max-width:18rem;font-size:clamp(4px,1.04vw,9px);text-align:center;}
+}
+@media(max-width:640px){
+  #awards .award-index button {min-height:48px;padding:6px 5px;gap:3px;}
+  #awards .award-dossier {grid-template-columns:1fr;gap:14px;}
+  #awards .award-caption dl {margin-block:8px;}
+  #awards .award-caption dd {margin:0;}
+  #awards .award-caption h3 {margin-bottom:8px;}
+}
+@media(prefers-reduced-motion:no-preference){
+  .ed-meeting[data-mounted] .ed-meeting-stage:not([hidden]) .ed-stage-route::after {animation-duration:var(--ui-enter);animation-timing-function:var(--ui-ease);}
+  .award-archive .award-dossier:not([hidden]) {animation-duration:var(--ui-leave);animation-timing-function:var(--ui-ease);}
+}

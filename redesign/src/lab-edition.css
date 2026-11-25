@@ -1,0 +1,100 @@
+/* Introduction. Two readable text blocks feed into one shared, interactive
+   drawing with a station for each research activity. */
+.lab-sheet {display:grid;grid-template-columns:minmax(0,1.24fr) minmax(0,.86fr);column-gap:clamp(32px,7vw,120px);row-gap:clamp(16px,3vh,36px);align-items:end;}
+.lab-heading {align-self:end;}
+.lab-name,.lab-location,.lab-plate,.lab-label small,.award-caption code {font-family:var(--mono);font-variant-numeric:tabular-nums;}
+.lab-name {font-size:clamp(.78rem,1.1vw,1rem);font-weight:600;letter-spacing:.035em;color:var(--muted);}
+.lab-name span {margin-inline:.45em;color:var(--accent);}
+.lab-heading h1 {margin:.23em 0 0;font-size:clamp(3rem,6.6vw,7.1rem);line-height:1.04;letter-spacing:-.065em;}
+.lab-heading h1>span {display:block;}
+.lab-profile {max-width:34em;}
+.lab-profile p:first-child {font-size:clamp(1.13rem,1.8vw,1.7rem);font-weight:540;line-height:1.5;}
+.lab-profile p+p {margin-top:.7rem;color:var(--muted);line-height:1.65;}
+.lab-profile .story-action{margin-top:10px;}
+.lab-workbench {grid-column:1/-1;}
+.lab-track {display:grid;grid-template-columns:repeat(4,minmax(0,1fr));}
+.lab-station {position:relative;display:grid;justify-items:stretch;min-width:0;border:0;border-radius:0;background:var(--paper);color:var(--ink);padding:0;cursor:pointer;text-align:start;}
+.lab-plate {display:block;width:100%;overflow:hidden;white-space:pre;text-align:center;align-content:center;font-size:clamp(9px,1.05vw,17px);line-height:1.09;letter-spacing:0;min-height:7.8em;color:var(--muted);background:var(--paper);}
+.lab-label{display:flex;gap:10px;align-items:center;min-height:44px;border-top:1px solid var(--line);padding:4px 10px;font-weight:620;}
+.lab-label small {color:var(--accent);font-size:.8rem;}
+.lab-station:is([aria-pressed=true],:hover,:focus-visible) .lab-plate {color:var(--accent);}
+.lab-station[aria-pressed=true] .lab-label {box-shadow:inset 0 2px var(--accent);background:var(--surface);}
+.lab-foot,.lab-location {display:flex;justify-content:space-between;align-items:start;gap:10px 20px;flex-wrap:wrap;}
+.lab-foot {padding:9px 10px 0;font-size:.92rem;line-height:1.6;}
+.lab-foot p:last-child,.lab-location {color:var(--muted);}
+.lab-location {grid-column:1/-1;justify-content:start;font-size:.78rem;}
+/* Awards. Each selected team owns a single document and a complete credit list. */
+#awards .story-layout {grid-template-columns:1fr;gap:clamp(18px,3vh,34px);}
+#awards .story-intro {display:flex;justify-content:space-between;align-items:baseline;gap:12px 24px;flex-wrap:wrap;}
+#awards .story-intro p {margin:0;max-width:42ch;}
+.award-archive>p {max-width:72ch;color:var(--muted);font-size:.95rem;}
+.award-archive-layout {display:grid;grid-template-columns:minmax(180px,.67fr) minmax(0,2fr);gap:clamp(20px,4vw,75px);margin-top:20px;align-items:start;}
+.award-index {display:grid;}
+.award-index button {display:grid;grid-template-columns:minmax(50px,.65fr) minmax(0,1.4fr) auto;align-items:center;gap:8px;min-height:62px;padding:10px 12px;border:0;border-bottom:1px solid var(--line);border-radius:0;color:var(--ink);background:var(--paper);text-align:start;}
+.award-index button span {color:var(--muted);font-size:.88rem;}
+.award-index button i {font:1.2rem var(--mono);color:var(--accent);}
+.award-index button[aria-pressed=true] {background:var(--surface);box-shadow:inset 2px 0 var(--accent);}
+.award-index button[aria-pressed=true] strong {color:var(--accent);}
+.award-dossier {display:grid;align-items:center;grid-template-columns:minmax(0,1.13fr) minmax(0,1fr);gap:clamp(16px,3vw,45px);}
+.award-dossier[hidden] {display:none;}
+.award-print {display:block;background:var(--surface);padding:clamp(8px,1.2vw,20px);}
+.award-print img {display:block;width:100%;height:auto;}
+.award-caption h3 {font-size:clamp(1.55rem,2.3vw,2.4rem);margin:3px 0 14px;}
+.award-caption small,.award-caption dt,.award-caption code {color:var(--muted);font-size:.85rem;}
+.award-caption dl {margin:0;}
+.award-caption dd {margin:2px 0 7px;line-height:1.55;}
+.award-caption code {display:block;overflow-wrap:anywhere;}
+/* Align the research heading, static references and the actual chart. */
+#projects .project-evidence {justify-content:start;border-top:0;gap:0 16px;margin:14px 0 20px;}
+#projects .cut-figure figcaption {justify-content:space-between;gap:8px 16px;flex-wrap:wrap;padding:6px 0 10px;font-size:1rem;}
+#projects .cut-figure figcaption span {color:var(--muted);font-size:.86rem;}
+#projects .cut-label {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;margin-bottom:8px;}
+#projects .cut-label select {max-width:100%;width:max-content;justify-self:start;}
+#projects .cut-row {padding-block:8px 3px;}
+@media(prefers-reduced-motion:no-preference){.award-dossier:not([hidden]){animation:award-register-in 170ms ease-out;}@keyframes award-register-in{from{opacity:.7;transform:translateY(2px);}to{opacity:1;transform:translateY(0);}}}
+@media(max-width:900px){.award-archive-layout{grid-template-columns:1fr;gap:18px;}.award-index{grid-template-columns:repeat(3,minmax(0,1fr));}.award-index button{grid-template-columns:1fr;gap:2px;}.award-index button i {display:none;}}
+@media(max-width:640px){
+.lab-sheet {grid-template-columns:1fr;gap:18px;}.lab-heading h1 {font-size:clamp(2.5rem,10vw,3.65rem);}.lab-profile p:first-child {font-size:1.05rem;}.lab-profile p+p {font-size:.92rem;}.lab-track{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px 0;}.lab-plate{font-size:clamp(6.7px,1.97vw,10px);min-height:7.8em;}.lab-label{padding:4px 6px;gap:5px;font-size:.9rem;}.lab-foot{padding-inline:0;font-size:.86rem;}.lab-location{gap:0 12px;}.lab-foot p:last-child{font-size:.8rem;}
+.award-archive-layout{margin-top:12px;}.award-index button{padding:6px;font-size:.86rem;}.award-index button span{font-size:.75rem;}.award-dossier{grid-template-columns:1fr;gap:14px;}.award-print{max-inline-size:340px;}.award-caption h3{font-size:1.45rem;}.award-caption dl{display:grid;grid-template-columns:max-content 1fr;gap:4px 12px;}.award-caption dd{margin:0;}.award-caption code{display:inline-block;margin-left:10px;}
+}
+/* One changing engraving, separated from its short legend by a shared baseline. */
+.lab-sheet {column-gap:clamp(34px,7vw,104px);row-gap:clamp(18px,3vh,34px);}
+.lab-heading h1 {font-size:clamp(2.8rem,5.2vw,5.5rem);line-height:1.08;}
+.lab-profile p:first-child {font-size:clamp(1.12rem,1.52vw,1.5rem);color:var(--ink);}
+.lab-profile p+p,.lab-location {color:var(--muted);}
+.lab-workbench {display:grid;grid-template-columns:minmax(0,1.18fr) minmax(0,1fr);align-items:center;gap:0 clamp(25px,4vw,74px);}
+.lab-master-plate {margin:0;grid-column:1;grid-row:1/3;font:580 clamp(7px,.78vw,13px)/1.03 var(--mono);letter-spacing:0;color:var(--accent);text-align:center;white-space:pre;overflow:hidden;}
+.lab-track {grid-column:2;align-self:end;grid-template-columns:repeat(2,minmax(0,1fr));}
+.lab-foot{grid-column:2;display:block;align-self:start;min-height:4em;padding:12px 0;}
+.lab-foot p:last-child{margin-top:8px;}
+.lab-station {background:transparent;}
+.lab-label {padding-inline:6px;border-color:color-mix(in srgb,var(--line) 60%,transparent);}
+.lab-station[aria-pressed=true] .lab-label {background:transparent;box-shadow:inset 0 2px var(--accent);color:var(--accent);}
+#awards .story-layout{grid-template-columns:minmax(0,.75fr) minmax(0,1.65fr);gap:clamp(26px,6vw,90px);}
+#awards .story-intro{display:block;}
+#awards .story-intro p {margin-top:15px;max-width:26ch;}
+.award-archive-layout{grid-template-columns:minmax(0,1fr);gap:18px;}
+.award-register-column {display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(12px,2vw,28px);align-items:center;}
+[data-award-medal]{margin:0;white-space:pre;overflow:hidden;text-align:center;font:600 clamp(7px,.65vw,12px)/1.04 var(--mono);color:var(--accent);}
+.award-index button {min-height:46px;}
+.award-archive .award-print {padding:8px;}
+.award-dossier {grid-template-columns:minmax(0,.93fr) minmax(0,1fr);}
+#structure .org-chart {position:relative;isolation:isolate;}
+.org-chart [data-org-wires]{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:-1;}
+.org-chart [data-org-wires] path {fill:none;stroke:var(--strong-line);stroke-width:1;vector-effect:non-scaling-stroke;}
+.org-chart [data-org-wires] path[data-live]{stroke:var(--accent);stroke-width:1.7;}
+#structure .org-gate::after,#structure .org-mode::after,#structure .org-branch::before,#structure .org-branch::after,#structure .seat-node::before{content:none;}
+#structure .seat-pair,#structure .open-branch>div{border-inline-start:0;}
+.org-doors {display:flex;gap:18px;flex-wrap:wrap;margin-top:14px;}
+@media(max-width:960px){#awards .story-layout{grid-template-columns:1fr;}.award-index{grid-template-columns:1fr;}.award-index button{display:flex;justify-content:space-between;}.award-index button i{display:none;}}
+@media(max-width:640px){.lab-workbench{grid-template-columns:1fr;gap:12px;}.lab-master-plate{grid-row:auto;font-size:clamp(8.7px,2.7vw,13px);}.lab-track,.lab-foot {grid-column:1;}.lab-foot{min-height:0;padding:0;}.lab-sheet{gap:18px;}.lab-profile p:first-child{font-size:1.05rem;}.lab-heading h1{font-size:clamp(2.4rem,9vw,3.4rem);}.award-register-column{grid-template-columns:minmax(0,.7fr) minmax(0,1.3fr);gap:8px;}[data-award-medal]{font-size:clamp(3.2px,1.25vw,7px);}.award-dossier{grid-template-columns:1fr;}.award-archive .award-print {max-width:290px;}.org-doors {font-size:.9rem;}}
+/* A deep link to the third record should leave all three choices available. */
+.story-screen [data-award-pick="1"] {scroll-margin-top:calc(var(--story-header-height) + 70px);}
+.story-screen [data-award-pick="2"] {scroll-margin-top:calc(var(--story-header-height) + 116px);}
+@media(max-width:640px){
+  .award-register-column {grid-template-columns:1fr;gap:6px;}
+  [data-award-medal]{font-size:clamp(5.5px,1.65vw,8px);line-height:1.02;}
+  .award-index {grid-template-columns:repeat(3,minmax(0,1fr));}
+  .award-index button {display:grid;align-content:center;justify-content:start;gap:3px;min-height:48px;}
+  .story-screen [data-award-pick] {scroll-margin-top:calc(var(--story-header-height) + 22px);}
+}

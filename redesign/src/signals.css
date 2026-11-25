@@ -1,0 +1,23 @@
+/* The diagram occupies the same tracks as its title, with independent paper
+   behind the prose. The ruled band is part of the chapter's opening baseline. */
+.signal-plate { display:block; height:clamp(104px,12vw,176px); width:100%; min-width:0; color:var(--accent); }
+.sheet-title:has(.signal-plate) .detail-title {grid-column:1/8;grid-row:2;}
+.sheet-title > .signal-plate {grid-column:9/-1;grid-row:2;align-self:end; border-block:1px solid var(--line);}
+.ed-specimen > .signal-plate {height:54px;}
+.ed-chapter,.ed-reading-stop,.f-bay,.ed-meeting-board {position:relative;}
+.signal-rail {position:absolute;inset-block-start:0;inset-inline-end:0;transform:translateY(-50%);font:11px/1 var(--mono);letter-spacing:.08em;color:var(--muted);background:var(--paper);padding-inline:6px;pointer-events:none;white-space:nowrap;}
+.signal-hit {animation:signal-register 260ms ease-out;}
+@keyframes signal-register {0% {background:var(--accent);color:var(--paper);}100%{background:var(--paper);color:var(--muted);}}
+.route-thread {position:fixed;inset:0;z-index:40;width:100%;height:100%;pointer-events:none;}
+.route-thread[hidden]{display:none;}
+[data-tracing] .ed-terminal,[data-tracing] .notch {color:var(--accent);transform:translateX(3px);}
+@media(max-width:759px){
+  .sheet-title:has(.signal-plate) .detail-title {grid-column:1/-1;grid-row:2;}
+  .sheet-title > .signal-plate {grid-column:1/-1;grid-row:3;margin-top:14px;height:66px;}
+  .ed-specimen > .signal-plate {height:44px;}
+  .signal-rail {font-size:9px;}
+}
+.reading-thread {position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:3;}
+.reading-thread[hidden]{display:none;}
+.route-register[data-handoff]{position:relative;}
+.route-register[data-handoff]::before{content:'';position:absolute;inset:0 0 auto;height:2px;transform-origin:left;transform:scaleX(var(--handoff));background:var(--accent);pointer-events:none;z-index:1;}

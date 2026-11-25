@@ -1,0 +1,21 @@
+/* Scope the first-viewport surfaces and Canvas ink to the document theme. */
+.opening {
+  --opening: #eef0f8;
+  --opening-glow: #f9faff;
+  --opening-ink: #222c61;
+  --opening-dim: #7783ad;
+  --opening-blue: #404ea0;
+  --opening-field: #6472a6;
+  --opening-probe: #455bb5;
+  background: radial-gradient(ellipse at 50% 45%, var(--opening-glow), var(--opening) 77%);
+}
+
+:root[data-theme="dark"] .opening {
+  --opening: #12172d;
+  --opening-glow: #1b2242;
+  --opening-ink: #e4eaff;
+  --opening-dim: #546499;
+  --opening-blue: #a2aeff;
+  --opening-field: #7487c8;
+  --opening-probe: #9eb4ff;
+}

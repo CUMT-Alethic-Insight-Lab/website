@@ -1,0 +1,87 @@
+/* Paired editorial plates sit beside the chapter title or in the chapter's
+   own side column. Reading controls and the plots of actual research data
+   keep the same surface as the prose. */
+.home-drawings {--band:clamp(52px,6.2vw,92px);--gutter:clamp(10px,1.7vw,28px);}
+.home-chapter {padding-block-start:0;}
+.chapter-heading {display:flex;align-items:center;justify-content:space-between;gap:clamp(16px,4vw,70px);margin-block:0 clamp(20px,3vw,38px);border-block-end:1px solid var(--line);}
+.chapter-heading h2 {flex:1;max-width:20ch;margin:0;padding-block:18px;font:650 clamp(1.85rem,3.65vw,3.7rem)/1.14 var(--sans);letter-spacing:-.045em;}
+.chapter-art {inline-size:clamp(190px,34%,510px);block-size:clamp(100px,11.4vw,168px);position:relative;isolation:isolate;overflow:hidden;}
+.chapter-art canvas {display:block;width:100%;height:100%;}
+.featured-study {border-block:1px solid var(--rule);align-self:center;}
+.featured-study .chapter-art {width:100%;height:clamp(105px,12vw,176px);background:var(--surface);}
+.featured-study .cut-figure {padding:0 12px 9px;}
+.cut-figure figcaption {padding-block:4px;}
+.home-intro {align-items:center;}
+.home-lead h1 {margin-block:.30em;}
+.home-lead .chart-links {margin-top:22px;align-items:center;}
+.home-lead .chart-links>a:first-child,.join-start .chart-link {padding:5px 16px;color:var(--paper);background:var(--accent);text-decoration:none;}
+.home-lead .chart-links>a:first-child .glyph,.join-start .chart-link .glyph {color:inherit;}
+.home-chapter .chart-link {text-decoration-thickness:1px;}
+.station-context {gap:5%;}
+.work-path .station-symbol {font-size:.85rem;padding-right:9px;}
+.home-drawings .seat-count {display:block;margin:4px 0;}
+.seat-count b {display:inline-block;font:650 .96rem/1.45 var(--sans);color:var(--accent);white-space:nowrap;}
+.topic-readouts {border:0;border-inline-start:2px solid var(--accent);}
+.topic-index a {border-bottom-color:var(--line);}
+.matrix-row .matrix-port {font-size:1rem;}
+.clause>strong::after {content:none;}
+.clause-head,.clause {grid-template-columns:minmax(90px,1fr) minmax(0,3.4fr);}
+.doc-folder code {font-weight:400;font-size:.82rem;}
+.doc-folder li {border-bottom:1px solid var(--line);}
+.home-drawings .project-path a,.review-score a {padding-block:8px;}
+.review-score .glyph {font-size:.84rem;line-height:1.4;}
+.review-score li::before {top:2.5rem;}
+.award-group h3 {font-weight:650;}
+@media(min-width:960px){
+  :is(#position,#work-mode,#meeting,#join).home-chapter {display:grid;grid-template-columns:minmax(210px,.93fr) minmax(0,2fr);column-gap:clamp(30px,5vw,80px);padding-block-start:24px;}
+  :is(#position,#work-mode,#meeting,#join)>.chapter-heading {display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;gap:6px;border:0;margin:0;}
+  :is(#position,#work-mode,#meeting,#join)>.chapter-heading h2 {flex:0 1 auto;padding:0;}
+  :is(#position,#work-mode,#meeting,#join) .chapter-art {width:100%;height:150px;}
+  #position .station-context {display:block;}
+  #position .station-context>p+p {margin-top:10px;}
+  #join .join-route {grid-template-columns:1fr;gap:20px;}
+  #join .chapter-copy>.chart-links {margin-top:18px;}
+}
+@media(max-width:759px){
+  .chapter-heading {gap:8px;margin-bottom:18px;}
+  .chapter-heading h2 {padding-block:12px;font-size:clamp(1.6rem,6.7vw,2.1rem);letter-spacing:-.03em;}
+  .chapter-art {width:clamp(86px,34%,160px);height:86px;flex:none;}
+  .featured-study .chapter-art {height:92px;}
+  .home-intro {gap:18px;}
+  .home-lead .chart-links {margin-top:14px;}
+  .org-mode {padding-inline-end:4px;}
+  .org-branch {grid-template-columns:minmax(68px,.65fr) minmax(0,2fr);}
+  .seat-pair {padding-inline-start:18px;}
+  .seat-node::before {left:-18px;}
+  .review-score li::before {top:0;}
+  .work-path li>span:last-child {align-self:start;}
+}
+/* Shared button and route language. The native link activates immediately.
+   Reduced motion overrides also apply to controls defined outside CSS layers. */
+@media(prefers-reduced-motion:no-preference){
+  :where(button:not(:disabled),.chart-link,.project-path a,.review-score a,.topic-index a,.action,.utilities a,.certificate-port,.f-chapters a,.ed-meeting-tab,summary) {transition:background-color 160ms ease,color 150ms ease,box-shadow 170ms ease,transform 150ms cubic-bezier(.2,.8,.2,1);}
+  :where(button:not(:disabled),.chart-link,.action,.utilities a,.certificate-port,.project-path a,.review-score a,.topic-index a,.f-chapters a,.ed-meeting-tab,summary):active {transform:translateY(1px);}
+  @media(hover:hover){
+    :where(.chart-link,.utilities a,.action,.project-path a,.review-score a,summary):hover {background-color:var(--surface);box-shadow:inset 0 -2px var(--accent);}
+    .home-lead .chart-links>a:first-child:hover,.join-start .chart-link:hover {background-color:var(--ink);}
+  }
+  .topic-readouts article:not([hidden]) {animation:readout-in 200ms cubic-bezier(.2,.8,.2,1);}
+  .topic-bus::before,.topic-bus i {transition:top 180ms ease,bottom 180ms ease;}
+  .cut-row[data-updated] .cut-track {animation:readout-in 220ms ease-out;}
+  @keyframes readout-in {from{opacity:.55;transform:translateY(3px);}to{opacity:1;transform:translateY(0);}}
+  html[data-arrival] main {animation:readout-in 240ms cubic-bezier(.2,.8,.2,1);}
+}
+@media(prefers-reduced-motion:reduce){
+  .home-drawings *, .home-drawings *::after, .home-drawings *::before {animation:none!important;transition:none!important;}
+}
+.home-drawings .chart-link {max-inline-size:100%;}
+.home-drawings .chart-link>.glyph {flex:none;}
+@media(max-width:759px){
+  .doc-folder .chart-link {display:grid;grid-template-columns:minmax(0,1fr) auto;gap:.35rem;}
+  .topic-index a>.glyph {flex:none;}
+  .topic-tap {display:none;}
+  .topic-index a[aria-current] {box-shadow:inset 2px 0 var(--accent);padding-left:6px;}
+  .org-mode {overflow-wrap:anywhere;}
+  .project-path {column-gap:6px;}
+  .project-path .glyph {white-space:normal;overflow-wrap:anywhere;}
+}
