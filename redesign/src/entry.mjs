@@ -109,7 +109,6 @@ if (main.dataset.page === 'index.html') {
 }
 mountTravel({ still, motionChange });
 mountSiteCursor();
-if (main.dataset.page === 'meeting.html') import('./meeting-ui.mjs').then(({ mountMeeting }) => mountMeeting(lang));
 if (main.dataset.page.startsWith('flued')) import('./flued-ui.mjs').then(({ mountFlued }) => mountFlued(lang));
 
 const drawingObserver = new IntersectionObserver(entries => {

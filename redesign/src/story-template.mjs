@@ -1,7 +1,7 @@
 import {renderLab} from './lab-workbench.mjs';
 import { topics } from './topic-routes.mjs';
 
-const compatibilityPages = new Map(topics.filter(topic => topic.file !== 'meeting.html').map(topic => [topic.file, topic.section]));
+const compatibilityPages = new Map(topics.map(topic => [topic.file, topic.section]));
 export function oldTopic(file) { return compatibilityPages.get(file); }
 export function storyHref(url, onHome) {
   const match = /^\/(?:index\.html)?#(.+)$/.exec(url);
@@ -16,19 +16,14 @@ export function storyHref(url, onHome) {
 const action = {
   position: [['认识团队','Meet the team'],'/people.html'],
   work: [['查看 FLUED 研究','Explore FLUED'],'/flued.html'],
-  meeting: [['打开流程演示','Explore the review process'],'/meeting.html'],
 };
-function meetingPreview(en) {
-  const steps=[['submission','投稿','Submit','作者','Author'],['review','评审','Review','评审人','Reviewer'],['discussion','讨论','Discuss','作者与评审人','Author and reviewers'],['decision','决定','Decide','组织者','Organizer']];
-  return `<ol class="story-meeting-path">${steps.map(([id,zh,english,role,roleEn])=>`<li><a href="/meeting.html#stage-${id}"><small>${en?roleEn:role}</small><strong>${en?english:zh}</strong></a></li>`).join('')}</ol>`;
-}
 export function renderStory(files,lang) {
   const en=lang==='en';
   return topics.map((topic,index)=>{
     const {section,file}=topic;
     if(section==='position')return renderLab(lang);
     const copy=files[file];
-    let body = file === 'meeting.html' ? meetingPreview(en) : copy.render(lang).replace(`class="topic-content" id="${section}"`, `class="topic-content"`);
+    let body = copy.render(lang).replace(`class="topic-content" id="${section}"`, `class="topic-content"`);
     if(section==='position') body=body.replace(/<h2 class="about-heading">.*?<\/h2>/,'').replace(/<a class="chart-link" href="\/people.html">.*?<\/a>/,'');
     if(section==='projects') {
       const marker='<div class="project-directory">';

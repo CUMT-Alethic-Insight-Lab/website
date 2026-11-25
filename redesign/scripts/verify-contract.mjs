@@ -70,8 +70,9 @@ function run() {
     .filter(file => file.isFile())
     .map(file => relative(dist, join(file.parentPath, file.name)).split(sep).join('/')));
   const htmlFiles = [...files].filter(name => name.endsWith('.html'));
+  for (const name of ['meeting.html', 'en/meeting.html']) check(!files.has(name), `/${name} 未获批准公开发布`);
   const pages = new Map();
-  for (const name of new Set([...Object.keys(reference), 'meeting.html', ...htmlFiles])) {
+  for (const name of new Set([...Object.keys(reference), ...htmlFiles])) {
     try {
       const html = read(name).toString('utf8');
       check(/<!doctype html\b/i.test(html), `/${name} 缺少 HTML doctype`);
@@ -127,6 +128,7 @@ function run() {
   const serviceLinks = new Set();
   for (const [page, { ids, links }] of pages) {
     for (const [id, count] of ids) check(count === 1, `/${page} 重复 ID #${id}`);
+    check(!ids.has('meeting'), `/${page} 不应包含会议栏目`);
     for (const { name, value, tag, rel } of links) {
       let target;
       try { target = new URL(value, `${site}/${page}`); }

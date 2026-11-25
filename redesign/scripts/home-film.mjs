@@ -24,7 +24,7 @@ export const site = {
   back: { control: '[data-home-nav-start]', target: '#entry' },
   chapters: [
     { id: 'intro', section: '.home-intro', shot: '#hero-title' },
-    ...['position', 'structure', 'work', 'focus', 'projects', 'awards', 'work-mode', 'documents', 'meeting', 'join']
+    ...['position', 'structure', 'work', 'focus', 'projects', 'awards', 'work-mode', 'documents', 'join']
       .map(id => ({ id, section: `#${id}`, shot: `#${id}-title` })),
   ],
 };

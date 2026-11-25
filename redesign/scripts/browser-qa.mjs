@@ -7,7 +7,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 export const origin = process.env.ALETHIC_QA_ORIGIN || 'http://127.0.0.1:14118';
 export const recording = process.env.ALETHIC_QA_RECORD === '1';
 export const output = process.env.ALETHIC_QA_OUTPUT || fileURLToPath(new URL('../qa-output/runtime/', import.meta.url));
-export const routes = ['/', '/people.html', '/insights-memory-hierarchy.html', '/meeting.html', '/flued.html', '/flued-architecture.html', '/flued-demo.html', '/flued-evidence.html', '/flued-experiments.html'];
+export const routes = ['/', '/people.html', '/insights-memory-hierarchy.html', '/flued.html', '/flued-architecture.html', '/flued-demo.html', '/flued-evidence.html', '/flued-experiments.html'];
 export const localize = (lang, route) => `${lang === 'en' ? '/en' : ''}${route}`;
 export const routeName = route => route === '/' ? 'home' : route.slice(1, -5);
 export const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
@@ -112,10 +112,10 @@ export async function suite(name, run) {
 }
 
 const referenceLabels = {
-  zh: ['研究', '公开项目', '竞赛成果', '成员', '文档', '会议', '加入'],
-  en: ['Research', 'Projects', 'Awards', 'People', 'Documents', 'Meetings', 'Join'],
+  zh: ['研究', '公开项目', '竞赛成果', '成员', '文档', '加入'],
+  en: ['Research', 'Projects', 'Awards', 'People', 'Documents', 'Join'],
 };
-const navTargets = ['/#position', '/#work', '/#projects', '/#awards', '/people.html', '/#documents', '/meeting.html', '/#join'];
+const navTargets = ['/#position', '/#work', '/#projects', '/#awards', '/people.html', '/#documents', '/#join'];
 const referenceNav = { image: [1852, 283], x: 44, y: 143, width: 1739, height: 63, columns: [290, 290, 289, 145, 290, 145, 290] };
 
 async function inspectHeader(page) {
@@ -316,20 +316,6 @@ async function main() {
       assert.equal(pathOf(page.url()), '/en/#documents');
       await page.evaluate(() => localStorage.clear());
       return { theme, localizedDestination: '/en/#documents' };
-    });
-    await check('meeting deep link and keyboard tabs', async () => {
-      await open(page, '/meeting.html#stage-review');
-      await page.waitForSelector('[data-meeting][data-mounted]');
-      const selected = () => page.$eval('[role="tab"][aria-selected="true"]', node => node.hash);
-      assert.equal(await selected(), '#stage-review');
-      await page.focus('[role="tab"][aria-selected="true"]');
-      await page.keyboard.press('End');
-      const last = await selected();
-      assert.equal(last, new URL(page.url()).hash);
-      assert.equal(await page.$$eval('[data-stage-panel]:not([hidden])', nodes => nodes.length), 1);
-      await page.keyboard.press('Home');
-      assert.notEqual(await selected(), last);
-      assert.equal(await page.evaluate(() => document.activeElement.hash), await selected());
     });
     await check('FLUED playback, metric and search input', async () => {
       await open(page, '/flued-demo.html?autorun=sample#input');

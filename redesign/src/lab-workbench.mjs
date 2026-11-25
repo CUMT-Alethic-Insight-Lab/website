@@ -24,7 +24,7 @@ export function renderLab(lang) {
         <div class="lab-track" role="group" aria-label="${t(['研究工作过程','Research process'])}">
           ${steps.map((step,i) => `<button type="button" class="lab-station" data-lab-step="${i}" aria-pressed="${i===0}" aria-controls="lab-process-note"><span class="lab-label"><small>${String(i+1).padStart(2,'0')}</small>${step[en?1:0]}</span></button>`).join('')}
         </div>
-        <div class="lab-foot"><p id="lab-process-note" role="status">${steps[0][en?3:2]}</p><p>${t(['由繁得构，由构显真。','From complexity to structure, from structure to insight.'])}</p></div>
+        <div class="lab-foot"><p id="lab-process-note" role="status">${steps[0][en?3:2]}</p><p>${t(['由繁得构，由构显真。','From noise, structure. From structure, aletheia.'])}</p></div>
         <noscript><ol>${steps.map(s=>`<li>${s[en?1:0]} · ${s[en?3:2]}</li>`).join('')}</ol></noscript>
       </div>
       <p class="lab-location">${t(['2025 年成立 · 中国徐州','Founded 2025 · Xuzhou, China'])}<span>34.2044°N / 117.1438°E</span></p>

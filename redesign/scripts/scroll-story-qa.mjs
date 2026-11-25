@@ -14,7 +14,7 @@ const ui = {
   scene: 'canvas.page-scene', artFrame: '[data-scene-art]', quiet: '[data-scene-quiet]',
   direction: '[data-direction]', topic: '[data-topic]', meet: '[data-meeting]',
 };
-const order = ['position', 'structure', 'work', 'focus', 'projects', 'awards', 'work-mode', 'documents', 'meeting', 'join'];
+const order = ['position', 'structure', 'work', 'focus', 'projects', 'awards', 'work-mode', 'documents', 'join'];
 const old = { about: 'position', structure: 'structure', research: 'work', focus: 'focus', projects: 'projects', awards: 'awards',
   agreement: 'work-mode', documents: 'documents', join: 'join' };
 const widths = [320, 390, 768, 1440];
@@ -417,19 +417,6 @@ async function compatibility(page, result, lang) {
       result.redirects.push({ request, landed: page.url(), pass: true });
     } catch (error) { result.redirects.push({ request, landed: page.url(), pass: false, message: error.message }); }
   }
-  await open(page, `${root(lang)}meeting.html`);
-  assert.equal(new URL(page.url()).pathname, `${root(lang)}meeting.html`);
-  assert.equal(await page.$eval('main', node => node.dataset.page), 'meeting.html');
-  await page.waitForSelector(`${ui.meet}[data-mounted]`, wait);
-  const tabs = `${ui.meet} [data-stage-link]`;
-  assert.ok((await page.$$(tabs)).length >= 4, 'Meeting demo is incomplete');
-  await activate(page, `${tabs}[href="#stage-review"]`);
-  await page.waitForFunction(() => location.hash === '#stage-review', wait);
-  assert.equal(await page.$eval(`${tabs}[aria-selected="true"]`, node => node.hash), '#stage-review');
-  await page.keyboard.press('End');
-  result.meeting = { url: page.url(), visiblePanels: await page.$$eval('[data-stage-panel]:not([hidden])', nodes => nodes.length) };
-  assert.equal(result.meeting.visiblePanels, 1);
-  assert.notEqual(await page.$eval(`${tabs}[aria-selected="true"]`, node => node.hash), '#stage-review');
   assert.ok(result.redirects.every(redirect => redirect.pass), 'Compatibility routes failed');
 }
 

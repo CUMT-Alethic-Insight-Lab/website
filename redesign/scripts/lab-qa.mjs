@@ -15,7 +15,7 @@ const widths = [...new Set([320, 390, 1440, reference])];
 const themes = ['light', 'dark'];
 const locales = ['zh', 'en'];
 const wait = { timeout: 6200 };
-const sectionOrder = ['position', 'structure', 'work', 'focus', 'projects', 'awards', 'work-mode', 'documents', 'meeting', 'join'];
+const sectionOrder = ['position', 'structure', 'work', 'focus', 'projects', 'awards', 'work-mode', 'documents', 'join'];
 const ui = {
   step: '#position [data-lab-step]', figure: '#position [data-lab-figure]', note: '#position [role="status"]',
   pick: '#awards [data-award-pick]', panel: '#awards [data-award-panel]',

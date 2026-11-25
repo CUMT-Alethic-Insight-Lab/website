@@ -16,7 +16,7 @@ const defaults = {
   directions: '[data-direction]', topic: '[data-topic]', model: '[data-ruler-select]',
   scene: 'canvas.page-scene', transfer: 'canvas.page-scene-transfer',
 };
-const topics = ['about', 'structure', 'research', 'focus', 'projects', 'awards', 'agreement', 'documents', 'meeting', 'join'];
+const topics = ['about', 'structure', 'research', 'focus', 'projects', 'awards', 'agreement', 'documents', 'join'];
 const details = ['flued', 'flued-architecture', 'flued-demo', 'flued-evidence', 'flued-experiments', 'people', 'insights-memory-hierarchy'];
 const files = ['index.html', ...[...topics, ...details].map(name => `${name}.html`), '404.html'];
 const core = ['about.html', 'structure.html', 'research.html', 'flued.html'];

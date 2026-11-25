@@ -1,6 +1,6 @@
 import { oldTopic, renderStory, storyHref } from './src/story-template.mjs';
 import { topicHeading } from './src/page-template.mjs';
-import { cp, mkdir, readFile, writeFile } from 'node:fs/promises';
+import { cp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
 import { createHash } from 'node:crypto';
 import { editorialPages } from './src/editorial.mjs';
 import { fluedPages } from './src/flued.mjs';
@@ -13,7 +13,7 @@ const files = {
   '404.html': { title: ['找不到这一页', 'Page not found'], intro: ['这个地址没有对应的页面。', 'This address has no matching page.'], render: lang => `<section class="bay"><a class="action" href="/">${lang === 'zh' ? '返回首页' : 'Back to home'} <span aria-hidden="true">-&gt;</span></a></section>` },
 };
 const styles = ['system.css', 'editorial.css', 'flued.css', 'signals.css', 'field-theme.css', 'header.css', 'home-chapters.css', 'home-nav.css', 'editorial-refresh.css', 'paged.css', 'page-scene.css','scroll-story.css', 'controls.css', 'lab-edition.css','site-cursor.css', 'design-system.css'];
-const modules = ['coordinates.mjs','site-cursor.mjs', 'page-scene.mjs','scroll-story.mjs', 'anchor-scroll.mjs', 'travel.mjs', 'field.mjs', 'lab-engraving.mjs', 'org-wires.mjs', 'lab-workbench.mjs', 'award-archive.mjs', 'home-chapters.mjs', 'home-nav.mjs', 'entry.mjs', 'meeting-ui.mjs', 'flued-ui.mjs', 'flued.mjs', 'flued-source-notes.mjs'];
+const modules = ['coordinates.mjs','site-cursor.mjs', 'page-scene.mjs','scroll-story.mjs', 'anchor-scroll.mjs', 'travel.mjs', 'field.mjs', 'lab-engraving.mjs', 'org-wires.mjs', 'lab-workbench.mjs', 'award-archive.mjs', 'home-chapters.mjs', 'home-nav.mjs', 'entry.mjs', 'flued-ui.mjs', 'flued.mjs', 'flued-source-notes.mjs'];
 const css = (await Promise.all(styles.map(name => readFile(new URL(`src/${name}`, base), 'utf8')))).join('\n');
 const scriptSources = await Promise.all(modules.map(name => readFile(new URL(`src/${name}`, base))));
 const version = createHash('sha256').update(css);
@@ -58,7 +58,7 @@ const siteNavigation = [
     ['技术文章', 'Technical essay', '/insights-memory-hierarchy.html'],
   ]],
   ['参与', 'Get involved', [
-    ['会议', 'Meetings', '/meeting.html', 'meeting'], ['加入', 'Join', '/join.html', 'join'], ['招新平台', 'Recruitment platform', '/recruitment/'],
+    ['加入', 'Join', '/join.html', 'join'], ['招新平台', 'Recruitment platform', '/recruitment/'],
   ]],
 ];
 
@@ -178,6 +178,8 @@ ${alias ? `<script>const url=new URL('${en?'/en/':'/'}', location.origin);url.se
 for (const lang of ['zh', 'en']) {
   const directory = lang === 'en' ? new URL('en/', dist) : dist;
   await mkdir(directory, { recursive: true });
+  // Remove the withdrawn public demo from incremental builds too.
+  await rm(new URL('meeting.html', directory), { force: true });
   await Promise.all(Object.entries(files).map(([file, page]) => writeFile(new URL(file, directory), html(page, file, lang))));
 }
 console.log(`Built ${Object.keys(files).length} pages per language (${release})`);

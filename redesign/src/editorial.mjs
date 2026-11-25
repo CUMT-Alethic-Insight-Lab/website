@@ -2,7 +2,6 @@ import { topics } from './topic-routes.mjs';
 import { drawTopic } from './home-layout.mjs';
 import { readFileSync } from 'node:fs';
 // Content from the migration candidate HEAD (c912836); all rendering is original.
-import { renderMeeting } from "./meeting-ui.mjs";
 
 const directions = [
   [
@@ -121,8 +120,8 @@ const people = [
       "Zhangjia Wang"
     ],
     [
-      "NLP 方向负责人、FLUED 项目主持人，研究字节级语言编码接口、动态边界与压缩读出。源代码版本曾将其列为社团社长，负责组织整体方向与运营。",
-      "NLP direction lead and FLUED project lead, studying byte-level language interfaces, dynamic boundaries and compressed readout. The source revision listed him as society president responsible for overall direction and operations."
+      "社团社长，负责组织整体方向与运营；NLP 方向负责人；FLUED 项目主持人：字节级语言编码接口、动态边界与压缩读出。",
+      "President of the society, responsible for overall direction and operations; NLP direction lead; FLUED project lead, studying byte-level language interfaces, dynamic boundaries and compressed readout."
     ],
     [
       [
@@ -145,8 +144,8 @@ const people = [
       "Yan Zhang"
     ],
     [
-      "曾任社团社长，负责过组织整体方向与运营。现任社团职务待核实。",
-      "Former society president responsible for overall direction and operations. Current society office is unverified."
+      "社团前任社长，曾负责组织整体方向与运营。",
+      "Former president of the society, previously responsible for overall direction and operations."
     ],
     [
       [
@@ -409,8 +408,8 @@ const documents = [
 ];
 
 const peopleLead = [
-  "名单随研究与工程进展更新，实名展示、链接可核验。 每个人都有自己负责的方向与可追踪的公开产出；想出现在这里，见文末加入方式。",
-  "The roster is updated as research and engineering progress — real names, verifiable links. Everyone owns a direction with trackable public output; to appear here, see how to join at the bottom."
+  "名单随研究与工程进展更新，实名展示、链接可核验。 每个人都有自己负责的方向与可追踪的公开产出；了解未来加入方式，见文末招新流程。",
+  "The roster is updated as research and engineering progress — real names, verifiable links. Everyone owns a direction with trackable public output; for future recruitment, see the process at the bottom."
 ];
 
 const showcase = JSON.parse(readFileSync(new URL('../public/flued-segmentation-showcase.json', import.meta.url), 'utf8'));
@@ -440,14 +439,15 @@ function rows(items) {
 
 const levels = [
   [['社区层', 'Community'], ['无门槛', 'Open to all'], ['分享会、读书会与公开学习。通过社区群参与。', 'Join talks, reading groups, and open study sessions through the community group.']],
-  [['社团层', 'Society'], ['12 席', '12 seats'], ['正式成员参与项目、学习和评审，承接真实任务。入口为招新群和五步流程。', 'Full members work on projects, learn together, and attend reviews. Enter through the recruitment group and five-step process.']],
-  [['实验室层', 'Lab'], ['3 席', '3 seats'], ['参与前沿研究与平台项目，承担交付责任。与社团层同步直招。', 'Work on frontier research and platform projects with responsibility for delivery. Direct recruitment runs alongside the society track.']],
+  [['社团层', 'Society'], ['约 15 人', 'Approx. 15 members'], ['正式成员参与项目、学习和评审，承接真实任务。', 'Full members work on projects, learn together, attend reviews and take on real tasks.']],
+  [['实验室层', 'Lab'], ['约 15 人', 'Approx. 15 members'], ['参与前沿研究与平台项目，承担交付责任。', 'Work on frontier research and platform projects with responsibility for delivery.']],
 ];
 
 function recruitment(lang) {
   const t = pair => L(lang, pair);
   const steps = [['申请表', 'Application'], ['机试', 'Coding test'], ['面试', 'Interview'], ['入组', 'Onboarding']];
   return chapter('join', 'JOIN', t(['加入方式', 'How to join']), `
+    <p>${t(['当前招新已结束，以下为招新流程参考。', 'Recruitment is currently closed. The following steps are provided for reference.'])}</p>
     <ol class="ed-axis" aria-label="${t(['招新流程', 'Recruitment process'])}">${steps.map((step, i) =>
       `<li>${datum(number(i))}<span>${t(step)}</span></li>`).join('')}</ol>
     <div class="ed-actions">${action('/recruitment/', t(['进入招新平台', 'Enter recruitment']))}${action(`mailto:${contact}`, contact)}</div>`);
@@ -465,8 +465,8 @@ function renderPeople(lang) {
       <div><h3>${t(names)} <span class="ed-person-other" lang="${lang === 'en' ? 'zh-CN' : 'en'}">${lang === 'en' ? names[0] : names[1]}</span></h3><p>${t(role)}</p></div>
       <div class="ed-person-links">${links.map(([href, title]) => action(href, title === 'Homepage' ? t(['个人主页', 'Homepage']) : title)).join('')}</div>
     </li>`).join('')}</ul>
-    <p>${t(['下一行是你。准备建议、招新流程与申请入口如下。', 'The next row is yours. Find preparation advice, recruitment steps and the application below.'])}</p><div class="ed-actions">
-      ${action('#join', t(['申请加入', 'Apply to join']))}
+    <p>${t(['关注后续招新。当前招新已结束，可查阅准备建议与招新流程。', 'Stay tuned for future recruitment. Recruitment is currently closed; preparation advice and the recruitment process remain available.'])}</p><div class="ed-actions">
+      ${action('#join', t(['查看招新流程', 'View recruitment process']))}
       ${action(documents[7][0], t(documents[7][1]))}
     </div>`)}${recruitment(lang)}`;
 }
@@ -1034,11 +1034,7 @@ const editorialPages = {
   },
   'people.html': { title: ['成员', 'People'], intro: peopleLead, render: renderPeople },
   'insights-memory-hierarchy.html': { title: articleTitle, intro: articleIntro, render: renderArticle },
-  'meeting.html': {
-    title: ['会议评审流程', 'Conference review workflow'],
-    intro: ['通过一份示例稿件，了解参与者在投稿、评审、讨论和决定阶段各自要做什么。', 'Follow a sample manuscript to see what participants do during submission, review, discussion, and decision.'],
-    render: renderMeeting,
-  },
+
 };
 
 for (const topic of topics) {
