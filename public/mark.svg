@@ -1,7 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="title">
   <title id="title">Alethic Insight mark</title>
-  <rect width="64" height="64" rx="4" fill="#151627"/>
-  <rect x="3" y="3" width="58" height="58" rx="2" fill="none" stroke="#e8eaf6" stroke-opacity="0.3"/>
-  <path d="M19 46 L29.5 18 H34.5 L45 46" fill="none" stroke="#e8eaf6" stroke-width="4.6" stroke-linejoin="round"/>
-  <rect x="28.7" y="25.5" width="6.6" height="6.6" fill="#7b93ff"/>
+  <defs><clipPath id="flat-base"><rect width="64" height="48"/></clipPath></defs>
+  <rect width="64" height="64" rx="6.5" fill="#151627"/>
+  <rect x="4" y="4" width="56" height="56" rx="3.5" fill="none" stroke="#e8eaf6" stroke-opacity="0.2"/>
+  <rect x="28.5" y="25.7" width="7" height="5.6" fill="#7b93ff"/>
+  <path d="M15.7742 54 L29.5 17 H34.5 L48.2258 54" fill="none" stroke="#e8eaf6" stroke-width="4.8" stroke-linejoin="round" clip-path="url(#flat-base)"/>
 </svg>
